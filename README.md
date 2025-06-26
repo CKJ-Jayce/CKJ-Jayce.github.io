@@ -1,111 +1,48 @@
-<!-- Supabase 实时聊天系统 -->
-<div id="app">
-  <div v-if="!user">
-    <h3>登录/注册2.0版本的CKJ-Jayce社交平台！</h3>
-    <input v-model="email" placeholder="邮箱" type="email">
-    <input v-model="password" placeholder="密码" type="password">
-    <button @click="register">注册</button>
-    <button @click="login">登录</button>
-    <p style="color:red">{{ error }}</p>
-  </div>
-  <div v-if="user">
-    <h3>欢迎, {{ user.email }}！</h3>
-    <button @click="logout">退出</button>
-    <hr>
-    <div v-for="msg in messages" :key="msg.id">
-      <strong>{{ msg.user }}:</strong> {{ msg.text }}
-    </div>
-    <input v-model="newMessage" placeholder="输入消息" @keyup.enter="sendMessage">
-    <button @click="sendMessage">发送</button>
-  </div>
-</div>
+# SYY工作室（SunYiYang Studio）荣誉出品  
+*CKJ-Jayce网站/百词斩小班♛考神•觉醒♛的官方网站*
+欢迎访问我们的网站！如果你来到了这里，说明你可能通过以下方式知晓并访问了该网站：
 
-<!-- 引入依赖 -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+- 🎯 百词斩
+- 🔗 分享链接
+
+## 请告诉我们你是如何知道我们的
+
+<form>
+  <input type="radio" id="baicizhan" name="source" value="baicizhan">
+  <label for="baicizhan">百词斩</label><br>
+  
+  <input type="radio" id="share" name="source" value="share">
+  <label for="share">分享链接</label><br>
+  
+  <div id="result" style="margin-top: 15px; padding: 10px; background: #f0f8ff; border-radius: 5px; display: none;">
+    <!-- 结果将在这里显示 -->
+  </div>
+</form>
+
+> ℹ️ 你的选择不会被别人知道哦 😊
 
 <script>
-// 初始化 Supabase
-const supabase = supabase.createClient(
-  "https://goxgchptmcstbzeimtrv.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdveGdjaHB0bWNzdGJ6ZWltdHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Mjc0NTksImV4cCI6MjA2NjUwMzQ1OX0.oGcVG8Hc5ph4yQuww-VyuQri-8OcXDN9gSlWgl2fEXk"
-);
-
-new Vue({
-  el: '#app',
-  data: {
-    email: '',
-    password: '',
-    user: null,
-    messages: [],
-    newMessage: '',
-    error: ''
-  },
-  created() {
-    // 检查登录状态
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        this.user = data.session.user;
-        this.loadMessages();
-        this.setupRealtime();
-      }
+  document.addEventListener('DOMContentLoaded', function() {
+    const radios = document.querySelectorAll('input[name="source"]');
+    const resultDiv = document.getElementById('result');
+    
+    radios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'baicizhan') {
+          resultDiv.innerHTML = '感谢您通过百词斩访问！<br>请返回到百词斩更改昵称为`ckj`以说明您访问了该网站';
+          resultDiv.style.display = 'block';
+          resultDiv.style.color = '#d9534f';
+          resultDiv.style.backgroundColor = '#f2dede';
+        } else if (this.value === 'share') {
+          resultDiv.innerHTML = '感谢您通过分享链接访问！<br>欢迎探索SYY工作室的更多内容。';
+          resultDiv.style.display = 'block';
+          resultDiv.style.color = '#5cb85c';
+          resultDiv.style.backgroundColor = '#dff0d8';
+        }
+      });
     });
-  },
-  methods: {
-    async register() {
-      const { error } = await supabase.auth.signUp({
-        email: this.email,
-        password: this.password
-      });
-      if (error) this.error = error.message;
-    },
-    async login() {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: this.email,
-        password: this.password
-      });
-      if (error) this.error = error.message;
-    },
-    logout() {
-      supabase.auth.signOut();
-      this.user = null;
-    },
-    async loadMessages() {
-      const { data } = await supabase
-        .from('messages')
-        .select('*')
-        .order('created_at', { ascending: true });
-      this.messages = data || [];
-    },
-    setupRealtime() {
-      // 监听新消息
-      supabase.channel('public:messages')
-        .on(
-          'postgres_changes',
-          { event: 'INSERT', schema: 'public', table: 'messages' },
-          (payload) => {
-            this.messages.push(payload.new);
-          }
-        )
-        .subscribe();
-    },
-    async sendMessage() {
-      if (!this.newMessage.trim()) return;
-      await supabase
-        .from('messages')
-        .insert([{ user: this.user.email, text: this.newMessage }]);
-      this.newMessage = '';
-    }
-  }
-})
+  });
 </script>
-
-<style>
-#app {
-  font-family: Arial;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #eee;
-}
-</style>
+感谢您的支持，欢迎您持续关注SYY Studio！  
+---
+© 2025 SYY Studio. 保留所有权利
