@@ -29,7 +29,7 @@
     radios.forEach(radio => {
       radio.addEventListener('change', function() {
         if (this.value === 'baicizhan') {
-          resultDiv.innerHTML = '感谢您通过百词斩访问！<br>请返回到百词斩更改昵称为`ckj`以说明您访问了该网站';
+          resultDiv.innerHTML = '感谢您通过百词斩访问！<br>请返回到百词斩更改昵称为ckj以说明您访问了该网站';
           resultDiv.style.display = 'block';
           resultDiv.style.color = '#d9534f';
           resultDiv.style.backgroundColor = '#f2dede';
