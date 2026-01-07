@@ -3,1315 +3,816 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合肥实验学校20级2班官方网站</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>合肥实验学校20级02班官方网站</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial','Microsoft YaHei',sans-serif}
-        body{line-height:1.6;color:#333;background:#f5f7fa}
-        .container{max-width:1200px;margin:0 auto;padding:0 20px}
-        .section{padding:60px 0}
-        .navbar{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:fixed;width:100%;top:0;z-index:1000}
-        .nav-container{max-width:1200px;margin:0 auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center}
-        .logo-container{display:flex;align-items:center;gap:15px}
-        .logo{height:40px;width:auto;border-radius:50%}
-        .class-name{font-size:1.5rem;font-weight:bold;color:#2c3e50}
-        .nav-links{display:flex;gap:30px}
-        .nav-links a{text-decoration:none;color:#555;font-weight:500;transition:color .3s}
-        .nav-links a:hover{color:#3498db}
-        .hero{background:linear-gradient(135deg,#3498db,#2c3e50);color:white;padding:150px 0 100px;text-align:center;margin-top:70px}
-        .hero-content h1{font-size:2.8rem;margin-bottom:20px}
-        .hero-content p{font-size:1.2rem;margin-bottom:30px;opacity:.9}
-        .btn{display:inline-block;background:#e74c3c;color:white;padding:12px 30px;border-radius:30px;text-decoration:none;font-weight:bold;border:none;cursor:pointer;transition:background .3s}
-        .btn:hover{background:#c0392b}
-        .btn-small{padding:6px 12px;font-size:0.8rem}
-        .btn-secondary{background:#3498db}
-        .btn-secondary:hover{background:#2980b9}
-        .about-content{display:grid;grid-template-columns:2fr 1fr;gap:50px;margin-top:40px}
-        @media(max-width:768px){.about-content{grid-template-columns:1fr}}
-        .stat{text-align:center;padding:30px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-        .stat i{font-size:2.5rem;color:#3498db;margin-bottom:15px}
-        .section-subtitle{text-align:center;color:#666;margin-bottom:40px}
-        .visitor-form{max-width:500px;margin:0 auto 50px;background:white;padding:30px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-        .visitor-form input,.visitor-form textarea{width:100%;padding:12px;margin-bottom:15px;border:2px solid #ddd;border-radius:5px;font-size:16px}
-        .visitor-form input:focus,.visitor-form textarea:focus{border-color:#3498db;outline:none}
-        .form-note{font-size:0.9rem;color:#666;margin-top:10px;text-align:center}
-        .visitors-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;margin-top:30px}
-        @media(max-width:768px){.visitors-list{grid-template-columns:1fr}}
-        .visitor-card{background:white;padding:20px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);text-align:center;position:relative}
-        .visitor-card h4{color:#2c3e50;margin-bottom:10px}
-        .visitor-card p{color:#666;font-size:0.9rem}
-        .visitor-card .time{font-size:0.8rem;color:#999;margin-top:10px}
-        .no-visitors{text-align:center;padding:40px;color:#888;font-style:italic}
-        .delete-btn{position:absolute;top:5px;right:5px;background:none;border:none;color:#e74c3c;cursor:pointer;font-size:0.8rem;opacity:0.7}
-        .delete-btn:hover{opacity:1}
-        footer{background:#2c3e50;color:white;padding:40px 0;text-align:center}
-        .footer-content{display:flex;flex-direction:column;align-items:center;gap:20px}
-        .footer-logo{display:flex;align-items:center;gap:15px}
-        .footer-logo-img{height:30px;width:auto;border-radius:50%}
-        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px}
-        .feature{text-align:center;padding:25px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
-        .feature i{font-size:2.5rem;color:#3498db;margin-bottom:15px}
-        @media(max-width:768px){.nav-links{display:none}.hero-content h1{font-size:2rem}}
-        
-        /* 登录页面样式 */
-        .login-page{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#3498db,#2c3e50);display:flex;justify-content:center;align-items:center;z-index:2000;transition:opacity .5s}
-        .login-container{background:white;padding:40px;border-radius:15px;box-shadow:0 15px 35px rgba(0,0,0,0.2);max-width:400px;width:90%;text-align:center}
-        .login-form h2{margin-bottom:30px;color:#2c3e50}
-        .login-form input{width:100%;padding:12px;margin-bottom:20px;border:2px solid #ddd;border-radius:5px;font-size:16px}
-        .login-form input:focus{border-color:#3498db}
-        .login-error{color:#e74c3c;margin-bottom:15px;font-size:0.9rem;min-height:20px}
-        .login-tabs{display:flex;gap:10px;margin-bottom:30px}
-        .login-tab{flex:1;padding:10px;background:#f8f9fa;border-radius:5px;cursor:pointer;transition:all .3s}
-        .login-tab.active{background:#3498db;color:white}
-        
-        /* 新增样式 */
-        .user-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.7rem;font-weight:bold;margin-left:8px}
-        .badge-admin{background:#e74c3c;color:white}
-        .badge-teacher{background:#3498db;color:white}
-        .badge-student{background:#2ecc71;color:white}
-        .notifications{max-width:800px;margin:0 auto}
-        .notification-card{background:white;padding:20px;margin-bottom:15px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);border-left:4px solid #3498db}
-        .notification-card.important{border-left-color:#e74c3c}
-        .notification-header{display:flex;justify-content:space-between;margin-bottom:10px}
-        .notification-title{font-weight:bold;color:#2c3e50}
-        .notification-time{font-size:0.8rem;color:#999}
-        
-        /* 节奏登录样式 */
-        .rhythm-btn{width:80px;height:80px;border-radius:50%;background:#3498db;color:white;font-size:1.5rem;display:flex;align-items:center;justify-content:center;cursor:pointer;margin:30px auto;transition:all .1s}
-        .rhythm-btn.active{background:#e74c3c;transform:scale(1.1)}
-        .rhythm-dots{display:flex;justify-content:center;gap:10px;margin-top:20px}
-        .rhythm-dot{width:15px;height:15px;border-radius:50%;background:#ddd}
-        .rhythm-dot.active{background:#3498db}
-        
-        /* 新增功能样式 */
-        .tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
-        .tab{background:#eee;padding:10px 20px;border-radius:5px;cursor:pointer;transition:all .3s}
-        .tab:hover{background:#ddd}
-        .tab.active{background:#3498db;color:white}
-        .tab-content{display:none}
-        .tab-content.active{display:block}
-        .homework-list,.calendar,.score-table{background:white;border-radius:10px;padding:25px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-        .homework-item{padding:15px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
-        .homework-item:last-child{border-bottom:none}
-        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:15px}
-        .calendar-day{padding:10px;text-align:center;border-radius:5px;background:#f8f9fa}
-        .calendar-day.today{background:#3498db;color:white}
-        .score-table table{width:100%;border-collapse:collapse}
-        .score-table th,.score-table td{padding:12px;border-bottom:1px solid #eee;text-align:center}
-        .score-table th{background:#f8f9fa}
-        
-        /* 流畅度优化和下雪效果 */
-        html{scroll-behavior:smooth}
-        .visitor-card,.stat,.feature,.notification-card{transition:transform .2s,box-shadow .2s}
-        .visitor-card:hover,.stat:hover,.feature:hover,.notification-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.12)}
-        #scrollTopBtn{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#3498db;color:white;border:none;cursor:pointer;font-size:1.5rem;display:none;z-index:1000;box-shadow:0 3px 10px rgba(0,0,0,0.3);transition:opacity .3s}
-        #scrollTopBtn:hover{opacity:.9}
-        .fade-in{animation:fadeIn .5s ease-out}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        
-        /* 下雪效果 */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            color: #fff;
-            font-size: 1em;
-            opacity: 0.8;
-            pointer-events: none;
-            z-index: 9999;
-            animation: fall linear infinite;
+        :root {
+            --primary-color: #4a6fa5;
+            --weather-sunny: #ffd700;
+            --weather-rainy: #4682b4;
+            --weather-cloudy: #a9a9a9;
         }
-        @keyframes fall {
-            to {transform: translateY(100vh);}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.5s;
+        }
+        
+        /* 天气效果 */
+        body.sunny { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+        body.rainy { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        body.cloudy { background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%); }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .school-logo {
+            position: absolute;
+            right: 30px;
+            top: 15px;
+            height: 50px;
+            width: auto;
+        }
+        
+        .login-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .login-section.active {
+            display: block;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .login-form button {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info.active {
+            display: flex;
+        }
+        
+        .user-badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .admin { background: #ff6b6b; color: white; }
+        .teacher { background: #4ecdc4; color: white; }
+        .student { background: #45b7d1; color: white; }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .nav-btn {
+            padding: 10px 15px;
+            background: #f0f4f8;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .homework-item, .score-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+        
+        .calendar-day {
+            padding: 10px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .calendar-day.today {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .message-board textarea {
+            width: 100%;
+            height: 80px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+            resize: vertical;
+        }
+        
+        .message {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+        }
+        
+        .cube-container {
+            width: 200px;
+            height: 200px;
+            perspective: 1000px;
+            margin: 20px auto;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #333;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 2px;
+            background: #333;
+        }
+        
+        .cube-face > div {
+            border-radius: 4px;
+        }
+        
+        .front { transform: rotateY(0deg) translateZ(100px); }
+        .back { transform: rotateY(180deg) translateZ(100px); }
+        .right { transform: rotateY(90deg) translateZ(100px); }
+        .left { transform: rotateY(-90deg) translateZ(100px); }
+        .top { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        
+        .color-0 { background: white; }
+        .color-1 { background: #ff0000; }
+        .color-2 { background: #00ff00; }
+        .color-3 { background: #0000ff; }
+        .color-4 { background: #ffff00; }
+        .color-5 { background: #ff8800; }
+        
+        .cube-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .cube-controls button {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* 班级介绍样式 */
+        .class-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .class-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .class-member {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .class-slogan {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .school-logo {
+                position: static;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- 下雪效果容器 -->
-    <div id="snowflakes"></div>
+<body id="weatherBody">
+    <div class="header">
+        <h1>合肥实验学校20级02班官方网站</h1>
+        <div id="userInfo" class="user-info">
+            <span id="userName"></span>
+            <span id="userRole" class="user-badge"></span>
+            <button onclick="logout()">退出登录</button>
+        </div>
+        <img src="school-logo.png" alt="校徽" class="school-logo" onerror="this.style.display='none'">
+    </div>
     
-    <!-- 登录页面 -->
-    <div id="loginPage" class="login-page">
-        <div class="login-container">
-            <div class="login-tabs">
-                <div class="login-tab active" onclick="switchLoginType('password')">密码登录</div>
-                <div class="login-tab" onclick="switchLoginType('rhythm')">节奏登录（Beta测试内容）</div>
+    <div id="loginSection" class="login-section active">
+        <h2>登录</h2>
+        <form class="login-form" onsubmit="login(event)">
+            <input type="text" id="username" placeholder="用户名" required>
+            <input type="password" id="password" placeholder="密码" required>
+            <button type="submit">登录</button>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h3>导航栏</h3>
+            <div class="quick-nav">
+                <button class="nav-btn" onclick="showSection('intro')">班级介绍</button>
+                <button class="nav-btn" onclick="showSection('homework')">作业公告</button>
+                <button class="nav-btn" onclick="showSection('scores')">成绩公示</button>
+                <button class="nav-btn" onclick="showSection('calendar')">班级日历</button>
+                <button class="nav-btn" onclick="showSection('messages')">留言板</button>
+                <button class="nav-btn" onclick="showSection('cube')">班级潮流</button>
             </div>
-            
-            <!-- 密码登录 -->
-            <div id="passwordLogin" class="login-form">
-                <h2><i class="fas fa-user-graduate"></i> 登录，访问美好世界！</h2>
-                <input type="text" id="loginUsername" placeholder="用户名" autocomplete="off">
-                <input type="password" id="loginPassword" placeholder="密码" autocomplete="off">
-                <div id="loginError" class="login-error"></div>
-                <button onclick="checkLogin()" class="btn">登录</button>
-                <div class="login-info" style="margin-top:20px;">
-                    <p><i class="fas fa-info-circle"></i> 请联系管理员获取账号</p>
+        </div>
+        
+        <!-- 班级介绍 -->
+        <div id="introSection" class="card">
+            <h3>班级介绍</h3>
+            <div class="class-info">
+                <div>
+                    <h4>20（2）班</h4>
+                    <p><strong>班主任：</strong>姚*笑老师</p>
+                    <p><strong>班级口号：</strong></p>
+                    <div class="class-slogan">
+                        "自育自学，健身创造"
+                    </div>
+                    
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <div class="number">43</div>
+                            <div>班级人数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">9+</div>
+                            <div>任课老师</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">99.99999</div>
+                            <div>平均分</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">100%</div>
+                            <div>出勤率</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- 节奏登录 -->
-            <div id="rhythmLogin" class="login-form" style="display:none;">
-                <h2><i class="fas fa-music"></i> 节奏登录（Beta）</h2>
-                <p style="color:#666; margin-bottom:20px;">按照提示节奏点击按钮</p>
-                
-                <div id="rhythmButton" class="rhythm-btn">
-                    👆戳它！
-                </div>
-                
-                <div id="rhythmDots" class="rhythm-dots">
-                    <div class="rhythm-dot"></div>
-                    <div class="rhythm-dot"></div>
-                    <div class="rhythm-dot"></div>
-                    <div class="rhythm-dot"></div>
-                </div>
-                
-                <div id="rhythmHint" style="margin-top:10px; color:#666; font-size:0.9rem;">
-                    节奏：快-快-慢-快
-                </div>
-                
-                <div id="rhythmError" class="login-error"></div>
-                <button onclick="checkRhythmLogin()" class="btn">验证节奏</button>
-                <div class="login-info" style="margin-top:20px;">
-                    <p><i class="fas fa-info-circle"></i> 提示：300ms, 300ms, 600ms, 300ms</p>
+                    
+                    <h4 style="margin-top: 20px;">班级荣誉</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>2025年度市优秀班集体</li>
+                        <li>校运动会团体总分第一名</li>
+                        <li>特别文明班级（连续n年）嘿嘿~</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 20px;">班级目标</h4>
+                    <p>咱班说当全国第二，没人敢称第一</p>
                 </div>
             </div>
         </div>
+        
+        <div id="homeworkSection" class="card hidden">
+            <h3>作业公告</h3>
+            <div id="homeworkList"></div>
+            <textarea id="newHomework" placeholder="输入新作业内容..."></textarea>
+            <button onclick="addHomework()">发布作业</button>
+        </div>
+        
+        <div id="scoresSection" class="card hidden">
+            <h3>成绩公示</h3>
+            <div id="scoresList">
+                <div class="score-item">
+                    <strong>语文</strong>
+                    <div>平均分: -- | 最高分: -- | 最低分: --</div>
+                </div>
+                <div class="score-item">
+                    <strong>数学</strong>
+                    <div>平均分: -- | 最高分: -- | 最低分: --</div>
+                </div>
+                <div class="score-item">
+                    <strong>英语</strong>
+                    <div>平均分: -- | 最高分: 99 | 最低分: --</div>
+                </div>
+                <div class="score-item">
+                    <strong>科学</strong>
+                    <div>平均分: 85 | 最高分: 98 | 最低分: 23</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="calendarSection" class="card hidden">
+            <h3>班级日历</h3>
+            <div class="calendar" id="calendar"></div>
+            <div style="margin-top: 15px;">
+                <h4>近期活动</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>暂无活动</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="messagesSection" class="card hidden">
+            <h3>留言板</h3>
+            <div id="messagesList"></div>
+            <textarea id="newMessage" placeholder="输入留言..."></textarea>
+            <button onclick="addMessage()">发布留言</button>
+        </div>
+        
+        <div id="cubeSection" class="card hidden">
+            <h3>班级潮流</h3>
+            <div class="cube-container">
+                <div class="cube" id="cube"></div>
+            </div>
+            <div class="cube-controls">
+                <button onclick="rotateCube('U')">上</button>
+                <button onclick="rotateCube('D')">下</button>
+                <button onclick="rotateCube('L')">左</button>
+                <button onclick="rotateCube('R')">右</button>
+                <button onclick="rotateCube('F')">前</button>
+                <button onclick="rotateCube('B')">后</button>
+                <button onclick="scrambleCube()">打乱</button>
+                <button onclick="solveCube()">自动还原</button>
+            </div>
+        </div>
     </div>
-
-    <!-- 主网站内容 -->
-    <div id="mainContent" style="display:none;">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo-container">
-                    <img src="class-badge.png" alt="班徽" class="logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iIzM0OThkYiIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5YiG5LqrPC90ZXh0Pjwvc3ZnPg=='">
-                    <span class="class-name">合肥实验学校20级2班官方网站</span>
-                    <span style="font-size:0.9rem;color:#666;margin-left:10px;">
-                        登录账号为: <span id="loggedInUser">班级成员</span>
-                        <span id="userBadge" class="user-badge"></span>
-                    </span>
-                </div>
-                <div class="nav-links">
-                    <a href="#home">首页</a>
-                    <a href="#about">关于我们</a>
-                    <a href="#notices">班级通知</a>
-                    <a href="#features">班级特色</a>
-                    <a href="#contact">留言板</a>
-                    <a href="#functions">更多功能</a>
-                    <a href="#" onclick="logout()" style="color:#e74c3c"><i class="fas fa-sign-out-alt"></i> 退出</a>
-                </div>
-            </div>
-        </nav>
-
-        <section id="home" class="hero fade-in">
-            <div class="hero-content">
-                <h1>欢迎来到我们的班级</h1>
-                <p>团结、奋进、求知、成长</p>
-                <a href="#about" class="btn">了解更多</a>
-            </div>
-        </section>
-
-        <section id="about" class="section">
-            <div class="container">
-                <h2>关于我们</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>班级简介</h3>
-                        <p>我们是一个充满活力、积极向上的集体。在这里，我们一起学习，一起成长，共同创造美好的回忆。</p>
-                        <h3>班级宣言</h3>
-                        <p>以梦为马，不负韶华；以勤为径，勇攀高峰。</p>
-                    </div>
-                    <div class="about-stats">
-                        <div class="stat fade-in" style="animation-delay:0.1s">
-                            <i class="fas fa-users"></i>
-                            <h3>班级人数</h3>
-                            <p>43人</p>
-                        </div>
-                        <div class="stat fade-in" style="animation-delay:0.2s">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>成立时间</h3>
-                            <p>2020年9月</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 班级通知 -->
-        <section id="notices" class="section bg-light">
-            <div class="container">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px">
-                    <h2>班级通知</h2>
-                    <button id="addNoticeBtn" class="btn btn-small" onclick="showNoticeForm()" style="display:none">
-                        <i class="fas fa-plus"></i> 发布通知
-                    </button>
-                </div>
-                
-                <div id="noticeForm" class="visitor-form" style="display:none">
-                    <input type="text" id="noticeTitle" placeholder="通知标题" maxlength="50">
-                    <textarea id="noticeContent" placeholder="通知内容" rows="4" maxlength="200"></textarea>
-                    <div style="display:flex;gap:10px">
-                        <button onclick="addNotice()" class="btn">发布通知</button>
-                        <button onclick="hideNoticeForm()" class="btn btn-secondary">取消</button>
-                    </div>
-                </div>
-                
-                <div id="notificationsList" class="notifications">
-                    <!-- 通知内容动态生成 -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 班级特色 -->
-        <section id="features" class="section">
-            <div class="container">
-                <h2>班级特色</h2>
-                <div class="features">
-                    <div class="feature fade-in" style="animation-delay:0.1s">
-                        <i class="fas fa-heart"></i>
-                        <h3>团结友爱</h3>
-                        <p>我们像一个大家庭，互帮互助，共同进步。</p>
-                    </div>
-                    <div class="feature fade-in" style="animation-delay:0.2s">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>创新思维</h3>
-                        <p>鼓励创新，培养解决问题的能力。</p>
-                    </div>
-                    <div class="feature fade-in" style="animation-delay:0.3s">
-                        <i class="fas fa-book"></i>
-                        <h3>热爱学习</h3>
-                        <p>营造浓厚的学习氛围，追求卓越。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 留言板 -->
-        <section id="contact" class="section bg-light">
-            <div class="container">
-                <h2>留言板</h2>
-                <p class="section-subtitle">留下你的名字，让我们知道你来过！</p>
-                
-                <div class="visitor-form fade-in">
-                    <input type="text" id="visitorName" placeholder="请输入你的名字" maxlength="20">
-                    <input type="text" id="visitorMessage" placeholder="想说点什么？（可选）" maxlength="50">
-                    <button onclick="addVisitor()" class="btn">留下我的名字</button>
-                    <p class="form-note">注意：留言仅保存在浏览器本地，刷新页面会清空</p>
-                    <div style="display:flex;gap:10px;justify-content:center;margin-top:15px">
-                        <button onclick="clearAllVisitors()" class="btn btn-small">清空留言</button>
-                        <button onclick="copySiteLink()" class="btn btn-small">复制链接</button>
-                    </div>
-                </div>
-
-                <div class="visitors-container">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-                        <h3>最近访客</h3>
-                        <div style="color:#666;font-size:0.9rem">
-                            共 <span id="totalMessages">0</span> 条留言
-                        </div>
-                    </div>
-                    <div id="visitorsList" class="visitors-list"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 更多功能 -->
-        <section id="functions" class="section">
-            <div class="container">
-                <h2>更多功能</h2>
-                <div class="tabs">
-                    <div class="tab active" onclick="switchTab('homework')">作业管理</div>
-                    <div class="tab" onclick="switchTab('calendar')">班级日历</div>
-                    <div class="tab" onclick="switchTab('score')">成绩查询</div>
-                </div>
-                
-                <div id="homework" class="tab-content active">
-                    <div class="homework-list">
-                        <h3>近期作业</h3>
-                        <div id="homeworkItems">
-                            <!-- 作业列表动态生成 -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="calendar" class="tab-content">
-                    <div class="calendar">
-                        <h3>班级日历</h3>
-                        <div id="calendarView" class="calendar-grid"></div>
-                    </div>
-                </div>
-                
-                <div id="score" class="tab-content">
-                    <div class="score-table">
-                        <h3>成绩查询</h3>
-                        <div id="scoreList">
-                            <!-- 成绩列表动态生成 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-logo">
-                        <img src="class-badge.png" alt="班徽" class="footer-logo-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iIzM0OThkYiIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5YiG5LqrPC90ZXh0Pjwvc3ZnPg=='">
-                        <p>20（2）班的官方网站</p>
-                    </div>
-                    <p>&copy; <span id="currentYear">2026</span> 此班最牛程序猿一枚. 保留所有权利.</p>
-                </div>
-            </div>
-        </footer>
-
-        <!-- 滚动到顶部按钮 -->
-        <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
-    </div>
-
+    
     <script>
-        // ================================================
-        // 【系统核心配置】
-        // ================================================
-        
-        // 预设账号配置
-        const PRESET_ACCOUNTS = [
-            { username: "管理员", password: "SYYADMIN", displayName: "管理员孙亦阳", level: 3 },
-            { username: "姚笑笑", password: "teacherY", displayName: "班主任", level: 2 },
-            { username: "钱思宇", password: "QSY", displayName: "钱思宇【班级人上人，比人高一等】", level: 1 },
-            { username: "郑梓珺", password: "113514", displayName: "菜问", level: 1 },
-            { username: "李欣泽", password: "114514", displayName: "六六六", level: 1 }
-        ];
-        
-        // 等级权限映射
-        const LEVEL_PERMISSIONS = {
-            3: { name: "管理员", badge: "badge-admin", color: "#e74c3c", canManage: true },
-            2: { name: "教师", badge: "badge-teacher", color: "#3498db", canManage: true },
-            1: { name: "学生", badge: "badge-student", color: "#2ecc71", canManage: false }
+        // 用户数据
+        const users = {
+            'admin': { password: 'SYYADMIN', role: '管理员', name: '网站管理员孙亦阳' },
+            'teacher1': { password: 'YXX', role: '姚笑笑', name: '班主任' },
+            'student1': { password: 'QSY', role: '钱思宇', name: '钱思宇【班级人上人，比人高一等】' },
+            'student2': { password: '113514', role: '李欣泽', name: '六六六' },
+            'student3': { password: '114514', role: '郑梓珺', name: '菜问' },
+            'student4': { password: '5', role: '汪宇宸', name: '汪大侠' }
         };
         
-        // 节奏登录配置
-        const RHYTHM_PATTERN = [300, 600, 600, 300]; // 快-慢-慢-快 (毫秒)
+        // 班干部数据
+        const classMembers = [
+            { name: '鲁思妍', role: '班长，大队部成员', avatar: 'LSY' },
+            { name: '李崇好', role: '大队部成员', avatar: 'LCH' }
+        ];
         
-        // ================================================
-        // 【核心系统类】
-        // ================================================
+        // 当前用户
+        let currentUser = null;
         
-        class SystemManager {
-            constructor() {
-                this.loginKey = 'class_login_status';
-                this.userKey = 'class_logged_in_user';
-                this.levelKey = 'user_level';
-                this.checkAutoLogin();
-            }
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateWeather();
+            loadData();
+            generateCalendar();
+            createCube();
+            loadClassIntro();
+            checkLoginStatus();
+        });
+        
+        // 天气系统
+        function updateWeather() {
+            const weatherTypes = ['sunny', 'rainy', 'cloudy'];
+            const randomWeather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
+            document.getElementById('weatherBody').className = randomWeather;
             
-            checkAutoLogin() {
-                const isLoggedIn = localStorage.getItem(this.loginKey);
-                const loggedInUser = localStorage.getItem(this.userKey);
-                const userLevel = localStorage.getItem(this.levelKey);
-                
-                if (isLoggedIn === 'true' && loggedInUser && userLevel) {
-                    this.showMainContent(loggedInUser, parseInt(userLevel));
-                }
-            }
-            
-            login(username, password) {
-                const account = PRESET_ACCOUNTS.find(acc => 
-                    acc.username === username && acc.password === password
-                );
-                
-                if (account) {
-                    localStorage.setItem(this.loginKey, 'true');
-                    localStorage.setItem(this.userKey, account.displayName);
-                    localStorage.setItem(this.levelKey, account.level.toString());
-                    this.showMainContent(account.displayName, account.level);
-                    return true;
-                }
-                return false;
-            }
-            
-            logout() {
-                if (confirm('确定要退出登录吗？')) {
-                    localStorage.removeItem(this.loginKey);
-                    localStorage.removeItem(this.userKey);
-                    localStorage.removeItem(this.levelKey);
-                    this.showLoginPage();
-                }
-            }
-            
-            showMainContent(displayName, level) {
-                document.getElementById('loginPage').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loginPage').style.display = 'none';
-                    document.getElementById('mainContent').style.display = 'block';
-                    
-                    // 更新用户信息
-                    document.getElementById('loggedInUser').textContent = displayName;
-                    
-                    // 显示等级徽章
-                    const badgeElement = document.getElementById('userBadge');
-                    const permission = LEVEL_PERMISSIONS[level];
-                    if (permission) {
-                        badgeElement.className = `user-badge ${permission.badge}`;
-                        badgeElement.textContent = permission.name;
-                        badgeElement.style.backgroundColor = permission.color;
-                    }
-                    
-                    // 根据权限显示管理按钮
-                    if (permission.canManage) {
-                        document.getElementById('addNoticeBtn').style.display = 'block';
-                    }
-                    
-                    // 显示通知
-                    this.showToast(`欢迎回来，${displayName}！`, 'success');
-                    
-                    // 初始化各模块
-                    visitorManager.init();
-                    notificationManager.init();
-                    homeworkManager.init();
-                    calendarManager.init();
-                    scoreManager.init();
-                    
-                    // 初始化滚动按钮
-                    initScrollButton();
-                    document.getElementById('currentYear').textContent = new Date().getFullYear();
-                }, 500);
-            }
-            
-            showLoginPage() {
-                document.getElementById('loginPage').style.display = 'flex';
-                setTimeout(() => {
-                    document.getElementById('loginPage').style.opacity = '1';
-                    document.getElementById('mainContent').style.display = 'none';
-                    document.getElementById('loginUsername').value = '';
-                    document.getElementById('loginPassword').value = '';
-                    document.getElementById('loginError').textContent = '';
-                    resetRhythmLogin();
-                }, 100);
-            }
-            
-            showToast(message, type = 'info') {
-                const toast = document.createElement('div');
-                const colors = { success: '#2ecc71', warning: '#f39c12', info: '#3498db', error: '#e74c3c' };
-                toast.innerHTML = `
-                    <div style="
-                        position: fixed;
-                        top: 20px;
-                        right: 20px;
-                        background: ${colors[type] || '#3498db'};
-                        color: white;
-                        padding: 15px 25px;
-                        border-radius: 5px;
-                        animation: slideIn 0.3s ease-out;
-                        z-index: 1001;
-                        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-                    ">
-                        <i class="fas fa-${type === 'success' ? 'check' : 'info'}-circle"></i> ${message}
-                    </div>
-                `;
-                document.body.appendChild(toast);
-                
-                setTimeout(() => {
-                    toast.style.animation = 'slideOut 0.3s ease-out forwards';
-                    setTimeout(() => toast.remove(), 300);
-                }, 2000);
-            }
-            
-            getCurrentLevel() {
-                return parseInt(localStorage.getItem(this.levelKey) || '0');
-            }
+            // 模拟每小时更新天气
+            setTimeout(updateWeather, 3600000);
         }
         
-        // ================================================
-        // 【节奏登录类】
-        // ================================================
-        
-        class RhythmLogin {
-            constructor() {
-                this.clickTimes = [];
-                this.lastClickTime = 0;
-                this.currentStep = 0;
-                this.isActive = false;
-                this.init();
-            }
+        // 登录系统
+        function login(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
             
-            init() {
-                const rhythmBtn = document.getElementById('rhythmButton');
-                rhythmBtn.addEventListener('mousedown', () => this.recordClick());
-                rhythmBtn.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    this.recordClick();
-                });
-            }
-            
-            recordClick() {
-                const now = Date.now();
-                const rhythmBtn = document.getElementById('rhythmButton');
-                
-                // 按钮视觉反馈
-                rhythmBtn.classList.add('active');
-                setTimeout(() => rhythmBtn.classList.remove('active'), 100);
-                
-                if (this.lastClickTime > 0) {
-                    const interval = now - this.lastClickTime;
-                    this.clickTimes.push(interval);
-                    
-                    // 更新进度点
-                    const dots = document.querySelectorAll('.rhythm-dot');
-                    if (this.currentStep < dots.length) {
-                        dots[this.currentStep].classList.add('active');
-                        this.currentStep++;
-                    }
-                }
-                
-                this.lastClickTime = now;
-                
-                // 播放点击音效
-                this.playClickSound();
-            }
-            
-            checkRhythm() {
-                if (this.clickTimes.length !== RHYTHM_PATTERN.length) {
-                    return false;
-                }
-                
-                // 允许20%的误差范围
-                for (let i = 0; i < this.clickTimes.length; i++) {
-                    const diff = Math.abs(this.clickTimes[i] - RHYTHM_PATTERN[i]);
-                    const error = diff / RHYTHM_PATTERN[i];
-                    
-                    if (error > 0.2) return false;
-                }
-                
-                return true;
-            }
-            
-            reset() {
-                this.clickTimes = [];
-                this.lastClickTime = 0;
-                this.currentStep = 0;
-                
-                // 重置进度点
-                document.querySelectorAll('.rhythm-dot').forEach(dot => {
-                    dot.classList.remove('active');
-                });
-            }
-            
-            playClickSound() {
-                try {
-                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioContext.createOscillator();
-                    const gainNode = audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
-                    
-                    oscillator.frequency.value = 800 + (this.currentStep * 100);
-                    oscillator.type = 'sine';
-                    
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                    
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.1);
-                } catch (e) {
-                    // 音频上下文可能不被支持，忽略错误
-                }
-            }
-        }
-        
-        // ================================================
-        // 【留言管理器】
-        // ================================================
-        
-        class VisitorManager {
-            constructor() {
-                this.visitorsKey = 'class_visitors';
-                this.maxVisitors = 20;
-            }
-            
-            init() {
-                this.displayVisitors();
-                if (!this.getVisitors().length) {
-                    this.addSampleVisitors();
-                }
-                this.updateStats();
-            }
-            
-            addSampleVisitors() {
-                const samples = [
-                    { name: "班主任", message: "同学们加油！" },
-                    { name: "小孙", message: "班级网站太棒了！" },
-                    { name: "小张", message: "为我们的班级自豪" }
-                ];
-                samples.forEach(v => this.addVisitor(v.name, v.message, true));
-            }
-            
-            addVisitor(name, message = '', isSample = false) {
-                if (!isSample && !name.trim()) {
-                    systemManager.showToast('请输入你的名字', 'warning');
-                    return;
-                }
-                
-                const visitor = {
-                    name: name.trim().substr(0, 20),
-                    message: message.trim().substr(0, 50),
-                    time: new Date().toLocaleString('zh-CN'),
-                    id: Date.now() + Math.random().toString(36).substr(2, 9)
+            if (users[username] && users[username].password === password) {
+                currentUser = {
+                    username: username,
+                    ...users[username]
                 };
                 
-                let visitors = this.getVisitors();
-                visitors.unshift(visitor);
-                
-                if (visitors.length > this.maxVisitors) {
-                    visitors = visitors.slice(0, this.maxVisitors);
-                }
-                
-                localStorage.setItem(this.visitorsKey, JSON.stringify(visitors));
-                this.displayVisitors();
-                
-                if (!isSample) {
-                    document.getElementById('visitorName').value = '';
-                    document.getElementById('visitorMessage').value = '';
-                    systemManager.showToast('留言成功！', 'success');
-                }
-            }
-            
-            deleteVisitor(id) {
-                if (!confirm('确定要删除这条留言吗？')) return;
-                
-                let visitors = this.getVisitors();
-                visitors = visitors.filter(v => v.id !== id);
-                localStorage.setItem(this.visitorsKey, JSON.stringify(visitors));
-                this.displayVisitors();
-                systemManager.showToast('已删除留言', 'info');
-            }
-            
-            clearAllVisitors() {
-                if (confirm('确定要清空所有留言吗？')) {
-                    localStorage.removeItem(this.visitorsKey);
-                    this.displayVisitors();
-                    systemManager.showToast('已清空留言', 'info');
-                }
-            }
-            
-            getVisitors() {
-                const visitors = localStorage.getItem(this.visitorsKey);
-                return visitors ? JSON.parse(visitors) : [];
-            }
-            
-            displayVisitors() {
-                const visitors = this.getVisitors();
-                const container = document.getElementById('visitorsList');
-                
-                if (!visitors.length) {
-                    container.innerHTML = '<p class="no-visitors">还没有访客，快来成为第一个吧！</p>';
-                    this.updateStats();
-                    return;
-                }
-                
-                container.innerHTML = visitors.map(v => `
-                    <div class="visitor-card fade-in">
-                        ${systemManager.getCurrentLevel() >= 2 ? 
-                            `<button class="delete-btn" onclick="visitorManager.deleteVisitor('${v.id}')" title="删除">
-                                <i class="fas fa-times"></i>
-                            </button>` : ''}
-                        <h4>${this.escapeHtml(v.name)}</h4>
-                        ${v.message ? `<p>${this.escapeHtml(v.message)}</p>` : ''}
-                        <div class="time">${v.time}</div>
-                    </div>
-                `).join('');
-                this.updateStats();
-            }
-            
-            updateStats() {
-                document.getElementById('totalMessages').textContent = this.getVisitors().length;
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                showUserInfo();
+            } else {
+                alert('用户名或密码错误！');
             }
         }
         
-        // ================================================
-        // 【通知管理器】
-        // ================================================
-        
-        class NotificationManager {
-            constructor() {
-                this.noticesKey = 'class_notices';
-            }
+        function showUserInfo() {
+            document.getElementById('loginSection').classList.remove('active');
+            document.getElementById('userInfo').classList.add('active');
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userRole').textContent = currentUser.role;
+            document.getElementById('userRole').className = 'user-badge ' + currentUser.role;
             
-            init() {
-                this.displayNotices();
-                if (!this.getNotices().length) {
-                    this.addSampleNotices();
-                }
-            }
-            
-            addSampleNotices() {
-                const samples = [
-                    { title: "重要通知", content: "今天好像发语文试卷", time: "2026-01-07", important: true },
-                    { title: "班级活动", content: "下学期要举行足球⚽️比赛！", time: "2026-01-07", important: false }
-                ];
-                samples.forEach(notice => this.addNotice(notice.title, notice.content, true, notice.important));
-            }
-            
-            addNotice(title, content, isSample = false, important = false) {
-                if (!isSample && (!title.trim() || !content.trim())) {
-                    systemManager.showToast('请填写完整通知信息', 'warning');
-                    return;
-                }
-                
-                // 检查权限：只有管理员和教师可以发布通知
-                if (!isSample && systemManager.getCurrentLevel() < 2) {
-                    systemManager.showToast('您没有权限发布通知', 'error');
-                    return;
-                }
-                
-                const notice = {
-                    title: title.trim(),
-                    content: content.trim(),
-                    time: new Date().toLocaleDateString('zh-CN'),
-                    id: Date.now(),
-                    important: important
-                };
-                
-                let notices = this.getNotices();
-                notices.unshift(notice);
-                localStorage.setItem(this.noticesKey, JSON.stringify(notices));
-                this.displayNotices();
-                
-                if (!isSample) {
-                    document.getElementById('noticeTitle').value = '';
-                    document.getElementById('noticeContent').value = '';
-                    hideNoticeForm();
-                    systemManager.showToast('通知发布成功！', 'success');
-                }
-            }
-            
-            deleteNotice(id) {
-                if (!confirm('确定要删除这条通知吗？')) return;
-                
-                let notices = this.getNotices();
-                notices = notices.filter(n => n.id !== id);
-                localStorage.setItem(this.noticesKey, JSON.stringify(notices));
-                this.displayNotices();
-                systemManager.showToast('已删除通知', 'info');
-            }
-            
-            getNotices() {
-                const notices = localStorage.getItem(this.noticesKey);
-                return notices ? JSON.parse(notices) : [];
-            }
-            
-            displayNotices() {
-                const notices = this.getNotices();
-                const container = document.getElementById('notificationsList');
-                
-                if (!notices.length) {
-                    container.innerHTML = '<p class="no-visitors">暂无通知</p>';
-                    return;
-                }
-                
-                container.innerHTML = notices.map(n => `
-                    <div class="notification-card ${n.important ? 'important' : ''}">
-                        <div class="notification-header">
-                            <div class="notification-title">${this.escapeHtml(n.title)}</div>
-                            <div class="notification-time">${n.time}</div>
-                        </div>
-                        <p>${this.escapeHtml(n.content)}</p>
-                        ${systemManager.getCurrentLevel() >= 2 ? 
-                            `<button class="delete-btn" onclick="notificationManager.deleteNotice(${n.id})" title="删除通知">
-                                <i class="fas fa-trash"></i>
-                            </button>` : ''}
-                    </div>
-                `).join('');
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+            // 根据权限显示不同内容
+            const homeworkSection = document.getElementById('homeworkSection');
+            if (currentUser.role === '同学') {
+                document.getElementById('newHomework').style.display = 'none';
+                homeworkSection.querySelector('button').style.display = 'none';
             }
         }
         
-        // ================================================
-        // 【作业管理器】
-        // ================================================
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
         
-        class HomeworkManager {
-            constructor() {
-                this.homeworkKey = 'class_homework';
-            }
-            
-            init() {
-                this.displayHomework();
-                if (!this.getHomework().length) {
-                    this.addSampleHomework();
-                }
-            }
-            
-            addSampleHomework() {
-                const samples = [
-                    { subject: "数学", content: "基础训练1面", deadline: "2026-01-07", completed: false },
-                    { subject: "语文", content: "不知道😖", deadline: "2026-01-07", completed: false },
-                    { subject: "英语", content: "不想写😖", deadline: "2026-01-07", completed: true }
-                ];
-                samples.forEach(hw => this.addHomework(hw.subject, hw.content, hw.deadline, hw.completed, true));
-            }
-            
-            addHomework(subject, content, deadline, completed = false, isSample = false) {
-                const homework = {
-                    subject: subject.trim(),
-                    content: content.trim(),
-                    deadline: deadline,
-                    completed: completed,
-                    id: Date.now() + Math.random().toString(36).substr(2, 9)
-                };
-                
-                let homeworkList = this.getHomework();
-                homeworkList.unshift(homework);
-                localStorage.setItem(this.homeworkKey, JSON.stringify(homeworkList));
-                this.displayHomework();
-                
-                if (!isSample) {
-                    systemManager.showToast('作业添加成功！', 'success');
-                }
-            }
-            
-            toggleComplete(id) {
-                let homeworkList = this.getHomework();
-                homeworkList = homeworkList.map(hw => {
-                    if (hw.id === id) {
-                        hw.completed = !hw.completed;
-                    }
-                    return hw;
-                });
-                localStorage.setItem(this.homeworkKey, JSON.stringify(homeworkList));
-                this.displayHomework();
-            }
-            
-            deleteHomework(id) {
-                if (!confirm('确定要删除这项作业吗？')) return;
-                
-                let homeworkList = this.getHomework();
-                homeworkList = homeworkList.filter(hw => hw.id !== id);
-                localStorage.setItem(this.homeworkKey, JSON.stringify(homeworkList));
-                this.displayHomework();
-                systemManager.showToast('已删除作业', 'info');
-            }
-            
-            getHomework() {
-                const homework = localStorage.getItem(this.homeworkKey);
-                return homework ? JSON.parse(homework) : [];
-            }
-            
-            displayHomework() {
-                const homeworkList = this.getHomework();
-                const container = document.getElementById('homeworkItems');
-                
-                if (!homeworkList.length) {
-                    container.innerHTML = '<p class="no-visitors">暂无作业</p>';
-                    return;
-                }
-                
-                container.innerHTML = homeworkList.map(hw => `
-                    <div class="homework-item">
-                        <div>
-                            <strong>${this.escapeHtml(hw.subject)}</strong>
-                            <p style="margin:5px 0;color:#666">${this.escapeHtml(hw.content)}</p>
-                            <small style="color:#999">截止: ${hw.deadline}</small>
-                        </div>
-                        <div>
-                            <button onclick="homeworkManager.toggleComplete('${hw.id}')" style="
-                                background:${hw.completed ? '#2ecc71' : '#95a5a6'};
-                                color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer">
-                                ${hw.completed ? '已完成' : '未完成'}
-                            </button>
-                            ${systemManager.getCurrentLevel() >= 2 ? 
-                                `<button onclick="homeworkManager.deleteHomework('${hw.id}')" style="
-                                    background:#e74c3c;color:white;border:none;padding:5px 10px;
-                                    border-radius:3px;cursor:pointer;margin-left:5px">
-                                    删除
-                                </button>` : ''}
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showUserInfo();
             }
         }
         
-        // ================================================
-        // 【日历管理器】
-        // ================================================
-        
-        class CalendarManager {
-            init() {
-                this.generateCalendar();
-            }
-            
-            generateCalendar() {
-                const container = document.getElementById('calendarView');
-                const today = new Date();
-                const currentMonth = today.getMonth();
-                const currentYear = today.getFullYear();
-                
-                // 获取当月天数
-                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-                
-                // 生成日历
-                let calendarHTML = '';
-                
-                // 添加星期标题
-                const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-                weekdays.forEach(day => {
-                    calendarHTML += `<div style="padding:10px;text-align:center;font-weight:bold">${day}</div>`;
-                });
-                
-                // 添加日期
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const date = new Date(currentYear, currentMonth, day);
-                    const isToday = (day === today.getDate() && currentMonth === today.getMonth());
-                    const isEvent = this.hasEvent(day, currentMonth);
-                    
-                    calendarHTML += `
-                        <div class="calendar-day ${isToday ? 'today' : ''}" style="position:relative">
-                            ${day}
-                            ${isEvent ? '<div style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#e74c3c;border-radius:50%"></div>' : ''}
-                        </div>
-                    `;
-                }
-                
-                container.innerHTML = calendarHTML;
-            }
-            
-            hasEvent(day, month) {
-                // 模拟事件检测
-                const events = {
-                    15: "",
-                    20: "",
-                    25: ""
-                };
-                return events[day];
-            }
-        }
-        
-        // ================================================
-        // 【成绩管理器】
-        // ================================================
-        
-        class ScoreManager {
-            constructor() {
-                this.scoresKey = 'class_scores';
-            }
-            
-            init() {
-                this.displayScores();
-                if (!this.getScores().length) {
-                    this.addSampleScores();
-                }
-            }
-            
-            addSampleScores() {
-                const samples = [
-                    { subject: "暂未开放", score: 92, date: "2026-01-01", rank: 5 },
-                    { subject: "暂未开放", score: 85, date: "2026-01-01", rank: 12 }
-                ];
-                samples.forEach(score => this.addScore(score.subject, score.score, score.date, score.rank, true));
-            }
-            
-            addScore(subject, score, date, rank, isSample = false) {
-                const scoreData = {
-                    subject: subject.trim(),
-                    score: score,
-                    date: date,
-                    rank: rank,
-                    id: Date.now() + Math.random().toString(36).substr(2, 9)
-                };
-                
-                let scores = this.getScores();
-                scores.unshift(scoreData);
-                localStorage.setItem(this.scoresKey, JSON.stringify(scores));
-                this.displayScores();
-                
-                if (!isSample) {
-                    systemManager.showToast('成绩添加成功！', 'success');
-                }
-            }
-            
-            getScores() {
-                const scores = localStorage.getItem(this.scoresKey);
-                return scores ? JSON.parse(scores) : [];
-            }
-            
-            displayScores() {
-                const scores = this.getScores();
-                const container = document.getElementById('scoreList');
-                
-                if (!scores.length) {
-                    container.innerHTML = '<p class="no-visitors">暂无成绩数据</p>';
-                    return;
-                }
-                
-                let tableHTML = `
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>科目</th>
-                                <th>分数</th>
-                                <th>日期</th>
-                                <th>班级排名</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-                
-                scores.forEach(score => {
-                    const scoreColor = score.score >= 90 ? '#2ecc71' : 
-                                      score.score >= 80 ? '#f39c12' : '#e74c3c';
-                    
-                    tableHTML += `
-                        <tr>
-                            <td>${this.escapeHtml(score.subject)}</td>
-                            <td style="color:${scoreColor};font-weight:bold">${score.score}</td>
-                            <td>${score.date}</td>
-                            <td>第${score.rank}名</td>
-                        </tr>
-                    `;
-                });
-                
-                tableHTML += '</tbody></table>';
-                container.innerHTML = tableHTML;
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-        }
-        
-        // ================================================
-        // 【全局函数】
-        // ================================================
-        
-        // 初始化管理器
-        const systemManager = new SystemManager();
-        const rhythmLogin = new RhythmLogin();
-        const visitorManager = new VisitorManager();
-        const notificationManager = new NotificationManager();
-        const homeworkManager = new HomeworkManager();
-        const calendarManager = new CalendarManager();
-        const scoreManager = new ScoreManager();
-        
-        // 切换登录类型
-        function switchLoginType(type) {
-            document.querySelectorAll('.login-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            document.getElementById('passwordLogin').style.display = type === 'password' ? 'block' : 'none';
-            document.getElementById('rhythmLogin').style.display = type === 'rhythm' ? 'block' : 'none';
-            
-            if (type === 'rhythm') {
-                resetRhythmLogin();
-            }
-        }
-        
-        // 重置节奏登录
-        function resetRhythmLogin() {
-            rhythmLogin.reset();
-            document.getElementById('rhythmError').textContent = '';
-        }
-        
-        // 密码登录
-        function checkLogin() {
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const errorElement = document.getElementById('loginError');
-            
-            if (!username || !password) {
-                errorElement.textContent = '请输入用户名和密码';
+        // 快速导航
+        function showSection(sectionId) {
+            if (!currentUser && sectionId !== 'intro') {
+                alert('请先登录！');
+                document.getElementById('introSection').classList.remove('hidden');
                 return;
             }
             
-            if (systemManager.login(username, password)) {
-                errorElement.textContent = '';
-            } else {
-                errorElement.textContent = '用户名或密码错误';
-            }
+            const sections = ['intro', 'homework', 'scores', 'calendar', 'messages', 'cube'];
+            sections.forEach(id => {
+                const element = document.getElementById(id + 'Section');
+                element.classList.add('hidden');
+            });
+            
+            document.getElementById(sectionId + 'Section').classList.remove('hidden');
         }
         
-        // 节奏登录
-        function checkRhythmLogin() {
-            if (rhythmLogin.checkRhythm()) {
-                // 节奏正确，使用预设的节奏登录账号
-                const rhythmAccount = PRESET_ACCOUNTS.find(acc => acc.username === "student01");
-                if (rhythmAccount) {
-                    localStorage.setItem('class_login_status', 'true');
-                    localStorage.setItem('class_logged_in_user', rhythmAccount.displayName);
-                    localStorage.setItem('user_level', rhythmAccount.level.toString());
-                    systemManager.showMainContent(rhythmAccount.displayName, rhythmAccount.level);
-                    document.getElementById('rhythmError').textContent = '';
+        // 班级介绍加载
+        function loadClassIntro() {
+            const membersContainer = document.getElementById('classMembers');
+            classMembers.forEach(member => {
+                const memberDiv = document.createElement('div');
+                memberDiv.className = 'class-member';
+                memberDiv.innerHTML = `
+                    <div class="member-avatar">${member.avatar}</div>
+                    <div>
+                        <strong>${member.name}</strong><br>
+                        <small style="color:#666">${member.role}</small>
+                    </div>
+                `;
+                membersContainer.appendChild(memberDiv);
+            });
+        }
+        
+        // 作业系统
+        function loadData() {
+            const savedHomework = localStorage.getItem('homework') || '[]';
+            const homework = JSON.parse(savedHomework);
+            const homeworkList = document.getElementById('homeworkList');
+            homeworkList.innerHTML = '';
+            
+            if (homework.length === 0) {
+                const defaultHomework = [
+                    { date: new Date().toLocaleDateString(), content: '数学：练习册第15-20页', teacher: '李老师' },
+                    { date: new Date(Date.now() - 86400000).toLocaleDateString(), content: '语文：背诵《岳阳楼记》', teacher: '张老师' },
+                    { date: new Date(Date.now() - 172800000).toLocaleDateString(), content: '英语：完成单元测试卷', teacher: '王老师' }
+                ];
+                homework.push(...defaultHomework);
+            }
+            
+            homework.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'homework-item';
+                div.innerHTML = `
+                    <strong>${item.date}</strong> - ${item.teacher}<br>
+                    ${item.content}
+                    ${currentUser && (currentUser.role === '管理员' || currentUser.role === '班主任') ? 
+                      `<button onclick="deleteHomework(${index})" style="float:right">删除</button>` : ''}
+                `;
+                homeworkList.appendChild(div);
+            });
+            
+            // 加载留言
+            const savedMessages = localStorage.getItem('messages') || '[]';
+            const messages = JSON.parse(savedMessages);
+            const messagesList = document.getElementById('messagesList');
+            messagesList.innerHTML = '';
+            
+            if (messages.length === 0) {
+                const defaultMessages = [
+                    { user: '老师说', role: '班主任', date: '昨天 14:30', content: '做的不错！', username: 'teacher1' },
+                    { user: '同学说', role: '同学', date: '前天 10:15', content: '实在太棒了！', username: 'student1' }
+                ];
+                messages.push(...defaultMessages);
+            }
+            
+            messages.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'message';
+                div.innerHTML = `
+                    <strong>${item.user}</strong> (${item.role}):<br>
+                    ${item.content}
+                    <small style="color:#666">${item.date}</small>
+                    ${currentUser && (currentUser.role === '管理员' || currentUser.username === item.username) ? 
+                      `<button onclick="deleteMessage(${index})" style="float:right">删除</button>` : ''}
+                `;
+                messagesList.appendChild(div);
+            });
+        }
+        
+        function addHomework() {
+            if (!currentUser || currentUser.role === '同学') {
+                alert('无权限操作！');
+                return;
+            }
+            
+            const content = document.getElementById('newHomework').value;
+            if (!content.trim()) return;
+            
+            const homework = JSON.parse(localStorage.getItem('homework') || '[]');
+            homework.unshift({
+                date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString().slice(0,5),
+                content: content,
+                teacher: currentUser.name
+            });
+            
+            localStorage.setItem('homework', JSON.stringify(homework));
+            document.getElementById('newHomework').value = '';
+            loadData();
+        }
+        
+        function deleteHomework(index) {
+            const homework = JSON.parse(localStorage.getItem('homework') || '[]');
+            homework.splice(index, 1);
+            localStorage.setItem('homework', JSON.stringify(homework));
+            loadData();
+        }
+        
+        // 留言板
+        function addMessage() {
+            if (!currentUser) return;
+            
+            const content = document.getElementById('newMessage').value;
+            if (!content.trim()) return;
+            
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.unshift({
+                username: currentUser.username,
+                user: currentUser.name,
+                role: currentUser.role,
+                date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString().slice(0,5),
+                content: content
+            });
+            
+            localStorage.setItem('messages', JSON.stringify(messages));
+            document.getElementById('newMessage').value = '';
+            loadData();
+        }
+        
+        function deleteMessage(index) {
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.splice(index, 1);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            loadData();
+        }
+        
+        // 日历系统
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            calendar.innerHTML = '';
+            
+            const days = ['日', '一', '二', '三', '四', '五', '六'];
+            days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                calendar.appendChild(dayElement);
+            });
+            
+            const today = new Date();
+            const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+            const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day';
+                calendar.appendChild(empty);
+            }
+            
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = i;
+                
+                if (i === today.getDate() && today.getMonth() === new Date().getMonth()) {
+                    dayElement.classList.add('today');
                 }
-            } else {
-                document.getElementById('rhythmError').textContent = '节奏不正确，请重试';
-                resetRhythmLogin();
+                
+                calendar.appendChild(dayElement);
             }
         }
         
-        // 退出登录
-        function logout() {
-            systemManager.logout();
-        }
+        // 魔方系统
+        let cubeState = [];
+        let cubeRotation = { x: 0, y: 0 };
         
-        // 留言功能
-        function addVisitor() {
-            const name = document.getElementById('visitorName').value;
-            const message = document.getElementById('visitorMessage').value;
-            visitorManager.addVisitor(name, message);
-        }
-        
-        function clearAllVisitors() {
-            visitorManager.clearAllVisitors();
-        }
-        
-        function copySiteLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                systemManager.showToast('链接已复制到剪贴板', 'success');
-            });
-        }
-        
-        // 通知功能
-        function showNoticeForm() {
-            document.getElementById('noticeForm').style.display = 'block';
-        }
-        
-        function hideNoticeForm() {
-            document.getElementById('noticeForm').style.display = 'none';
-        }
-        
-        function addNotice() {
-            const title = document.getElementById('noticeTitle').value;
-            const content = document.getElementById('noticeContent').value;
-            notificationManager.addNotice(title, content);
-        }
-        
-        // 切换标签页
-        function switchTab(tabName) {
-            // 移除所有tab的active类
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
+        function createCube() {
+            const cube = document.getElementById('cube');
+            cube.innerHTML = '';
+            
+            const faces = [
+                { name: 'front', colors: Array(9).fill(0) },  // 白色
+                { name: 'back', colors: Array(9).fill(1) },   // 红色
+                { name: 'right', colors: Array(9).fill(2) },  // 绿色
+                { name: 'left', colors: Array(9).fill(3) },   // 蓝色
+                { name: 'top', colors: Array(9).fill(4) },    // 黄色
+                { name: 'bottom', colors: Array(9).fill(5) }  // 橙色
+            ];
+            
+            cubeState = faces;
+            
+            faces.forEach((face, faceIndex) => {
+                const faceElement = document.createElement('div');
+                faceElement.className = `cube-face ${face.name}`;
+                
+                face.colors.forEach((color, colorIndex) => {
+                    const sticker = document.createElement('div');
+                    sticker.className = `color-${color}`;
+                    faceElement.appendChild(sticker);
+                });
+                
+                cube.appendChild(faceElement);
             });
             
-            // 移除所有tab-content的active类
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // 添加当前tab和content的active类
-            event.target.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
+            updateCubeRotation();
         }
         
-        // 滚动到顶部
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function rotateCube(direction) {
+            const cube = document.getElementById('cube');
+            switch(direction) {
+                case 'U': cubeRotation.y -= 90; break;
+                case 'D': cubeRotation.y += 90; break;
+                case 'L': cubeRotation.x -= 90; break;
+                case 'R': cubeRotation.x += 90; break;
+                case 'F': cubeRotation.y += 180; break;
+                case 'B': cubeRotation.x += 180; break;
+            }
+            updateCubeRotation();
         }
         
-        // 初始化滚动按钮
-        function initScrollButton() {
-            window.addEventListener('scroll', function() {
-                const btn = document.getElementById('scrollTopBtn');
-                btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-            });
+        function updateCubeRotation() {
+            const cube = document.getElementById('cube');
+            cube.style.transform = `rotateX(${cubeRotation.x}deg) rotateY(${cubeRotation.y}deg)`;
         }
         
-        // 下雪效果
-        function createSnowflakes() {
-            const snowflakesContainer = document.getElementById('snowflakes');
-            const snowflakeCount = 50;
-            
-            for (let i = 0; i < snowflakeCount; i++) {
+        function scrambleCube() {
+            const moves = ['U', 'D', 'L', 'R', 'F', 'B'];
+            for(let i = 0; i < 20; i++) {
                 setTimeout(() => {
-                    const snowflake = document.createElement('div');
-                    snowflake.className = 'snowflake';
-                    snowflake.innerHTML = '❄';
-                    
-                    // 随机大小
-                    const size = Math.random() * 20 + 10;
-                    snowflake.style.fontSize = size + 'px';
-                    
-                    // 随机位置
-                    const startX = Math.random() * 100;
-                    snowflake.style.left = startX + 'vw';
-                    
-                    // 随机动画时长
-                    const duration = Math.random() * 5 + 5;
-                    snowflake.style.animationDuration = duration + 's';
-                    
-                    // 随机透明度
-                    snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-                    
-                    snowflakesContainer.appendChild(snowflake);
-                    
-                    // 移除雪花
-                    setTimeout(() => {
-                        snowflake.remove();
-                    }, duration * 1000);
-                }, i * 200);
+                    rotateCube(moves[Math.floor(Math.random() * moves.length)]);
+                }, i * 100);
             }
         }
         
-        // 循环下雪效果
-        function startSnowEffect() {
-            createSnowflakes();
-            setInterval(createSnowflakes, 10000); // 每10秒重新创建雪花
+        function solveCube() {
+            cubeRotation = { x: 0, y: 0 };
+            updateCubeRotation();
         }
-        
-        // ================================================
-        // 【页面初始化】
-        // ================================================
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // 添加CSS动画
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // 回车键登录支持
-            document.getElementById('loginUsername')?.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.getElementById('loginPassword').focus();
-                }
-            });
-            
-            document.getElementById('loginPassword')?.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkLogin();
-            });
-            
-            // 初始化当前年份
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // 开始下雪效果
-            startSnowEffect();
-        });
     </script>
 </body>
 </html>
