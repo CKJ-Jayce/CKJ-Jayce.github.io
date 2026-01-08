@@ -1,176 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>合肥实验学校20级2班官方网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
-            transition: all 0.3s ease;
+            font-family: 'Microsoft YaHei', sans-serif;
         }
         
         body {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
             color: #333;
-            overflow-x: hidden;
+            padding: 20px;
         }
         
-        /* 登录页面样式 */
-        #loginPage {
+        /* 登录页面 */
+        .login-page {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
         }
         
         .login-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            border-radius: 15px;
             padding: 40px;
             width: 100%;
             max-width: 400px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .login-header {
             text-align: center;
-            margin-bottom: 30px;
         }
         
         .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin-bottom: 20px;
         }
         
         .school-logo {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            height: 80px;
+            width: auto;
+            margin-bottom: 15px;
         }
         
-        h1 {
-            color: #1e3c72;
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .form-group {
-            position: relative;
-        }
-        
-        .form-group input {
+        .login-form input {
             width: 100%;
-            padding: 15px 20px;
-            padding-left: 50px;
-            border: 2px solid #e1e8f0;
-            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
-            background: #f8fafc;
-            color: #333;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #4a90e2;
-            background: white;
-        }
-        
-        .form-group i {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #4a90e2;
-            font-style: normal;
         }
         
         .login-btn {
             background: linear-gradient(135deg, #4a90e2 0%, #1e3c72 100%);
             color: white;
             border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
         }
         
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-        }
-        
-        /* 主页面样式 */
-        #mainPage {
-            display: none;
-            min-height: 100vh;
-        }
-        
-        /* 顶部导航栏 */
+        /* 主页面 */
         .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 20px;
+            border-radius: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .menu-toggle {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #1e3c72;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .menu-toggle:hover {
-            background: rgba(74, 144, 226, 0.1);
-        }
-        
-        .page-title {
-            color: #1e3c72;
-            font-size: 20px;
-            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .user-info {
@@ -183,13 +93,13 @@
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: bold;
             color: white;
         }
         
-        .user-badge.admin { background: #ff6b6b; }
-        .user-badge.teacher { background: #4ecdc4; }
-        .user-badge.student { background: #4a90e2; }
+        .admin { background: #ff6b6b; }
+        .teacher { background: #4ecdc4; }
+        .student { background: #45b7d1; }
         
         .logout-btn {
             background: none;
@@ -198,82 +108,39 @@
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
+        }
+        
+        /* 导航栏 */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
             font-size: 14px;
         }
         
-        .logout-btn:hover {
-            background: #f8fafc;
-            color: #ff6b6b;
+        .nav-tab.active {
+            background: #4a90e2;
+            color: white;
         }
         
-        /* 侧边导航栏 */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -280px;
-            width: 280px;
-            height: 100vh;
-            background: white;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 2000;
-            padding: 80px 20px 20px;
-            overflow-y: auto;
-        }
-        
-        .sidebar.active {
-            left: 0;
-        }
-        
-        .nav-list {
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-bottom: 10px;
-        }
-        
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border-radius: 10px;
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            background: rgba(74, 144, 226, 0.1);
-            color: #4a90e2;
-        }
-        
-        .nav-link.active {
-            background: rgba(74, 144, 226, 0.2);
-            color: #1e3c72;
-        }
-        
-        .nav-link i {
-            font-style: normal;
-            font-size: 20px;
-            width: 24px;
-            text-align: center;
-        }
-        
-        /* 主要内容区域 */
-        .main-content {
-            padding: 80px 20px 40px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .section {
+        /* 内容区域 */
+        .content-section {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
         
-        .section.active {
+        .content-section.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
         
         .card {
@@ -282,256 +149,188 @@
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .card h2 {
+        .card h3 {
             color: #1e3c72;
             margin-bottom: 20px;
-            font-size: 22px;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 2px solid #f0f4f8;
         }
         
-        /* 班级介绍样式 */
+        /* 班级介绍 */
         .class-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
         
         .stat-item {
-            background: #f8fafc;
+            background: #f0f8ff;
             padding: 15px;
             border-radius: 10px;
             text-align: center;
         }
         
-        .stat-item .number {
+        .stat-number {
             font-size: 24px;
-            font-weight: 700;
+            font-weight: bold;
             color: #4a90e2;
             display: block;
-            margin-bottom: 5px;
         }
         
-        .slogan {
-            background: linear-gradient(135deg, #4a90e2, #1e3c72);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 500;
-            margin: 20px 0;
-        }
-        
-        /* 作业列表样式 */
-        .homework-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .homework-item {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 4px solid #4a90e2;
-        }
-        
-        .homework-meta {
+        /* 聊天室 */
+        .chat-container {
             display: flex;
-            justify-content: space-between;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        
-        /* 成绩公示样式 */
-        .score-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .score-item {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .score-subject {
-            font-weight: 600;
-            color: #1e3c72;
-            margin-bottom: 10px;
-        }
-        
-        .score-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #4a90e2;
-        }
-        
-        /* 日历样式 */
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
-        }
-        
-        .calendar-day {
-            padding: 10px;
-            background: #f8fafc;
-            border-radius: 8px;
-        }
-        
-        .calendar-day.today {
-            background: #4a90e2;
-            color: white;
-        }
-        
-        /* 留言板样式 */
-        .message-input {
-            width: 100%;
-            padding: 15px;
+            flex-direction: column;
+            height: 500px;
             border: 2px solid #e1e8f0;
             border-radius: 10px;
-            margin-bottom: 15px;
-            resize: vertical;
-            min-height: 100px;
+            overflow: hidden;
         }
         
-        .message-list {
-            max-height: 400px;
+        .chat-messages {
+            flex: 1;
             overflow-y: auto;
+            padding: 15px;
+            background: #f8f9fa;
         }
         
-        .message-item {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
+        .message {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 15px;
             margin-bottom: 10px;
+            max-width: 80%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .message.self {
+            background: #e3f2fd;
+            margin-left: auto;
+        }
+        
+        .message.bot {
+            background: #f0f4f8;
+            border-left: 4px solid #4a90e2;
         }
         
         .message-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
+            margin-bottom: 5px;
         }
         
-        /* 魔方样式 */
-        .cube-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .cube {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
-            transform-style: preserve-3d;
-            transform: rotateX(-20deg) rotateY(-20deg);
-            transition: transform 0.5s;
-        }
-        
-        .cube-controls {
+        .chat-input {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e1e8f0;
         }
         
-        .cube-btn {
-            padding: 10px 15px;
+        .chat-input textarea {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            resize: none;
+            height: 60px;
+        }
+        
+        .chat-input button {
             background: #4a90e2;
             color: white;
             border: none;
+            padding: 0 20px;
             border-radius: 8px;
+            margin-left: 10px;
             cursor: pointer;
-            font-size: 14px;
         }
         
-        .cube-btn:hover {
-            background: #1e3c72;
+        /* 云盘 */
+        .cloud-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
         
-        /* 弹窗样式 */
-        .toast-container {
+        .file-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e1e8f0;
+            position: relative;
+        }
+        
+        .file-icon {
+            font-size: 40px;
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .file-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+        
+        .file-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .file-delete {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .upload-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .upload-section input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        /* 通知系统 */
+        .toast {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 3000;
-        }
-        
-        .toast {
             background: white;
             padding: 15px 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transform: translateX(100%);
             opacity: 0;
-            min-width: 300px;
-            max-width: 400px;
+            animation: slideIn 0.3s ease forwards;
             border-left: 4px solid #4a90e2;
-            animation: slideInRight 0.3s ease forwards;
         }
         
         .toast.success { border-left-color: #4ecdc4; }
         .toast.error { border-left-color: #ff6b6b; }
-        .toast.info { border-left-color: #4a90e2; }
-        
-        .toast-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .toast-title {
-            font-weight: 600;
-            color: #1e3c72;
-        }
-        
-        .toast-close {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        
-        /* 遮罩层 */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-            display: none;
-        }
-        
-        .overlay.active {
-            display: block;
-        }
         
         /* 动画 */
         @keyframes fadeIn {
@@ -539,352 +338,212 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes slideInRight {
+        @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
         
-        @keyframes slideInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        /* 响应式设计 */
+        /* 响应式 */
         @media (max-width: 768px) {
             .login-container {
                 padding: 30px 20px;
             }
             
-            .main-content {
-                padding: 70px 15px 30px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .sidebar {
-                width: 260px;
-                left: -260px;
-            }
-            
-            .toast {
-                min-width: 250px;
-                max-width: calc(100vw - 40px);
-            }
-            
-            .score-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 25px 15px;
+            .nav-tabs {
+                flex-direction: column;
             }
             
             .class-stats {
                 grid-template-columns: 1fr;
             }
             
-            .nav-link {
-                padding: 12px;
-            }
-            
-            .cube-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cube-btn {
-                width: 100%;
-                max-width: 200px;
+            .cloud-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- 登录页面 -->
-    <div id="loginPage">
+    <div id="loginPage" class="login-page">
         <div class="login-container">
-            <div class="login-header">
-                <div class="logo-container">
-                    <img src="school-logo.png" alt="校徽" class="school-logo" onerror="this.style.display='none'">
-                </div>
-                <h1>合肥实验学校20级2班官方网站</h1>
-                <p style="color: #666;">登录，访问美好世界！</p>
+            <div class="logo-container">
+                <img src="school-logo.png" alt="校徽" class="school-logo" onerror="this.style.display='none'">
+                <h2>合肥实验学校20级2班</h2>
             </div>
             
-            <form class="login-form" id="loginForm" onsubmit="return false;">
-                <div class="form-group">
-                    <i>👤</i>
-                    <input type="text" id="username" placeholder="用户名" required>
-                </div>
-                
-                <div class="form-group">
-                    <i>🔒</i>
-                    <input type="password" id="password" placeholder="密码" required>
-                </div>
-                
-                <button type="button" class="login-btn" onclick="login()">登录</button>
-            </form>
+            <div class="login-form">
+                <input type="text" id="username" placeholder="用户名" required>
+                <input type="password" id="password" placeholder="密码" required>
+                <button class="login-btn" onclick="login()">登录</button>
+                <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                    请联系管理员获取密码信息ℹ️
+                </p>
+            </div>
         </div>
     </div>
     
     <!-- 主页面 -->
-    <div id="mainPage">
-        <!-- 顶部导航栏 -->
+    <div id="mainPage" style="display: none;">
+        <!-- 顶部栏 -->
         <header class="main-header">
-            <div class="header-left">
-                <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-                <h2 class="page-title" id="pageTitle">班级介绍</h2>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <img src="school-logo.png" alt="校徽" style="height: 40px;" onerror="this.style.display='none'">
+                <h2>合肥实验学校20级2班官方网站</h2>
             </div>
-            <div class="user-info" id="userInfo">
+            
+            <div class="user-info">
                 <span id="userDisplayName"></span>
                 <span id="userBadge" class="user-badge"></span>
-                <button class="logout-btn" onclick="logout()">退出</button>
+                <button class="logout-btn" onclick="logout()">退出登录</button>
             </div>
         </header>
         
-        <!-- 侧边导航栏 -->
-        <nav class="sidebar" id="sidebar">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" onclick="switchSection('intro')">
-                        <i>🏫</i>
-                        <span>班级介绍</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="switchSection('homework')">
-                        <i>📝</i>
-                        <span>作业公告</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="switchSection('scores')">
-                        <i>📊</i>
-                        <span>成绩公示</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="switchSection('calendar')">
-                        <i>📅</i>
-                        <span>班级日历</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="switchSection('messages')">
-                        <i>💬</i>
-                        <span>留言板</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="switchSection('cube')">
-                        <i>🎮</i>
-                        <span>班级潮流</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <!-- 导航栏 -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('intro')">班级介绍</button>
+            <button class="nav-tab" onclick="switchTab('homework')">作业の布置</button>
+            <button class="nav-tab" onclick="switchTab('calendar')">班级日历</button>
+            <button class="nav-tab" onclick="switchTab('chat')">班级聊天</button>
+            <button class="nav-tab" onclick="switchTab('cloud')">资源云盘</button>
+        </div>
         
-        <!-- 遮罩层 -->
-        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+        <!-- 班级介绍 -->
+        <section id="introSection" class="content-section active">
+            <div class="card">
+                <h3>班级介绍</h3>
+                <p><strong>20(2)班</strong></p>
+                <p><strong>班主任：</strong>姚老师</p>
+                <p><strong>班级口号：</strong>自育自学，健身创造！</p>
+                
+                <div class="class-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">43</span>
+                        班级人数
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        任课老师
+                    </div>
+                </div>
+                
+                <h4>班级荣誉</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>2025年度市优秀班集体</li>
+                    <li>校运动会团体总分第一名</li>
+                    <li>校园科技创造节团体一等奖</li>
+                </ul>
+            </div>
+        </section>
         
-        <!-- 主要内容区域 -->
-        <main class="main-content">
-            <!-- 班级介绍 -->
-            <section id="introSection" class="section active">
-                <div class="card">
-                    <h2>20(2)班</h2>
-                    <p><strong>班主任：</strong>姚老师</p>
-                    <p><strong>班级人数：</strong>43人</p>
-                    
-                    <div class="slogan">
-                        "自育自学，健身创造！"
-                    </div>
-                    
-                    <div class="class-stats">
-                        <div class="stat-item">
-                            <span class="number">99.9</span>
-                            平均分
-                        </div>
-                        <div class="stat-item">
-                            <span class="number">99%</span>
-                            出勤率
-                        </div>
-                        <div class="stat-item">
-                            <span class="number">9+</span>
-                            任课老师
-                        </div>
-                        <div class="stat-item">
-                            <span class="number">3+</span>
-                            班干部
-                        </div>
-                    </div>
-                    
-                    <h3 style="margin-top: 20px; color: #1e3c72;">班级荣誉</h3>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>2025年度市优秀班集体</li>
-                        <li>校运动会团体总分第一名</li>
-                        <li>校园科技创新节总体一等奖</li>
-                    </ul>
+        <!-- 布置作业 -->
+        <section id="homeworkSection" class="content-section">
+            <div class="card">
+                <h3>布置作业</h3>
+                <div id="homeworkList" style="max-height: 300px; overflow-y: auto;"></div>
+                <textarea id="newHomework" placeholder="输入作业内容..." style="width:100%; height:100px; padding:10px; margin:15px 0; border:2px solid #ddd; border-radius:8px;"></textarea>
+                <button class="login-btn" onclick="addHomework()" id="addHomeworkBtn">发布作业</button>
+            </div>
+        </section>
+        
+        <!-- 班级日历 -->
+        <section id="calendarSection" class="content-section">
+            <div class="card">
+                <h3>班级日历</h3>
+                <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 15px;">
+                    <!-- 日历通过JS生成 -->
                 </div>
-            </section>
-            
-            <!-- 作业布置 -->
-            <section id="homeworkSection" class="section">
-                <div class="card">
-                    <h2>作业公告</h2>
-                    <div id="homeworkList" class="homework-list">
-                        <!-- 作业列表将通过JavaScript动态生成 -->
-                    </div>
-                    
-                    <div id="homeworkInput" style="display: none;">
-                        <textarea id="newHomework" class="message-input" placeholder="输入作业内容..."></textarea>
-                        <button class="login-btn" style="width: 100%;" onclick="addHomework()">发布作业</button>
+            </div>
+        </section>
+        
+        <!-- 班级聊天 -->
+        <section id="chatSection" class="content-section">
+            <div class="card">
+                <h3>班级聊天室 <span style="font-size: 14px; color: #666;">当前在线: <span id="onlineCount">1</span></span></h3>
+                
+                <div id="chatSettings" style="display: none; margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                    <h4>班群管家设置</h4>
+                    <input type="text" id="welcomeText" placeholder="设置欢迎语" style="width:100%; padding:8px; margin:5px 0;">
+                    <input type="text" id="badWordInput" placeholder="添加违禁词" style="width:100%; padding:8px; margin:5px 0;">
+                    <input type="text" id="warningText" placeholder="设置警告语" style="width:100%; padding:8px; margin:5px 0;">
+                    <button onclick="saveChatSettings()" style="background:#4a90e2; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">保存设置</button>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input">
+                        <textarea id="messageInput" placeholder="输入消息..." onkeypress="if(event.keyCode===13&&!event.shiftKey){sendMessage();event.preventDefault();}"></textarea>
+                        <button onclick="sendMessage()">发送</button>
                     </div>
                 </div>
-            </section>
-            
-            <!-- 成绩公示 -->
-            <section id="scoresSection" class="section">
-                <div class="card">
-                    <h2>成绩公示</h2>
-                    <div class="score-grid">
-                        <div class="score-item">
-                            <div class="score-subject">语文</div>
-                            <div class="score-value">99.9</div>
-                            <div style="font-size: 12px; color: #666;">平均分</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-subject">数学</div>
-                            <div class="score-value">99.9</div>
-                            <div style="font-size: 12px; color: #666;">平均分</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-subject">英语</div>
-                            <div class="score-value">99.9</div>
-                            <div style="font-size: 12px; color: #666;">平均分</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-subject">科学</div>
-                            <div class="score-value">99.9</div>
-                            <div style="font-size: 12px; color: #666;">平均分</div>
-                        </div>
-                    </div>
+            </div>
+        </section>
+        
+        <!-- 资源云盘 -->
+        <section id="cloudSection" class="content-section">
+            <div class="card">
+                <h3>资源云盘 <span style="font-size: 14px; color: #666;">已使用: <span id="fileCount">0</span>/20（文件数，云盘200MB）</span></h3>
+                
+                <div class="upload-section">
+                    <input type="text" id="fileName" placeholder="文件名称">
+                    <textarea id="fileContent" placeholder="文件内容（支持文本内容）" style="width:100%; height:100px; padding:10px; margin:10px 0; border:2px solid #ddd; border-radius:8px;"></textarea>
+                    <button class="login-btn" onclick="uploadFile()">上传文件</button>
                 </div>
-            </section>
-            
-            <!-- 班级日历 -->
-            <section id="calendarSection" class="section">
-                <div class="card">
-                    <h2>班级日历</h2>
-                    <div class="calendar-header">
-                        <h3 id="currentMonth"></h3>
-                    </div>
-                    <div id="calendarGrid" class="calendar-grid">
-                        <!-- 日历将通过JavaScript动态生成 -->
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 留言板 -->
-            <section id="messagesSection" class="section">
-                <div class="card">
-                    <h2>留言板</h2>
-                    <textarea id="newMessage" class="message-input" placeholder="输入留言内容..."></textarea>
-                    <button class="login-btn" style="width: 100%;" onclick="addMessage()">发布留言</button>
-                    
-                    <div id="messageList" class="message-list" style="margin-top: 20px;">
-                        <!-- 留言列表将通过JavaScript动态生成 -->
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 电子魔方 -->
-            <section id="cubeSection" class="section">
-                <div class="card">
-                    <h2>班级潮流</h2>
-                    <div class="cube-container">
-                        <div id="cube" class="cube"></div>
-                    </div>
-                    <div class="cube-controls">
-                        <button class="cube-btn" onclick="rotateCube('U')">上旋</button>
-                        <button class="cube-btn" onclick="rotateCube('D')">下旋</button>
-                        <button class="cube-btn" onclick="rotateCube('L')">左旋</button>
-                        <button class="cube-btn" onclick="rotateCube('R')">右旋</button>
-                        <button class="cube-btn" onclick="scrambleCube()">打乱</button>
-                        <button class="cube-btn" onclick="solveCube()">自动还原</button>
-                    </div>
-                </div>
-            </section>
-        </main>
+                
+                <div class="cloud-container" id="fileList"></div>
+            </div>
+        </section>
     </div>
     
-    <!-- 弹窗容器 -->
-    <div class="toast-container" id="toastContainer"></div>
+    <!-- 通知容器 -->
+    <div id="toastContainer"></div>
     
     <script>
         // 用户数据
         const users = {
-            'admin': { password: 'adminsyy', role: '管理员', name: '管理员孙亦阳' },
-            'teacher1': { password: 'teacherY', role: '班主任', name: '姚老师' },
-            'student1': { password: 'QSY', role: '钱思宇', name: '钱思宇【班级人上人，比人高一等】' },
-            'student2': { password: '113514', role: '李欣泽', name: '六六六' },
-            'student3': { password: '114514', role: '郑梓珺', name: '菜问' },
-            'student4': { password: '5', role: '汪宇宸', name: '汪大侠' }
+            '孙亦阳': { password: 'JayceV', role: '管理员', name: '网站管理员管理员', canManage: true },
+            '姚笑笑': { password: 'YXX', role: '老师', name: '班主任', canManage: true },
+            '钱思宇': { password: 'QSY', role: '同学', name: '钱思宇［奋斗の你］', canManage: false },
+            '郑梓珺': { password: '114514', role: '郑梓珺', name: '菜问' },
+            '李欣泽': { password: '113514', role: '李欣泽', name: '六六六' },
+            '汪宇宸': { password: '5', role: '汪宇宸', name: '汪大侠' },
+            '游客': { password: '123456', role: '游客', name: '游客' }
         };
         
         // 当前用户
         let currentUser = null;
         
+        // 聊天室配置
+        let chatConfig = {
+            welcomeText: "欢迎来到班级聊天室！我是班群管家，请大家文明交流。",
+            badWords: ["骂人", "脏话", "攻击", "侮辱", "不良内容"],
+            warningText: "请注意文明用语，班群管家提醒您遵守聊天规则。"
+        };
+        
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            generateCalendar();
-            createCube();
-            loadData();
             checkLoginStatus();
+            generateCalendar();
+            loadData();
             
-            // 监听窗口大小变化，关闭侧边栏
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    closeSidebar();
-                }
-            });
-            
-            // ESC键关闭侧边栏
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeSidebar();
-                }
+            // 回车登录
+            document.getElementById('password')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') login();
             });
         });
         
-        // 显示弹窗
+        // 显示通知
         function showToast(message, type = 'info', duration = 3000) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <div class="toast-header">
-                    <span class="toast-title">
-                        ${type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'} 
-                        ${type === 'success' ? '成功' : type === 'error' ? '错误' : '提示'}
-                    </span>
-                    <button class="toast-close" onclick="this.parentElement.parentElement.remove()">×</button>
-                </div>
-                <div class="toast-message">${message}</div>
-            `;
+            toast.innerHTML = `<div>${message}</div>`;
             
             container.appendChild(toast);
             
-            // 自动移除
             setTimeout(() => {
-                if (toast.parentElement) {
-                    toast.style.animation = 'slideInRight 0.3s ease reverse forwards';
-                    setTimeout(() => toast.remove(), 300);
-                }
+                toast.style.animation = 'slideIn 0.3s ease reverse forwards';
+                setTimeout(() => toast.remove(), 300);
             }, duration);
         }
         
@@ -917,7 +576,7 @@
             }
         }
         
-        // 更新用户信息显示
+        // 更新用户信息
         function updateUserInfo() {
             if (!currentUser) return;
             
@@ -926,13 +585,20 @@
             badge.textContent = currentUser.role;
             badge.className = `user-badge ${currentUser.role}`;
             
-            // 根据权限显示/隐藏功能
-            const homeworkInput = document.getElementById('homeworkInput');
-            if (currentUser.role === '同学') {
-                homeworkInput.style.display = 'none';
-            } else {
-                homeworkInput.style.display = 'block';
+            // 显示管理员功能
+            if (currentUser.canManage) {
+                document.getElementById('chatSettings').style.display = 'block';
             }
+            
+            // 加载聊天室配置
+            loadChatConfig();
+            
+            // 发送欢迎消息
+            setTimeout(() => {
+                if (currentUser.canManage) {
+                    addBotMessage(chatConfig.welcomeText);
+                }
+            }, 1000);
         }
         
         // 检查登录状态
@@ -959,94 +625,99 @@
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             showToast('已退出登录', 'info');
-            closeSidebar();
         }
         
-        // 侧边栏控制
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            
-            if (sidebar.classList.contains('active')) {
-                closeSidebar();
-            } else {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // 切换内容区域
-        function switchSection(sectionId) {
-            // 更新导航链接状态
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
+        // 切换标签页
+        function switchTab(tabId) {
+            // 更新导航标签
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // 更新页面标题
-            const titles = {
-                'intro': '班级介绍',
-                'homework': '布置作业',
-                'scores': '成绩公示',
-                'calendar': '班级日历',
-                'messages': '留言板',
-                'cube': '班级潮流'
-            };
-            document.getElementById('pageTitle').textContent = titles[sectionId];
-            
-            // 显示对应的内容区域
-            document.querySelectorAll('.section').forEach(section => {
+            // 显示对应内容
+            document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            document.getElementById(sectionId + 'Section').classList.add('active');
-            
-            // 关闭侧边栏（移动端）
-            closeSidebar();
+            document.getElementById(tabId + 'Section').classList.add('active');
         }
         
-        // 数据管理
+        // 生成日历
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            
+            // 星期标题
+            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+            weekdays.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.style.padding = '10px';
+                dayElement.style.textAlign = 'center';
+                dayElement.style.fontWeight = 'bold';
+                dayElement.style.color = '#1e3c72';
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            });
+            
+            // 第一天是星期几
+            const firstDay = new Date(year, month, 1);
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const empty = document.createElement('div');
+                calendarGrid.appendChild(empty);
+            }
+            
+            // 当月天数
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.style.padding = '10px';
+                dayElement.style.textAlign = 'center';
+                dayElement.style.background = '#f8f9fa';
+                dayElement.style.borderRadius = '5px';
+                
+                if (i === now.getDate()) {
+                    dayElement.style.background = '#4a90e2';
+                    dayElement.style.color = 'white';
+                }
+                
+                dayElement.textContent = i;
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+        
+        // 加载数据
         function loadData() {
             loadHomework();
-            loadMessages();
+            loadChatHistory();
+            loadCloudFiles();
         }
         
         // 作业管理
         function loadHomework() {
             const homeworkList = document.getElementById('homeworkList');
-            const saved = localStorage.getItem('homework');
-            let homework = saved ? JSON.parse(saved) : [];
+            const saved = localStorage.getItem('homework') || '[]';
+            const homework = JSON.parse(saved);
             
             if (homework.length === 0) {
-                homework = [
-                    { date: new Date().toLocaleDateString(), content: '暂未开放', teacher: '？？？' },
-                    { date: '2026-01-01', content: '暂未开放', teacher: '？？？' },
-                    { date: '2026-01-01', content: '暂未开放', teacher: '？？？' }
-                ];
+                homeworkList.innerHTML = '<p style="color:#666; text-align:center; padding:20px;">暂无作业</p>';
+                return;
             }
             
-            homeworkList.innerHTML = homework.map(item => `
-                <div class="homework-item">
-                    <div class="homework-meta">
-                        <span>${item.date}</span>
-                        <span>${item.teacher}</span>
+            homeworkList.innerHTML = homework.map((item, index) => `
+                <div style="background:#f8f9fa; padding:12px; margin:8px 0; border-radius:8px; border-left:4px solid #4a90e2;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <strong>${item.date}</strong>
+                        ${currentUser.canManage ? `<button onclick="deleteHomework(${index})" style="background:#ff6b6b; color:white; border:none; padding:2px 8px; border-radius:3px; font-size:12px; cursor:pointer;">删除</button>` : ''}
                     </div>
-                    <div>${item.content}</div>
+                    <div style="margin-top:5px;">${item.content}</div>
                 </div>
             `).join('');
         }
         
         function addHomework() {
-            if (!currentUser || currentUser.role === '同学') {
+            if (!currentUser || !currentUser.canManage) {
                 showToast('您没有权限发布作业', 'error');
                 return;
             }
@@ -1057,8 +728,8 @@
                 return;
             }
             
-            const saved = localStorage.getItem('homework');
-            const homework = saved ? JSON.parse(saved) : [];
+            const saved = localStorage.getItem('homework') || '[]';
+            const homework = JSON.parse(saved);
             
             homework.unshift({
                 date: new Date().toLocaleDateString(),
@@ -1072,164 +743,309 @@
             showToast('作业发布成功', 'success');
         }
         
-        // 留言管理
-        function loadMessages() {
-            const messageList = document.getElementById('messageList');
-            const saved = localStorage.getItem('messages');
-            let messages = saved ? JSON.parse(saved) : [];
-            
-            if (messages.length === 0) {
-                messages = [
-                    { user: '？？？', role: '？？', date: '？？？？？？', content: '暂未开放' },
-                    { user: '？？？', role: '？？', date: '？？？？？？', content: '暂未开放' }
-                ];
-            }
-            
-            messageList.innerHTML = messages.map(item => `
-                <div class="message-item">
-                    <div class="message-header">
-                        <span>${item.user} (${item.role})</span>
-                        <span>${item.date}</span>
-                    </div>
-                    <div>${item.content}</div>
-                </div>
-            `).join('');
+        function deleteHomework(index) {
+            const saved = localStorage.getItem('homework') || '[]';
+            const homework = JSON.parse(saved);
+            homework.splice(index, 1);
+            localStorage.setItem('homework', JSON.stringify(homework));
+            loadHomework();
+            showToast('作业已删除', 'info');
         }
         
-        function addMessage() {
-            if (!currentUser) return;
+        // 聊天室功能
+        function loadChatConfig() {
+            const saved = localStorage.getItem('chatConfig');
+            if (saved) {
+                chatConfig = JSON.parse(saved);
+            }
             
-            const content = document.getElementById('newMessage').value.trim();
-            if (!content) {
-                showToast('请输入留言内容', 'error');
+            // 更新设置界面
+            if (currentUser && currentUser.canManage) {
+                document.getElementById('welcomeText').value = chatConfig.welcomeText;
+                document.getElementById('warningText').value = chatConfig.warningText;
+            }
+        }
+        
+        function saveChatSettings() {
+            if (!currentUser || !currentUser.canManage) {
+                showToast('您没有权限设置', 'error');
                 return;
             }
             
-            const saved = localStorage.getItem('messages');
-            const messages = saved ? JSON.parse(saved) : [];
+            const newWelcomeText = document.getElementById('welcomeText').value.trim();
+            const newBadWord = document.getElementById('badWordInput').value.trim();
+            const newWarningText = document.getElementById('warningText').value.trim();
             
-            messages.unshift({
-                user: currentUser.name,
-                role: currentUser.role,
-                date: new Date().toLocaleDateString() + ' ' + new Date().getHours().toString().padStart(2, '0') + ':' + new Date().getMinutes().toString().padStart(2, '0'),
-                content: content
+            if (newWelcomeText) chatConfig.welcomeText = newWelcomeText;
+            if (newWarningText) chatConfig.warningText = newWarningText;
+            if (newBadWord && !chatConfig.badWords.includes(newBadWord)) {
+                chatConfig.badWords.push(newBadWord);
+            }
+            
+            localStorage.setItem('chatConfig', JSON.stringify(chatConfig));
+            showToast('设置已保存', 'success');
+            
+            // 清空输入
+            document.getElementById('badWordInput').value = '';
+        }
+        
+        function loadChatHistory() {
+            const chatMessages = document.getElementById('chatMessages');
+            const saved = localStorage.getItem('chatHistory') || '[]';
+            const messages = JSON.parse(saved);
+            
+            messages.forEach(msg => {
+                addMessageToUI(msg.user, msg.content, msg.role, msg.time, msg.type);
             });
             
-            localStorage.setItem('messages', JSON.stringify(messages));
-            document.getElementById('newMessage').value = '';
-            loadMessages();
-            showToast('留言发布成功', 'success');
+            // 滚动到底部
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 100);
         }
         
-        // 日历功能
-        function generateCalendar() {
-            const calendarGrid = document.getElementById('calendarGrid');
-            const currentMonth = document.getElementById('currentMonth');
+        function sendMessage() {
+            if (!currentUser) return;
             
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth();
-            const today = now.getDate();
+            const input = document.getElementById('messageInput');
+            const content = input.value.trim();
             
-            currentMonth.textContent = `${year}年${month + 1}月`;
-            
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            
-            // 星期标题
-            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-            let html = weekdays.map(day => `<div class="calendar-day" style="font-weight: bold; color: #1e3c72;">${day}</div>`).join('');
-            
-            // 空白格
-            for (let i = 0; i < firstDay.getDay(); i++) {
-                html += '<div class="calendar-day"></div>';
+            if (!content) {
+                showToast('请输入消息内容', 'error');
+                return;
             }
             
-            // 日期格
-            for (let i = 1; i <= daysInMonth; i++) {
-                const isToday = i === today;
-                html += `<div class="calendar-day ${isToday ? 'today' : ''}">${i}</div>`;
-            }
-            
-            calendarGrid.innerHTML = html;
-        }
-        
-        // 魔方功能
-        let cubeRotation = { x: -20, y: -20 };
-        
-        function createCube() {
-            const cube = document.getElementById('cube');
-            cube.innerHTML = '';
-            
-            const colors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff8800'];
-            
-            for (let i = 0; i < 6; i++) {
-                const face = document.createElement('div');
-                face.style.position = 'absolute';
-                face.style.width = '100%';
-                face.style.height = '100%';
-                face.style.background = colors[i];
-                face.style.border = '2px solid #333';
-                face.style.display = 'grid';
-                face.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                face.style.gridTemplateRows = 'repeat(3, 1fr)';
-                face.style.gap = '2px';
-                face.style.padding = '2px';
-                face.style.boxSizing = 'border-box';
-                
-                for (let j = 0; j < 9; j++) {
-                    const sticker = document.createElement('div');
-                    sticker.style.background = colors[i];
-                    sticker.style.borderRadius = '4px';
-                    face.appendChild(sticker);
+            // 检查违禁词
+            let hasBadWord = false;
+            chatConfig.badWords.forEach(word => {
+                if (content.includes(word)) {
+                    hasBadWord = true;
                 }
-                
-                cube.appendChild(face);
+            });
+            
+            if (hasBadWord) {
+                addBotMessage(chatConfig.warningText);
+                showToast('消息包含不当内容，请注意文明用语', 'error');
+                input.value = '';
+                return;
             }
             
-            updateCubeRotation();
-        }
-        
-        function updateCubeRotation() {
-            const cube = document.getElementById('cube');
-            cube.style.transform = `rotateX(${cubeRotation.x}deg) rotateY(${cubeRotation.y}deg)`;
-        }
-        
-        function rotateCube(direction) {
-            switch(direction) {
-                case 'U': cubeRotation.y -= 90; break;
-                case 'D': cubeRotation.y += 90; break;
-                case 'L': cubeRotation.x -= 90; break;
-                case 'R': cubeRotation.x += 90; break;
+            // 保存消息
+            const message = {
+                user: currentUser.name,
+                role: currentUser.role,
+                content: content,
+                time: new Date().toLocaleTimeString().slice(0,5),
+                type: 'user'
+            };
+            
+            const saved = localStorage.getItem('chatHistory') || '[]';
+            const messages = JSON.parse(saved);
+            messages.push(message);
+            
+            // 只保留最近50条消息
+            if (messages.length > 50) {
+                messages.splice(0, messages.length - 50);
             }
-            updateCubeRotation();
-        }
-        
-        function scrambleCube() {
-            const moves = ['U', 'D', 'L', 'R'];
-            for (let i = 0; i < 20; i++) {
+            
+            localStorage.setItem('chatHistory', JSON.stringify(messages));
+            
+            // 添加到界面
+            addMessageToUI(currentUser.name, content, currentUser.role, message.time, 'user');
+            
+            // 清空输入框
+            input.value = '';
+            
+            // 模拟其他用户响应（仅演示）
+            if (Math.random() > 0.7) {
                 setTimeout(() => {
-                    rotateCube(moves[Math.floor(Math.random() * moves.length)]);
-                }, i * 100);
+                    const responses = [
+                        "这个想法不错！",
+                        "我同意这个观点。",
+                        "大家觉得怎么样？",
+                        "学到了新知识！"
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessageToUI('同学A', randomResponse, '同学', new Date().toLocaleTimeString().slice(0,5), 'user');
+                }, 1000);
             }
-            showToast('魔方已打乱', 'info');
+            
+            // 更新在线人数（模拟）
+            document.getElementById('onlineCount').textContent = Math.floor(Math.random() * 10 + 5);
         }
         
-        function solveCube() {
-            cubeRotation = { x: -20, y: -20 };
-            updateCubeRotation();
-            showToast('魔方已还原', 'success');
+        function addBotMessage(content) {
+            const message = {
+                user: '班群管家',
+                role: '系统',
+                content: content,
+                time: new Date().toLocaleTimeString().slice(0,5),
+                type: 'bot'
+            };
+            
+            const saved = localStorage.getItem('chatHistory') || '[]';
+            const messages = JSON.parse(saved);
+            messages.push(message);
+            
+            if (messages.length > 50) {
+                messages.splice(0, messages.length - 50);
+            }
+            
+            localStorage.setItem('chatHistory', JSON.stringify(messages));
+            addMessageToUI('班群管家', content, '系统', message.time, 'bot');
         }
         
-        // 回车键登录
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                if (document.getElementById('loginPage').style.display !== 'none') {
-                    login();
-                }
+        function addMessageToUI(user, content, role, time, type) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            
+            messageDiv.className = `message ${type === 'bot' ? 'bot' : (user === currentUser?.name ? 'self' : '')}`;
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <span><strong>${user}</strong> (${role})</span>
+                    <span>${time}</span>
+                </div>
+                <div>${content}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            
+            // 滚动到底部
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // 云盘功能
+        function loadCloudFiles() {
+            const fileList = document.getElementById('fileList');
+            const saved = localStorage.getItem('cloudFiles') || '[]';
+            const files = JSON.parse(saved);
+            
+            document.getElementById('fileCount').textContent = files.length;
+            
+            if (files.length === 0) {
+                fileList.innerHTML = '<p style="color:#666; text-align:center; padding:20px; grid-column:1/-1;">暂无文件</p>';
+                return;
             }
-        });
+            
+            fileList.innerHTML = files.map((file, index) => {
+                const canDelete = currentUser?.canManage || file.uploader === currentUser?.name;
+                
+                return `
+                    <div class="file-card">
+                        ${canDelete ? `<button class="file-delete" onclick="deleteFile(${index})">×</button>` : ''}
+                        <div class="file-icon">📄</div>
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-info">
+                            <div>上传者: ${file.uploader}</div>
+                            <div>时间: ${file.time}</div>
+                            <div>大小: ${file.size} 字符</div>
+                        </div>
+                        <button onclick="downloadFile(${index})" style="background:#4a90e2; color:white; border:none; padding:5px 10px; border-radius:5px; margin-top:10px; width:100%; cursor:pointer;">下载</button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function uploadFile() {
+            if (!currentUser) {
+                showToast('请先登录', 'error');
+                return;
+            }
+            
+            const name = document.getElementById('fileName').value.trim();
+            const content = document.getElementById('fileContent').value.trim();
+            
+            if (!name) {
+                showToast('请输入文件名称', 'error');
+                return;
+            }
+            
+            if (!content) {
+                showToast('请输入文件内容', 'error');
+                return;
+            }
+            
+            const saved = localStorage.getItem('cloudFiles') || '[]';
+            const files = JSON.parse(saved);
+            
+            // 检查文件数量限制
+            if (files.length >= 20) {
+                showToast('云盘已满（最多20个文件），请删除一些文件后再上传', 'error');
+                return;
+            }
+            
+            const file = {
+                name: name,
+                content: content,
+                uploader: currentUser.name,
+                time: new Date().toLocaleString(),
+                size: content.length
+            };
+            
+            files.unshift(file);
+            localStorage.setItem('cloudFiles', JSON.stringify(files));
+            
+            // 清空表单
+            document.getElementById('fileName').value = '';
+            document.getElementById('fileContent').value = '';
+            
+            // 重新加载文件列表
+            loadCloudFiles();
+            showToast('文件上传成功', 'success');
+        }
+        
+        function deleteFile(index) {
+            const saved = localStorage.getItem('cloudFiles') || '[]';
+            const files = JSON.parse(saved);
+            
+            const file = files[index];
+            if (!file) return;
+            
+            // 检查权限
+            const canDelete = currentUser?.canManage || file.uploader === currentUser?.name;
+            if (!canDelete) {
+                showToast('您没有权限删除此文件', 'error');
+                return;
+            }
+            
+            files.splice(index, 1);
+            localStorage.setItem('cloudFiles', JSON.stringify(files));
+            loadCloudFiles();
+            showToast('文件已删除', 'info');
+        }
+        
+        function downloadFile(index) {
+            const saved = localStorage.getItem('cloudFiles') || '[]';
+            const files = JSON.parse(saved);
+            const file = files[index];
+            
+            if (!file) return;
+            
+            // 创建下载链接
+            const blob = new Blob([file.content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name + '.txt';
+            a.click();
+            
+            // 清理
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }
+        
+        // 自动清理旧聊天记录（每次加载时）
+        function cleanupOldMessages() {
+            const saved = localStorage.getItem('chatHistory') || '[]';
+            const messages = JSON.parse(saved);
+            
+            if (messages.length > 100) {
+                messages.splice(0, messages.length - 100);
+                localStorage.setItem('chatHistory', JSON.stringify(messages));
+            }
+        }
+        
+        // 初始化时清理
+        cleanupOldMessages();
     </script>
 </body>
 </html>
