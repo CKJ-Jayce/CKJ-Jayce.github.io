@@ -6,81 +6,772 @@
     <title>班级官网 - 合肥实验学校20级2班</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 全局样式 */
+        /* ====== 全局样式 ====== */
         :root {
-            --primary: #003366; --secondary: #D4AF37; --light: #f8f9fa; --dark: #212529;
-            --gray: #6c757d; --success: #28a745; --danger: #dc3545; --vip: #9b59b6;
-            --shadow: 0 4px 12px rgba(0,0,0,0.1); --radius: 8px; --transition: all 0.3s ease;
+            --primary: #003366;
+            --secondary: #D4AF37;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+            --danger: #dc3545;
+            --vip: #9b59b6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #f5f7fa; color: var(--dark); line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 60px 0; }
-        .section:nth-child(even) { background: white; }
         
-        /* 按钮和卡片 */
-        .btn { display: inline-block; padding: 10px 24px; background: var(--primary); color: white; 
-            border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .btn:hover { background: #002244; transform: translateY(-2px); box-shadow: var(--shadow); }
-        .btn-secondary { background: var(--secondary); color: var(--dark); }
-        .btn-vip { background: var(--vip); color: white; }
-        .card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        /* 导航栏 */
-        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; padding: 12px 0; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .badge-img { height: 45px; width: auto; }
-        .user-info { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 6px 12px; border-radius: var(--radius); }
-        .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); 
-            color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .vip-badge { display: inline-block; padding: 2px 8px; background: linear-gradient(45deg, var(--vip), #e74c3c); 
-            color: white; border-radius: 12px; font-size: 0.7rem; font-weight: bold; margin-left: 5px; }
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
         
-        /* 英雄区域 */
-        .hero { padding: 150px 0 80px; background: linear-gradient(rgba(0,51,102,0.85), rgba(0,51,102,0.9)); 
-            color: white; text-align: center; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #002244;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #c19b2b;
+        }
+        
+        .btn-vip {
+            background: var(--vip);
+            color: white;
+        }
+        
+        .btn-vip:hover {
+            background: #8e44ad;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* ====== 顶部导航栏 ====== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* 班徽位置 - 左上角导航栏中 */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .badge-img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .badge-img:hover {
+            transform: rotate(10deg);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: -5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        
+        .user-info:hover {
+            background: rgba(0, 51, 102, 0.05);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .user-vip {
+            background: var(--vip);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* ====== 侧滑菜单 ====== */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 30px;
+            overflow-y: auto;
+            transition: var(--transition);
+        }
+        
+        .side-menu.active {
+            right: 0;
+        }
+        
+        .side-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .side-menu-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .close-menu {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .menu-section {
+            margin-bottom: 25px;
+        }
+        
+        .menu-section-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .menu-links a {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            color: var(--dark);
+        }
+        
+        .menu-links a:hover {
+            background: rgba(0, 51, 102, 0.05);
+            padding-left: 20px;
+        }
+        
+        .menu-links a.active {
+            background: rgba(0, 51, 102, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ====== 英雄区域 ====== */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* ====== 主要内容区域 ====== */
+        main {
+            padding: 80px 0;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section:nth-child(even) {
+            background: white;
+        }
         
         /* 网格布局 */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; margin-top: 30px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
         
-        /* 模态框 */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.7); z-index: 1002; display: flex; justify-content: center; 
-            align-items: center; opacity: 0; visibility: hidden; transition: var(--transition); }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { background: white; width: 90%; max-width: 500px; border-radius: var(--radius); 
-            padding: 30px; position: relative; transform: translateY(-20px); transition: var(--transition); }
-        .modal.active .modal-content { transform: translateY(0); }
+        /* 公告板 */
+        .announcement-item {
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            background: rgba(212, 175, 55, 0.05);
+            margin-bottom: 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .announcement-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .announcement-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        /* 相册 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .upload-area:hover {
+            background: rgba(0, 51, 102, 0.05);
+            border-color: var(--secondary);
+        }
+        
+        /* 资源中心 */
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .resource-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 15px;
+            min-width: 40px;
+        }
+        
+        .resource-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 投票系统 */
+        .poll-option {
+            padding: 15px;
+            background: white;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .poll-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .poll-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .poll-fill {
+            height: 100%;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        /* 签到系统 */
+        .checkin-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .checkin-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        
+        .checkin-day {
+            padding: 10px;
+            text-align: center;
+            background: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: 2px solid transparent;
+        }
+        
+        .checkin-day.checked {
+            background: var(--success);
+            color: white;
+        }
+        
+        .checkin-day.today {
+            border-color: var(--secondary);
+        }
+        
+        /* 班币商城 */
+        .shop-item {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #eee;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        
+        .shop-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .coin-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
         
         /* 封禁界面 */
-        .ban-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); 
-            z-index: 2000; display: flex; justify-content: center; align-items: center; color: white; text-align: center; }
-        .ban-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius); 
-            backdrop-filter: blur(10px); max-width: 500px; width: 90%; }
-        .ban-box h1 { color: #ff6b6b; font-size: 2.5rem; margin-bottom: 20px; }
+        .ban-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .ban-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .ban-box h1 {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
         
         /* 管理面板 */
-        .admin-panel { background: white; border-radius: var(--radius); padding: 20px; margin-top: 20px; }
-        .admin-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .admin-panel {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid var(--primary);
+        }
         
-        /* 响应式 */
+        .admin-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .admin-section:last-child {
+            border-bottom: none;
+        }
+        
+        /* ====== 模态框 ====== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1002;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: var(--radius);
+            padding: 40px;
+            position: relative;
+            transform: translateY(-30px);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* ====== 页脚 ====== */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* VIP徽章 */
+        .vip-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: linear-gradient(45deg, var(--vip), #e74c3c);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        /* ====== 响应式设计 ====== */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .hero { padding: 120px 0 60px; }
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 封禁界面（默认隐藏） -->
+    <!-- 封禁界面 -->
     <div class="ban-screen" id="banScreen" style="display: none;">
         <div class="ban-box">
             <h1>⚠️ 警告 ⚠️</h1>
-            <div id="banReason">您因为违反班级规定，被封禁</div>
-            <div id="banTime" style="margin: 20px 0; font-size: 1.2rem;">剩余解封时间: <span id="timeLeft">建议相关人员</span></div>
+            <div id="banReason" style="font-size: 1.2rem; margin-bottom: 20px;">您因为违反班级规定，被封禁7天</div>
+            <div id="banTime" style="font-size: 1.5rem; margin: 20px 0;">剩余解封时间: <span id="timeLeft">6天23小时</span></div>
             <p style="margin: 20px 0;">您可以填写反馈尝试提前解封</p>
-            <textarea id="appealText" placeholder="请输入您的申诉理由..." style="width:100%; height:100px; padding:10px; border-radius:var(--radius); margin-bottom:20px;"></textarea>
+            <textarea id="appealText" placeholder="请输入您的申诉理由..." 
+                style="width:100%; height:100px; padding:10px; border-radius:var(--radius); margin-bottom:20px;"></textarea>
             <button class="btn btn-secondary" id="submitAppeal">提交申诉</button>
             <p style="margin-top: 30px; color: rgba(255,255,255,0.7);">班级官网制作团队</p>
         </div>
@@ -91,96 +782,243 @@
         <div class="container nav-container">
             <div class="logo">
                 <img src="school-logo.png" alt="班徽" class="badge-img">
-                <div>
-                    <h2 style="color: var(--primary);">20（2）班</h2>
-                    <p style="font-size: 0.8rem; color: var(--gray);">数字家园</p>
+                <div class="logo-text">
+                    <h1>合肥实验学校20级2班</h1>
+                    <p>Hefei Experimental School</p>
                 </div>
             </div>
-            <div class="user-info" id="userInfo">
-                <div class="user-avatar" id="userAvatar">访</div>
-                <span id="userStatus">请登录</span>
-                <span id="vipBadge" class="vip-badge" style="display: none;">VIP</span>
+            
+            <div class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#announcements">班级公告</a>
+                <a href="#gallery">班级相册</a>
+                <a href="#resources">资源共享</a>
+                <a href="#checkin">每日签到</a>
+                <a href="#shop">班币商城</a>
+                <a href="#report">举报系统</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" id="userAvatar">访</div>
+                    <span id="userStatus">请登录</span>
+                    <span id="vipBadge" class="vip-badge" style="display: none;">VIP</span>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </nav>
     
+    <!-- 侧滑菜单 -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h3 class="side-menu-title">快速导航</h3>
+            <div class="close-menu" id="closeMenu">&times;</div>
+        </div>
+        
+        <div class="menu-section">
+            <h4 class="menu-section-title">班级信息</h4>
+            <div class="menu-links">
+                <a href="#home" class="active">首页</a>
+                <a href="#announcements">班级公告</a>
+                <a href="#gallery">班级相册</a>
+                <a href="#poll">在线投票</a>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <h4 class="menu-section-title">学习资源</h4>
+            <div class="menu-links">
+                <a href="#resources">资源共享</a>
+                <a href="#tools">实用工具</a>
+                <a href="#links">学习链接</a>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <h4 class="menu-section-title">VIP系统</h4>
+            <div class="menu-links">
+                <a href="#checkin">每日签到</a>
+                <a href="#shop">班币商城</a>
+                <a href="#privileges">VIP权益</a>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <h4 class="menu-section-title">管理功能</h4>
+            <div class="menu-links">
+                <a href="#report">举报系统</a>
+                <a href="#admin">管理面板</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- 英雄区域 -->
     <section class="hero" id="home">
         <div class="container">
-            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">欢迎来到20（2）班级数字家园</h1>
-            <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 30px;">这里是我们的班级官网，汇集班级动态、学习资源和交流平台</p>
-            <button class="btn btn-secondary" id="exploreBtn">开始探索</button>
+            <h1>欢迎来到我们的数字家园</h1>
+            <p>这里是20（2）班的官方网站，汇聚了班级动态、学习资源、交流互动和成长记录。我们是一个团结、奋进、创新的集体，共同创造美好未来。</p>
+            <button class="btn btn-secondary" id="exploreBtn">探索更多</button>
         </div>
     </section>
     
-    <main class="container">
+    <!-- 主要内容区域 -->
+    <main>
         <!-- 班级公告 -->
         <section class="section" id="announcements">
-            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">班级公告</h2>
-            <div id="announcementsList"></div>
+            <div class="container">
+                <h2 class="section-title">班级公告</h2>
+                <div id="announcementsList"></div>
+            </div>
         </section>
         
-        <!-- 积分商城 -->
-        <section class="section" id="shop">
-            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">积分商城</h2>
-            <p style="text-align: center; margin-bottom: 20px;">您的班币: <span id="coinCount" style="font-weight: bold; color: var(--secondary);">0</span></p>
-            <div class="grid" id="shopItems"></div>
-        </section>
-        
-        <!-- 举报系统 -->
-        <section class="section" id="report">
-            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">举报系统</h2>
-            <div class="card">
-                <h3>提交举报</h3>
-                <p>如果您发现违规行为，请在此举报</p>
-                <div style="margin-top: 20px;">
-                    <select id="reportType" class="form-control" style="margin-bottom: 15px;">
-                        <option value="cheat">作弊行为</option>
-                        <option value="content">不当内容</option>
-                        <option value="harassment">骚扰行为</option>
-                        <option value="other">其他</option>
-                    </select>
-                    <textarea id="reportDetails" placeholder="请详细描述举报内容..." 
-                        style="width:100%; height:100px; padding:10px; border:1px solid #ddd; border-radius:var(--radius); margin-bottom:15px;"></textarea>
-                    <button class="btn" id="submitReport">提交举报</button>
+        <!-- 班级相册 -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <h2 class="section-title">班级相册</h2>
+                <div class="gallery" id="photoGallery"></div>
+                <div class="upload-area" id="photoUploadArea">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <h3>上传班级照片</h3>
+                    <p>点击或拖拽图片到此处上传（仅限VIP和管理员）</p>
+                    <input type="file" id="photoUpload" accept="image/*" multiple style="display: none;">
                 </div>
             </div>
         </section>
         
-        <!-- 管理面板（仅管理员可见） -->
-        <section class="section" id="adminPanel" style="display: none;">
-            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">管理面板</h2>
-            <div class="admin-panel">
-                <div class="admin-section">
-                    <h3>用户管理</h3>
-                    <div id="userList"></div>
-                </div>
-                <div class="admin-section">
-                    <h3>举报管理</h3>
-                    <div id="reportList"></div>
-                </div>
-                <div class="admin-section">
-                    <h3>VIP管理</h3>
-                    <div style="margin-bottom: 15px;">
-                        <input type="text" id="vipUsername" placeholder="用户名" class="form-control" style="margin-bottom: 10px;">
-                        <button class="btn btn-vip" id="setVip">设为VIP</button>
-                        <button class="btn" id="removeVip" style="margin-left: 10px;">取消VIP</button>
+        <!-- 资源共享 -->
+        <section class="section" id="resources">
+            <div class="container">
+                <h2 class="section-title">资源共享</h2>
+                <div class="card">
+                    <h3>学习资料库</h3>
+                    <p>上传和分享学习资料、课件、习题集等资源</p>
+                    <div class="upload-area" id="fileUploadArea" style="margin-bottom: 30px;">
+                        <i class="fas fa-file-upload" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <h3>上传学习资源</h3>
+                        <p>点击或拖拽文件到此处上传（仅限VIP和管理员）</p>
+                        <input type="file" id="fileUpload" multiple style="display: none;">
                     </div>
-                    <div>
-                        <h4>生成VIP兑换码</h4>
-                        <button class="btn btn-secondary" id="generateCode">生成7天VIP码</button>
-                        <div id="vipCodes" style="margin-top: 15px;"></div>
+                    <div id="resourceList"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 每日签到 -->
+        <section class="section" id="checkin">
+            <div class="container">
+                <h2 class="section-title">每日签到</h2>
+                <div class="checkin-container card">
+                    <div id="checkinInfo"></div>
+                    <button class="btn btn-vip" id="checkinBtn">今日签到</button>
+                    <div class="checkin-calendar" id="checkinCalendar"></div>
+                    <p style="margin-top: 20px; color: var(--gray);">连续签到7天可获得额外班币奖励</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 班币商城 -->
+        <section class="section" id="shop">
+            <div class="container">
+                <h2 class="section-title">班币商城</h2>
+                <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;">
+                    您的班币: <span id="coinCount" style="font-weight: bold; color: var(--secondary); font-size: 1.5rem;">0</span>
+                </p>
+                <div class="grid" id="shopItems"></div>
+            </div>
+        </section>
+        
+        <!-- 在线投票 -->
+        <section class="section" id="poll">
+            <div class="container">
+                <h2 class="section-title">在线投票</h2>
+                <div class="card">
+                    <h3 id="pollQuestion">本学期班级活动您最期待什么？</h3>
+                    <p id="pollDescription">请选择您最期待的班级活动类型（仅限VIP和管理员投票）</p>
+                    <div id="pollOptions"></div>
+                    <div id="pollResult" style="margin-top: 20px; display: none;">
+                        <h4>投票结果</h4>
+                        <div id="pollStats"></div>
                     </div>
                 </div>
-                <div class="admin-section">
-                    <h3>封禁管理</h3>
-                    <div style="margin-bottom: 15px;">
-                        <input type="text" id="banUsername" placeholder="用户名" class="form-control" style="margin-bottom: 10px;">
-                        <input type="number" id="banDays" placeholder="封禁天数" class="form-control" style="margin-bottom: 10px;">
-                        <textarea id="banReasonInput" placeholder="封禁原因" class="form-control" style="margin-bottom: 10px; height: 80px;"></textarea>
-                        <button class="btn" id="banUser">封禁用户</button>
-                        <button class="btn btn-secondary" id="unbanUser" style="margin-left: 10px;">解封用户</button>
+            </div>
+        </section>
+        
+        <!-- 举报系统 -->
+        <section class="section" id="report">
+            <div class="container">
+                <h2 class="section-title">举报系统</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>提交举报</h3>
+                        <p>如果您发现违规行为，请在此举报</p>
+                        <div style="margin-top: 20px;">
+                            <select id="reportType" class="form-control" style="margin-bottom: 15px;">
+                                <option value="cheat">作弊行为</option>
+                                <option value="content">不当内容</option>
+                                <option value="harassment">骚扰行为</option>
+                                <option value="spam">垃圾信息</option>
+                                <option value="other">其他</option>
+                            </select>
+                            <textarea id="reportDetails" placeholder="请详细描述举报内容..." 
+                                style="width:100%; height:120px; padding:10px; border:1px solid #ddd; border-radius:var(--radius); margin-bottom:15px;"></textarea>
+                            <input type="text" id="reportTarget" placeholder="被举报人用户名（可选）" class="form-control" style="margin-bottom: 15px;">
+                            <button class="btn" id="submitReport">提交举报</button>
+                        </div>
                     </div>
-                    <div id="bannedUsers"></div>
+                    
+                    <div class="card">
+                        <h3>举报记录</h3>
+                        <div id="userReports" style="max-height: 300px; overflow-y: auto; margin-top: 20px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 管理面板 -->
+        <section class="section" id="admin">
+            <div class="container">
+                <h2 class="section-title">管理面板</h2>
+                <div class="admin-panel" id="adminPanel" style="display: none;">
+                    <div class="admin-section">
+                        <h3>用户管理</h3>
+                        <div id="userList"></div>
+                    </div>
+                    <div class="admin-section">
+                        <h3>举报管理</h3>
+                        <div id="reportList"></div>
+                    </div>
+                    <div class="admin-section">
+                        <h3>VIP管理</h3>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <input type="text" id="vipUsername" placeholder="用户名" class="form-control">
+                            <button class="btn btn-vip" id="setVip">设为VIP</button>
+                            <button class="btn" id="removeVip">取消VIP</button>
+                        </div>
+                        <div>
+                            <h4>生成VIP兑换码</h4>
+                            <button class="btn btn-secondary" id="generateCode">生成7天VIP码</button>
+                            <div id="vipCodes" style="margin-top: 15px;"></div>
+                        </div>
+                    </div>
+                    <div class="admin-section">
+                        <h3>封禁管理</h3>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <input type="text" id="banUsername" placeholder="用户名" class="form-control" style="flex: 1;">
+                            <input type="number" id="banDays" placeholder="封禁天数" class="form-control" style="width: 120px;">
+                            <button class="btn btn-danger" id="banUser">封禁用户</button>
+                            <button class="btn btn-secondary" id="unbanUser">解封用户</button>
+                        </div>
+                        <textarea id="banReasonInput" placeholder="封禁原因" class="form-control" style="margin-bottom: 15px; height: 80px;"></textarea>
+                        <div id="bannedUsers"></div>
+                    </div>
+                </div>
+                <div id="adminNotice" style="text-align: center; color: var(--gray);">
+                    <p>管理面板仅对管理员和教师开放</p>
                 </div>
             </div>
         </section>
@@ -189,43 +1027,43 @@
     <!-- 登录/注册模态框 -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <div style="position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer;" id="closeLoginModal">&times;</div>
-            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; text-align: center;" id="modalTitle">用户登录</h2>
+            <div class="close-modal" id="closeLoginModal">&times;</div>
+            <h2 class="modal-title" id="modalTitle">用户登录</h2>
             
             <form id="loginForm">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">用户名</label>
+                <div class="form-group">
+                    <label for="loginUsername">用户名</label>
                     <input type="text" id="loginUsername" class="form-control" required>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">密码</label>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
                     <input type="password" id="loginPassword" class="form-control" required>
                 </div>
-                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <div class="form-group" style="display: flex; align-items: center;">
                     <input type="checkbox" id="rememberMe" style="margin-right: 10px;">
-                    <label for="rememberMe">记住我</label>
+                    <label for="rememberMe" style="margin-bottom: 0;">记住我</label>
                 </div>
                 <button type="submit" class="btn btn-secondary" style="width: 100%;">登录</button>
             </form>
             
             <form id="registerForm" style="display: none;">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">用户名</label>
+                <div class="form-group">
+                    <label for="registerUsername">用户名</label>
                     <input type="text" id="registerUsername" class="form-control" required>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">密码</label>
+                <div class="form-group">
+                    <label for="registerPassword">密码</label>
                     <input type="password" id="registerPassword" class="form-control" required>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">确认密码</label>
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
                     <input type="password" id="confirmPassword" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-secondary" style="width: 100%;">注册</button>
             </form>
             
-            <div style="margin-top: 25px; text-align: center;">
-                <p id="formToggleText">还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span></p>
+            <div class="form-footer">
+                <p id="formToggleText">还没有账号？ <span class="form-link" id="toggleForm">立即注册</span></p>
             </div>
             
             <!-- VIP兑换码输入 -->
@@ -237,831 +1075,1409 @@
         </div>
     </div>
     
-    <footer style="background: var(--primary); color: white; padding: 50px 0 20px; text-align: center;">
+    <!-- 页脚 -->
+    <footer>
         <div class="container">
-            <p>&copy; 2026 202班最牛的程序猿 版权所有 | 班级官网制作团队</p>
+            <div class="footer-content">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <img src="school-logo.png" alt="班徽" style="height: 50px; width: auto;">
+                        <h3 style="color: white;">卓越一班</h3>
+                    </div>
+                    <p>这里是我们的数字家园，记录着我们的成长与奋斗。</p>
+                </div>
+                
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#announcements">班级公告</a></li>
+                        <li><a href="#gallery">班级相册</a></li>
+                        <li><a href="#shop">班币商城</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">功能服务</h4>
+                    <ul>
+                        <li><a href="#checkin">每日签到</a></li>
+                        <li><a href="#poll">在线投票</a></li>
+                        <li><a href="#resources">资源共享</a></li>
+                        <li><a href="#report">举报系统</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 20（2）班最牛程序猿. 版权所有 | 班级官网制作团队</p>
+            </div>
         </div>
     </footer>
     
-<script>
-// ========== 预设账号区域（开发者在此设置） ==========
-const PRESET_ACCOUNTS = {
-    // 格式：用户名: {密码: "密码", role: "角色", coins: 班币数量}
-    "管理员": {password: "syya", role: "管理员", coins: 9999999999999999999999999999999},
-    "姚笑笑": {password: "teacherY", role: "班主任", coins: 99999999999999999999999999999},
-    "VIP": {password: "VIP VIP VIP", role: "vip", coins: 200},
-    "学生": {password: "student", role: "学生", coins: 0}
-};
-// ===============================================
+    <script>
+        // ========== 预设账号区域（开发者在此设置） ==========
+        const PRESET_ACCOUNTS = {
+            // 格式：用户名: {密码: "密码", role: "角色", coins: 班币数量}
+            "管理员": {password: "SYYADMINs", role: "管理员", coins: 9999999999999999999999},
+            "姚笑笑": {password: "YXX", role: "", coins: 99999999999999999999},
+            "vipuser": {password: "vip123", role: "VIP", coins: 500},
+            "访客": {password: "student123", role: "member", coins: 0},
+            "访客2": {password: "student456", role: "member", coins: 0}
+        };
+        // ===============================================
 
-// ========== 全局变量 ==========
-let currentUser = null;
-let isLoginForm = true;
+        // ========== 全局变量 ==========
+        let currentUser = null;
+        let isLoginForm = true;
+        let siteAccess = localStorage.getItem('siteAccess') === 'true' || true; // 默认开放访问
 
-// ========== DOM元素获取 ==========
-const banScreen = document.getElementById('banScreen');
-const userInfo = document.getElementById('userInfo');
-const userAvatar = document.getElementById('userAvatar');
-const userStatus = document.getElementById('userStatus');
-const vipBadge = document.getElementById('vipBadge');
-const loginModal = document.getElementById('loginModal');
-const adminPanel = document.getElementById('adminPanel');
+        // ========== DOM元素获取 ==========
+        const userInfo = document.getElementById('userInfo');
+        const userAvatar = document.getElementById('userAvatar');
+        const userStatus = document.getElementById('userStatus');
+        const vipBadge = document.getElementById('vipBadge');
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const toggleForm = document.getElementById('toggleForm');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const modalTitle = document.getElementById('modalTitle');
+        const formToggleText = document.getElementById('formToggleText');
+        const adminPanel = document.getElementById('adminPanel');
+        const adminNotice = document.getElementById('adminNotice');
 
-// ========== 初始化函数 ==========
-function init() {
-    // 检查是否被封禁
-    checkBanStatus();
-    
-    // 检查本地存储中是否有用户信息
-    const savedUser = localStorage.getItem('classUser');
-    if (savedUser) {
-        const user = JSON.parse(savedUser);
-        if (!user.banned || user.banEnd && new Date() > new Date(user.banEnd)) {
-            currentUser = user;
-            updateUserUI();
-            loadPageContent();
+        // ========== 初始化函数 ==========
+        function init() {
+            // 检查是否被封禁
+            if (checkBanStatus()) return;
+            
+            // 检查本地存储中是否有用户信息
+            const savedUser = localStorage.getItem('classUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUserUI();
+            }
+            
+            // 生成页面内容
+            generateAnnouncements();
+            generateGallery();
+            generateResources();
+            generateShopItems();
+            generatePoll();
+            initCheckinSystem();
+            loadUserReports();
+            
+            // 设置事件监听器
+            setupEventListeners();
+            
+            // 初始化滚动效果
+            initScrollEffects();
         }
-    }
-    
-    // 设置事件监听器
-    setupEventListeners();
-    
-    // 加载页面内容
-    if (!currentUser) {
-        loadPublicContent();
-    }
-}
 
-// ========== 检查封禁状态 ==========
-function checkBanStatus() {
-    const savedUser = localStorage.getItem('classUser');
-    if (savedUser) {
-        const user = JSON.parse(savedUser);
-        if (user.banned && user.banEnd && new Date() < new Date(user.banEnd)) {
-            showBanScreen(user);
+        // ========== 检查封禁状态 ==========
+        function checkBanStatus() {
+            const savedUser = localStorage.getItem('classUser');
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
+                if (user.banned && user.banEnd && new Date() < new Date(user.banEnd)) {
+                    showBanScreen(user);
+                    return true;
+                } else if (user.banned) {
+                    // 封禁已过期，解除封禁
+                    user.banned = false;
+                    delete user.banEnd;
+                    delete user.banReason;
+                    localStorage.setItem('classUser', JSON.stringify(user));
+                }
+            }
+            return false;
+        }
+
+        // ========== 显示封禁界面 ==========
+        function showBanScreen(user) {
+            document.getElementById('banScreen').style.display = 'flex';
+            document.getElementById('banReason').textContent = `您因为${user.banReason || "违反班级规定"}，被封禁${user.banDays || 7}天`;
+            
+            const endTime = new Date(user.banEnd);
+            updateBanTimeLeft(endTime);
+            
+            const timer = setInterval(() => {
+                if (!updateBanTimeLeft(endTime)) {
+                    clearInterval(timer);
+                    location.reload();
+                }
+            }, 1000);
+            
+            document.getElementById('submitAppeal').addEventListener('click', () => {
+                const appealText = document.getElementById('appealText').value;
+                if (appealText.trim()) {
+                    saveAppeal(user.username, appealText);
+                    alert('申诉已提交，管理员会尽快处理');
+                } else {
+                    alert('请输入申诉理由');
+                }
+            });
+        }
+
+        function updateBanTimeLeft(endTime) {
+            const now = new Date();
+            const diff = endTime - now;
+            
+            if (diff <= 0) {
+                document.getElementById('timeLeft').textContent = '已解封';
+                return false;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('timeLeft').textContent = `${days}天${hours}小时${minutes}分钟`;
             return true;
-        } else if (user.banned) {
-            // 封禁已过期，解除封禁
-            user.banned = false;
-            delete user.banEnd;
-            delete user.banReason;
-            localStorage.setItem('classUser', JSON.stringify(user));
         }
-    }
-    return false;
-}
 
-// ========== 显示封禁界面 ==========
-function showBanScreen(user) {
-    banScreen.style.display = 'flex';
-    document.getElementById('banReason').textContent = `您因为${user.banReason || "违反班级规定"}，被封禁${user.banDays || 7}天`;
-    
-    // 计算剩余时间
-    const endTime = new Date(user.banEnd);
-    updateBanTimeLeft(endTime);
-    
-    // 每秒更新剩余时间
-    const timer = setInterval(() => {
-        if (!updateBanTimeLeft(endTime)) {
-            clearInterval(timer);
-            location.reload();
+        function saveAppeal(username, appeal) {
+            const appeals = JSON.parse(localStorage.getItem('banAppeals') || '[]');
+            appeals.push({
+                username,
+                appeal,
+                date: new Date().toISOString(),
+                status: 'pending'
+            });
+            localStorage.setItem('banAppeals', JSON.stringify(appeals));
         }
-    }, 1000);
-    
-    // 申诉提交
-    document.getElementById('submitAppeal').addEventListener('click', () => {
-        const appealText = document.getElementById('appealText').value;
-        if (appealText.trim()) {
-            saveAppeal(user.username, appealText);
-            alert('申诉已提交，管理员会尽快处理');
-        } else {
-            alert('请输入申诉理由');
+
+        // ========== 设置事件监听器 ==========
+        function setupEventListeners() {
+            // 用户信息点击
+            userInfo.addEventListener('click', () => {
+                if (!currentUser) {
+                    showLoginModal();
+                } else {
+                    if (confirm(`确定要退出登录吗？(${currentUser.username})`)) {
+                        logout();
+                    }
+                }
+            });
+            
+            // 菜单切换
+            menuToggle.addEventListener('click', () => {
+                sideMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+            });
+            
+            closeMenu.addEventListener('click', closeSideMenu);
+            menuOverlay.addEventListener('click', closeSideMenu);
+            
+            // 登录模态框
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+            });
+            
+            // 表单切换
+            toggleForm.addEventListener('click', toggleLoginRegister);
+            
+            // 表单提交
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            
+            // 探索按钮
+            document.getElementById('exploreBtn').addEventListener('click', () => {
+                document.querySelector('#announcements').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // 图片上传
+            const photoUploadArea = document.getElementById('photoUploadArea');
+            const photoUpload = document.getElementById('photoUpload');
+            
+            photoUploadArea.addEventListener('click', () => {
+                if (!currentUser) {
+                    showMessage('请先登录后上传图片', 'warning');
+                    showLoginModal();
+                    return;
+                }
+                if (currentUser.role !== 'admin' && currentUser.role !== 'vip') {
+                    showMessage('需要VIP或管理员权限才能上传图片', 'warning');
+                    return;
+                }
+                photoUpload.click();
+            });
+            
+            photoUpload.addEventListener('change', handlePhotoUpload);
+            
+            // 文件上传
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const fileUpload = document.getElementById('fileUpload');
+            
+            fileUploadArea.addEventListener('click', () => {
+                if (!currentUser) {
+                    showMessage('请先登录后上传文件', 'warning');
+                    showLoginModal();
+                    return;
+                }
+                if (currentUser.role !== 'admin' && currentUser.role !== 'vip') {
+                    showMessage('需要VIP或管理员权限才能上传文件', 'warning');
+                    return;
+                }
+                fileUpload.click();
+            });
+            
+            fileUpload.addEventListener('change', handleFileUpload);
+            
+            // 签到按钮
+            document.getElementById('checkinBtn').addEventListener('click', handleCheckin);
+            
+            // 投票选项点击
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('poll-option') || e.target.parentElement.classList.contains('poll-option')) {
+                    const optionElement = e.target.classList.contains('poll-option') ? e.target : e.target.parentElement;
+                    const optionId = optionElement.dataset.optionId;
+                    voteForOption(optionId);
+                }
+            });
+            
+            // VIP兑换
+            document.getElementById('redeemCode').addEventListener('click', redeemVipCode);
+            
+            // 举报提交
+            document.getElementById('submitReport').addEventListener('click', submitReport);
         }
-    });
-}
 
-// ========== 更新封禁剩余时间 ==========
-function updateBanTimeLeft(endTime) {
-    const now = new Date();
-    const diff = endTime - now;
-    
-    if (diff <= 0) {
-        document.getElementById('timeLeft').textContent = '已解封';
-        return false;
-    }
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    
-    document.getElementById('timeLeft').textContent = `${days}天${hours}小时${minutes}分钟`;
-    return true;
-}
+        // ========== 侧滑菜单函数 ==========
+        function closeSideMenu() {
+            sideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        }
 
-// ========== 保存申诉 ==========
-function saveAppeal(username, appeal) {
-    const appeals = JSON.parse(localStorage.getItem('banAppeals') || '[]');
-    appeals.push({
-        username,
-        appeal,
-        date: new Date().toISOString(),
-        status: 'pending'
-    });
-    localStorage.setItem('banAppeals', JSON.stringify(appeals));
-}
+        // ========== 滚动效果 ==========
+        function initScrollEffects() {
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // 滚动到顶部按钮
+            const scrollTopBtn = document.createElement('button');
+            scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            scrollTopBtn.className = 'btn';
+            scrollTopBtn.style.position = 'fixed';
+            scrollTopBtn.style.bottom = '30px';
+            scrollTopBtn.style.right = '30px';
+            scrollTopBtn.style.zIndex = '999';
+            scrollTopBtn.style.display = 'none';
+            scrollTopBtn.style.borderRadius = '50%';
+            scrollTopBtn.style.width = '50px';
+            scrollTopBtn.style.height = '50px';
+            scrollTopBtn.style.padding = '0';
+            scrollTopBtn.style.fontSize = '1.2rem';
+            
+            document.body.appendChild(scrollTopBtn);
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.style.display = 'block';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+        }
 
-// ========== 设置事件监听器 ==========
-function setupEventListeners() {
-    // 用户信息点击
-    userInfo.addEventListener('click', () => {
-        if (!currentUser) {
-            showLoginModal();
-        } else {
-            if (confirm('确定要退出登录吗？')) {
-                logout();
+        // ========== 用户系统 ==========
+        function showLoginModal() {
+            loginModal.classList.add('active');
+            resetForms();
+        }
+
+        function toggleLoginRegister() {
+            isLoginForm = !isLoginForm;
+            
+            if (isLoginForm) {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                modalTitle.textContent = '用户登录';
+                formToggleText.innerHTML = '还没有账号？ <span class="form-link" id="toggleForm">立即注册</span>';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                modalTitle.textContent = '用户注册';
+                formToggleText.innerHTML = '已有账号？ <span class="form-link" id="toggleForm">立即登录</span>';
+            }
+            
+            document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
+        }
+
+        function resetForms() {
+            loginForm.reset();
+            registerForm.reset();
+            isLoginForm = true;
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            modalTitle.textContent = '用户登录';
+            formToggleText.innerHTML = '还没有账号？ <span class="form-link" id="toggleForm">立即注册</span>';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            if (!username || !password) {
+                alert('请输入用户名和密码');
+                return;
+            }
+            
+            // 检查预设账号
+            if (PRESET_ACCOUNTS[username] && PRESET_ACCOUNTS[username].password === password) {
+                loginSuccess(username, PRESET_ACCOUNTS[username], rememberMe);
+                return;
+            }
+            
+            // 检查本地存储的用户
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                loginSuccess(username, user, rememberMe);
+            } else {
+                alert('用户名或密码错误');
             }
         }
-    });
-    
-    // 探索按钮
-    document.getElementById('exploreBtn').addEventListener('click', () => {
-        if (!currentUser) {
-            showLoginModal();
-        } else {
-            document.querySelector('#announcements').scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-    
-    // 登录模态框
-    document.getElementById('closeLoginModal').addEventListener('click', () => {
-        loginModal.classList.remove('active');
-    });
-    
-    // 表单切换
-    document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
-    
-    // 表单提交
-    document.getElementById('loginForm').addEventListener('submit', handleLogin);
-    document.getElementById('registerForm').addEventListener('submit', handleRegister);
-    
-    // VIP兑换
-    document.getElementById('redeemCode').addEventListener('click', redeemVipCode);
-    
-    // 举报提交
-    document.getElementById('submitReport').addEventListener('click', submitReport);
-}
 
-// ========== 用户系统 ==========
-function showLoginModal() {
-    loginModal.classList.add('active');
-    resetForms();
-}
-
-function toggleLoginRegister() {
-    isLoginForm = !isLoginForm;
-    
-    if (isLoginForm) {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('registerForm').style.display = 'none';
-        document.getElementById('modalTitle').textContent = '用户登录';
-        document.getElementById('formToggleText').innerHTML = '还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span>';
-    } else {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('registerForm').style.display = 'block';
-        document.getElementById('modalTitle').textContent = '用户注册';
-        document.getElementById('formToggleText').innerHTML = '已有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即登录</span>';
-    }
-    
-    // 重新绑定事件监听器
-    document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
-}
-
-function resetForms() {
-    document.getElementById('loginForm').reset();
-    document.getElementById('registerForm').reset();
-    isLoginForm = true;
-    document.getElementById('loginForm').style.display = 'block';
-    document.getElementById('registerForm').style.display = 'none';
-    document.getElementById('modalTitle').textContent = '用户登录';
-    document.getElementById('formToggleText').innerHTML = '还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span>';
-}
-
-function handleLogin(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-    const rememberMe = document.getElementById('rememberMe').checked;
-    
-    if (!username || !password) {
-        alert('请输入用户名和密码');
-        return;
-    }
-    
-    // 检查预设账号
-    if (PRESET_ACCOUNTS[username] && PRESET_ACCOUNTS[username].password === password) {
-        loginSuccess(username, PRESET_ACCOUNTS[username], rememberMe);
-        return;
-    }
-    
-    // 检查本地存储的用户
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const user = users.find(u => u.username === username && u.password === password);
-    
-    if (user) {
-        loginSuccess(username, user, rememberMe);
-    } else {
-        alert('用户名或密码错误');
-    }
-}
-
-function loginSuccess(username, userData, rememberMe) {
-    // 检查是否被封禁
-    if (userData.banned && userData.banEnd && new Date() < new Date(userData.banEnd)) {
-        currentUser = userData;
-        showBanScreen(userData);
-        return;
-    }
-    
-    // 创建用户对象
-    currentUser = {
-        username: username,
-        role: userData.role || 'member',
-        coins: userData.coins || 0,
-        avatarText: username.charAt(0).toUpperCase(),
-        lastLogin: new Date().toISOString(),
-        loginIP: getFakeIP() // 模拟IP，用于反作弊
-    };
-    
-    // 保存到本地存储
-    if (rememberMe) {
-        localStorage.setItem('classUser', JSON.stringify(currentUser));
-    } else {
-        sessionStorage.setItem('classUser', JSON.stringify(currentUser));
-    }
-    
-    // 更新用户列表中的信息
-    updateUserInList(currentUser);
-    
-    updateUserUI();
-    loginModal.classList.remove('active');
-    showMessage('登录成功！', 'success');
-    loadPageContent();
-}
-
-function handleRegister(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('registerUsername').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    
-    // 验证
-    if (!username || !password || !confirmPassword) {
-        alert('请填写所有字段');
-        return;
-    }
-    
-    if (password !== confirmPassword) {
-        alert('两次输入的密码不一致');
-        return;
-    }
-    
-    if (password.length < 6) {
-        alert('密码长度至少为6位');
-        return;
-    }
-    
-    // 检查用户名是否已存在（包括预设账号）
-    if (PRESET_ACCOUNTS[username]) {
-        alert('用户名已存在');
-        return;
-    }
-    
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    if (users.find(u => u.username === username)) {
-        alert('用户名已存在');
-        return;
-    }
-    
-    // 创建新用户
-    const newUser = {
-        username,
-        password,
-        role: 'member',
-        coins: 10, // 注册赠送10班币
-        joinDate: new Date().toISOString(),
-        loginIP: getFakeIP()
-    };
-    
-    users.push(newUser);
-    localStorage.setItem('classUsers', JSON.stringify(users));
-    
-    // 自动登录
-    loginSuccess(username, newUser, true);
-}
-
-function logout() {
-    currentUser = null;
-    localStorage.removeItem('classUser');
-    sessionStorage.removeItem('classUser');
-    updateUserUI();
-    showMessage('已退出登录', 'info');
-    loadPublicContent();
-}
-
-function updateUserUI() {
-    if (currentUser) {
-        userAvatar.textContent = currentUser.avatarText;
-        userStatus.textContent = currentUser.username;
-        
-        // 显示VIP徽章
-        if (currentUser.role === 'vip' || currentUser.role === 'admin' || currentUser.role === 'teacher') {
-            vipBadge.style.display = 'inline-block';
-            userAvatar.style.background = 'var(--vip)';
-        } else {
-            vipBadge.style.display = 'none';
-            userAvatar.style.background = 'var(--primary)';
-        }
-        
-        // 显示管理员面板
-        if (currentUser.role === 'admin' || currentUser.role === 'teacher') {
-            adminPanel.style.display = 'block';
-            loadAdminPanel();
-        } else {
-            adminPanel.style.display = 'none';
-        }
-    } else {
-        userAvatar.textContent = '访';
-        userStatus.textContent = '请登录';
-        vipBadge.style.display = 'none';
-        userAvatar.style.background = 'var(--primary)';
-        adminPanel.style.display = 'none';
-    }
-}
-
-// ========== 加载页面内容 ==========
-function loadPublicContent() {
-    generateAnnouncements();
-    generateShopItems();
-}
-
-function loadPageContent() {
-    loadPublicContent();
-    document.getElementById('coinCount').textContent = currentUser.coins || 0;
-}
-
-// ========== 生成公告 ==========
-function generateAnnouncements() {
-    const announcements = [
-        { title: '期末考试通知', content: '本学期期末考试将于1月28日开始，请提前复习。', date: '2026-1-20' },
-        { title: '班级活动征集', content: '征集班级官网活动建议，欢迎大家踊跃提出。', date: '2026-1-20' },
-        { title: '积分商城上线', content: '班币商城正式上线，可使用班币兑换各种权益。', date: '2026-1-21' }
-    ];
-    
-    const container = document.getElementById('announcementsList');
-    container.innerHTML = '';
-    
-    announcements.forEach(ann => {
-        const item = document.createElement('div');
-        item.className = 'card';
-        item.style.marginBottom = '15px';
-        item.innerHTML = `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <div style="font-weight: 600; color: var(--primary);">${ann.title}</div>
-                <div style="color: var(--gray); font-size: 0.9rem;">${ann.date}</div>
-            </div>
-            <div>${ann.content}</div>
-        `;
-        container.appendChild(item);
-    });
-}
-
-// ========== 积分商城 ==========
-function generateShopItems() {
-    const shopItems = [
-        { id: 1, name: '自定义头像框', price: 50, description: '获得专属头像框' },
-        { id: 2, name: '特殊称号', price: 100, description: '获得"学霸"称号' },
-        { id: 3, name: '优先发言权', price: 30, description: '在班级讨论中优先展示' },
-        { id: 4, name: '7天VIP体验', price: 200, description: '体验VIP权益7天' }
-    ];
-    
-    const container = document.getElementById('shopItems');
-    container.innerHTML = '';
-    
-    shopItems.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h4 style="color: var(--primary); margin-bottom: 10px;">${item.name}</h4>
-            <p style="color: var(--gray); margin-bottom: 15px;">${item.description}</p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: bold; color: var(--secondary);">${item.price} 班币</span>
-                <button class="btn btn-secondary" onclick="buyItem(${item.id})">兑换</button>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-function buyItem(itemId) {
-    if (!currentUser) {
-        showLoginModal();
-        return;
-    }
-    
-    const shopItems = [
-        { id: 1, name: '自定义头像框', price: 50 },
-        { id: 2, name: '特殊称号', price: 100 },
-        { id: 3, name: '优先发言权', price: 30 },
-        { id: 4, name: '7天VIP体验', price: 200 }
-    ];
-    
-    const item = shopItems.find(i => i.id === itemId);
-    if (!item) return;
-    
-    if (currentUser.coins < item.price) {
-        alert('班币不足！');
-        return;
-    }
-    
-    if (confirm(`确定要兑换"${item.name}"吗？将消耗${item.price}班币`)) {
-        currentUser.coins -= item.price;
-        updateUserCoins();
-        
-        // 如果是VIP体验，设置VIP
-        if (item.id === 4) {
-            currentUser.role = 'vip';
-            currentUser.vipExpire = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+        function loginSuccess(username, userData, rememberMe) {
+            // 检查是否被封禁
+            if (userData.banned && userData.banEnd && new Date() < new Date(userData.banEnd)) {
+                currentUser = userData;
+                showBanScreen(userData);
+                return;
+            }
+            
+            // 创建用户对象
+            currentUser = {
+                username: username,
+                role: userData.role || 'member',
+                coins: userData.coins || 0,
+                avatarText: username.charAt(0).toUpperCase(),
+                lastLogin: new Date().toISOString(),
+                loginIP: getFakeIP(),
+                checkinDays: userData.checkinDays || 0,
+                checkinStreak: userData.checkinStreak || 0,
+                lastCheckin: userData.lastCheckin || null
+            };
+            
+            // 保存到本地存储
+            if (rememberMe) {
+                localStorage.setItem('classUser', JSON.stringify(currentUser));
+            } else {
+                sessionStorage.setItem('classUser', JSON.stringify(currentUser));
+            }
+            
+            // 更新用户列表中的信息
+            updateUserInList(currentUser);
+            
             updateUserUI();
+            loginModal.classList.remove('active');
+            showMessage('登录成功！', 'success');
+            
+            // 更新页面内容
+            document.getElementById('coinCount').textContent = currentUser.coins || 0;
+            initCheckinSystem();
+            loadUserReports();
+            
+            // 显示管理面板
+            if (currentUser.role === 'admin' || currentUser.role === 'teacher') {
+                adminPanel.style.display = 'block';
+                adminNotice.style.display = 'none';
+                loadAdminPanel();
+            }
         }
-        
-        showMessage(`成功兑换${item.name}！`, 'success');
-        document.getElementById('coinCount').textContent = currentUser.coins;
-    }
-}
 
-function updateUserCoins() {
-    // 更新当前用户
-    if (localStorage.getItem('classUser')) {
-        localStorage.setItem('classUser', JSON.stringify(currentUser));
-    }
-    if (sessionStorage.getItem('classUser')) {
-        sessionStorage.setItem('classUser', JSON.stringify(currentUser));
-    }
-    
-    // 更新用户列表
-    updateUserInList(currentUser);
-}
-
-// ========== 举报系统 ==========
-function submitReport() {
-    if (!currentUser) {
-        showLoginModal();
-        return;
-    }
-    
-    const type = document.getElementById('reportType').value;
-    const details = document.getElementById('reportDetails').value.trim();
-    
-    if (!details) {
-        alert('请输入举报详情');
-        return;
-    }
-    
-    const reports = JSON.parse(localStorage.getItem('reports') || '[]');
-    reports.push({
-        id: Date.now(),
-        reporter: currentUser.username,
-        type,
-        details,
-        date: new Date().toISOString(),
-        status: 'pending'
-    });
-    
-    localStorage.setItem('reports', JSON.stringify(reports));
-    document.getElementById('reportDetails').value = '';
-    showMessage('举报已提交，管理员会尽快处理', 'success');
-}
-
-// ========== VIP兑换码系统 ==========
-function redeemVipCode() {
-    if (!currentUser) {
-        showLoginModal();
-        return;
-    }
-    
-    const code = document.getElementById('vipCodeInput').value.trim();
-    if (!code) {
-        alert('请输入兑换码');
-        return;
-    }
-    
-    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
-    const validCode = vipCodes.find(c => c.code === code && !c.used);
-    
-    if (!validCode) {
-        alert('兑换码无效或已使用');
-        return;
-    }
-    
-    // 使用兑换码
-    validCode.used = true;
-    validCode.usedBy = currentUser.username;
-    validCode.usedDate = new Date().toISOString();
-    localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
-    
-    // 设置用户为VIP
-    currentUser.role = 'vip';
-    currentUser.vipExpire = new Date(Date.now() + validCode.days * 24 * 60 * 60 * 1000).toISOString();
-    updateUserUI();
-    updateUserInList(currentUser);
-    
-    document.getElementById('vipCodeInput').value = '';
-    showMessage(`VIP兑换成功！有效期${validCode.days}天`, 'success');
-}
-
-// ========== 管理面板功能 ==========
-function loadAdminPanel() {
-    loadUserList();
-    loadReportList();
-    loadBannedUsers();
-    loadVipCodes();
-    
-    // 设置VIP按钮
-    document.getElementById('setVip').addEventListener('click', () => {
-        const username = document.getElementById('vipUsername').value.trim();
-        if (!username) return;
-        
-        if (confirm(`确定要将${username}设为VIP吗？`)) {
-            setUserRole(username, 'vip');
+        function handleRegister(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // 验证
+            if (!username || !password || !confirmPassword) {
+                alert('请填写所有字段');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('两次输入的密码不一致');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('密码长度至少为6位');
+                return;
+            }
+            
+            // 检查用户名是否已存在（包括预设账号）
+            if (PRESET_ACCOUNTS[username]) {
+                alert('用户名已存在');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            if (users.find(u => u.username === username)) {
+                alert('用户名已存在');
+                return;
+            }
+            
+            // 创建新用户
+            const newUser = {
+                username,
+                password,
+                role: 'member',
+                coins: 10, // 注册赠送10班币
+                joinDate: new Date().toISOString(),
+                loginIP: getFakeIP(),
+                checkinDays: 0,
+                checkinStreak: 0
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('classUsers', JSON.stringify(users));
+            
+            // 自动登录
+            loginSuccess(username, newUser, true);
         }
-    });
-    
-    // 取消VIP按钮
-    document.getElementById('removeVip').addEventListener('click', () => {
-        const username = document.getElementById('vipUsername').value.trim();
-        if (!username) return;
-        
-        if (confirm(`确定要取消${username}的VIP吗？`)) {
-            setUserRole(username, 'member');
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('classUser');
+            sessionStorage.removeItem('classUser');
+            updateUserUI();
+            showMessage('已退出登录', 'info');
+            adminPanel.style.display = 'none';
+            adminNotice.style.display = 'block';
         }
-    });
-    
-    // 生成VIP码按钮
-    document.getElementById('generateCode').addEventListener('click', generateVipCode);
-    
-    // 封禁用户按钮
-    document.getElementById('banUser').addEventListener('click', banUser);
-    
-    // 解封用户按钮
-    document.getElementById('unbanUser').addEventListener('click', unbanUser);
-}
 
-function loadUserList() {
-    // 获取所有用户（预设+本地）
-    const presetUsers = Object.keys(PRESET_ACCOUNTS).map(name => ({
-        username: name,
-        role: PRESET_ACCOUNTS[name].role,
-        coins: PRESET_ACCOUNTS[name].coins
-    }));
-    
-    const localUsers = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const allUsers = [...presetUsers, ...localUsers];
-    
-    const container = document.getElementById('userList');
-    container.innerHTML = '';
-    
-    allUsers.forEach(user => {
-        const div = document.createElement('div');
-        div.style.padding = '10px';
-        div.style.borderBottom = '1px solid #eee';
-        div.innerHTML = `
-            <strong>${user.username}</strong> - ${user.role} - ${user.coins || 0}班币
-            <button onclick="editUser('${user.username}')" style="margin-left: 10px;">编辑</button>
-        `;
-        container.appendChild(div);
-    });
-}
+        function updateUserUI() {
+            if (currentUser) {
+                userAvatar.textContent = currentUser.avatarText;
+                userStatus.textContent = currentUser.username;
+                
+                // 显示VIP徽章
+                if (currentUser.role === 'vip' || currentUser.role === 'admin' || currentUser.role === 'teacher') {
+                    vipBadge.style.display = 'inline-block';
+                    userAvatar.classList.add('user-vip');
+                } else {
+                    vipBadge.style.display = 'none';
+                    userAvatar.classList.remove('user-vip');
+                }
+                
+                userInfo.title = `角色：${getRoleName(currentUser.role)} | 班币：${currentUser.coins || 0}`;
+            } else {
+                userAvatar.textContent = '访';
+                userStatus.textContent = '请登录';
+                vipBadge.style.display = 'none';
+                userAvatar.classList.remove('user-vip');
+                userInfo.title = '';
+            }
+        }
 
-function loadReportList() {
-    const reports = JSON.parse(localStorage.getItem('reports') || '[]');
-    const container = document.getElementById('reportList');
-    container.innerHTML = '';
-    
-    if (reports.length === 0) {
-        container.innerHTML = '<p>暂无举报</p>';
-        return;
-    }
-    
-    reports.forEach(report => {
-        const div = document.createElement('div');
-        div.style.padding = '10px';
-        div.style.marginBottom = '10px';
-        div.style.border = '1px solid #eee';
-        div.style.borderRadius = 'var(--radius)';
-        div.innerHTML = `
-            <p><strong>举报人:</strong> ${report.reporter}</p>
-            <p><strong>类型:</strong> ${report.type}</p>
-            <p><strong>详情:</strong> ${report.details}</p>
-            <p><strong>状态:</strong> ${report.status}</p>
-            <button onclick="handleReport(${report.id}, 'resolved')" style="margin-right: 10px;">已处理</button>
-            <button onclick="handleReport(${report.id}, 'rejected')">拒绝</button>
-        `;
-        container.appendChild(div);
-    });
-}
+        function getRoleName(role) {
+            const roles = {
+                'member': '普通成员',
+                'vip': 'VIP成员',
+                'admin': '管理员',
+                'teacher': '教师'
+            };
+            return roles[role] || '未知角色';
+        }
 
-function loadBannedUsers() {
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const bannedUsers = users.filter(u => u.banned);
-    
-    const container = document.getElementById('bannedUsers');
-    container.innerHTML = '';
-    
-    if (bannedUsers.length === 0) {
-        container.innerHTML = '<p>暂无封禁用户</p>';
-        return;
-    }
-    
-    bannedUsers.forEach(user => {
-        const div = document.createElement('div');
-        div.style.padding = '10px';
-        div.style.marginBottom = '10px';
-        div.style.border = '1px solid #ff6b6b';
-        div.style.borderRadius = 'var(--radius)';
-        div.innerHTML = `
-            <p><strong>${user.username}</strong> - 封禁至: ${new Date(user.banEnd).toLocaleDateString()}</p>
-            <p>原因: ${user.banReason}</p>
-        `;
-        container.appendChild(div);
-    });
-}
+        // ========== 页面内容生成函数 ==========
+        function generateAnnouncements() {
+            const announcements = [
+                { title: '期末考试安排通知', content: '本学期期末考试将于1月28日开始，请同学们提前做好复习准备。', date: '2026-1-20' },
+                { title: '班级官网活动征集意见', content: '班级官网活动，现征集活动形式和活动建议。', date: '2026-1-20' },
+                { title: '班币商城正式上线', content: '班币商城正式上线，可使用班币兑换各种权益和奖品。', date: '2026-1-20' }
+            ];
+            
+            const container = document.getElementById('announcementsList');
+            container.innerHTML = '';
+            
+            announcements.forEach(ann => {
+                const item = document.createElement('div');
+                item.className = 'announcement-item';
+                item.innerHTML = `
+                    <div class="announcement-header">
+                        <div class="announcement-title">${ann.title}</div>
+                        <div class="announcement-date">${ann.date}</div>
+                    </div>
+                    <div>${ann.content}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
 
-function loadVipCodes() {
-    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
-    const container = document.getElementById('vipCodes');
-    container.innerHTML = '';
-    
-    vipCodes.forEach(code => {
-        const div = document.createElement('div');
-        div.style.padding = '5px';
-        div.style.marginBottom = '5px';
-        div.style.background = code.used ? '#eee' : '#e8f5e9';
-        div.innerHTML = `
-            ${code.code} - ${code.days}天 - ${code.used ? '已使用' : '未使用'}
-            ${code.used ? `(使用人: ${code.usedBy})` : ''}
-        `;
-        container.appendChild(div);
-    });
-}
+        function generateGallery() {
+            const gallery = JSON.parse(localStorage.getItem('classGallery') || '[]');
+            const defaultPhotos = [
+                { id: 1, title: '开学典礼', url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+                { id: 2, title: '运动会', url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+                { id: 3, title: '课堂学习', url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+            ];
+            
+            const allPhotos = gallery.length > 0 ? gallery : defaultPhotos;
+            
+            const container = document.getElementById('photoGallery');
+            container.innerHTML = '';
+            
+            allPhotos.forEach(photo => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `
+                    <img src="${photo.url}" alt="${photo.title}" loading="lazy">
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9rem;">
+                        ${photo.title}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
 
-function setUserRole(username, role) {
-    // 更新预设账号
-    if (PRESET_ACCOUNTS[username]) {
-        PRESET_ACCOUNTS[username].role = role;
-        // 注意：预设账号在内存中，刷新页面会重置
-        alert('预设账号角色已更改（刷新页面会重置）');
-    }
-    
-    // 更新本地用户
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const userIndex = users.findIndex(u => u.username === username);
-    if (userIndex !== -1) {
-        users[userIndex].role = role;
-        localStorage.setItem('classUsers', JSON.stringify(users));
-    }
-    
-    // 如果当前用户是自己，更新UI
-    if (currentUser && currentUser.username === username) {
-        currentUser.role = role;
-        updateUserUI();
-    }
-    
-    loadUserList();
-    showMessage(`已设置${username}为${role}`, 'success');
-}
+        function handlePhotoUpload(e) {
+            const files = e.target.files;
+            if (!files.length) return;
+            
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            for (let file of files) {
+                if (file.size > maxSize) {
+                    showMessage(`文件 ${file.name} 超过5MB限制`, 'danger');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const gallery = JSON.parse(localStorage.getItem('classGallery') || '[]');
+                    gallery.push({
+                        id: Date.now(),
+                        title: file.name,
+                        url: event.target.result,
+                        uploader: currentUser.username,
+                        date: new Date().toISOString().split('T')[0]
+                    });
+                    
+                    localStorage.setItem('classGallery', JSON.stringify(gallery));
+                    generateGallery();
+                    showMessage(`图片 ${file.name} 上传成功`, 'success');
+                    
+                    // 奖励班币
+                    if (currentUser) {
+                        currentUser.coins = (currentUser.coins || 0) + 5;
+                        updateUserCoins();
+                        document.getElementById('coinCount').textContent = currentUser.coins;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            e.target.value = '';
+        }
 
-function generateVipCode() {
-    const code = 'VIP' + Date.now().toString(36).toUpperCase();
-    const days = 7;
-    
-    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
-    vipCodes.push({
-        code,
-        days,
-        created: new Date().toISOString(),
-        used: false
-    });
-    
-    localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
-    loadVipCodes();
-    showMessage(`已生成VIP兑换码: ${code}`, 'success');
-}
+        function generateResources() {
+            const resources = JSON.parse(localStorage.getItem('classResources') || '[]');
+            const defaultResources = [
+                { id: 1, name: '数学复习资料', type: 'pdf', size: '2.4MB', uploader: 'admin', date: '%time&' },
+                { id: 2, name: '英语词汇表', type: 'doc', size: '1.8MB', uploader: 'admin', date: '%time&' }
+            ];
+            
+            const allResources = resources.length > 0 ? resources : defaultResources;
+            
+            const container = document.getElementById('resourceList');
+            container.innerHTML = '';
+            
+            if (allResources.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--gray);">暂无资源，请上传</p>';
+                return;
+            }
+            
+            allResources.forEach(resource => {
+                const item = document.createElement('div');
+                item.className = 'resource-item';
+                item.innerHTML = `
+                    <div class="resource-icon">
+                        <i class="fas fa-file-${resource.type === 'pdf' ? 'pdf' : 'word'}"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="margin-bottom: 5px; color: var(--primary);">${resource.name}</h4>
+                        <div style="font-size: 0.9rem; color: var(--gray);">
+                            ${resource.type.toUpperCase()} • ${resource.size} • 上传者: ${resource.uploader} • ${resource.date}
+                        </div>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn" onclick="downloadResource(${resource.id})">下载</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
 
-function banUser() {
-    const username = document.getElementById('banUsername').value.trim();
-    const days = parseInt(document.getElementById('banDays').value);
-    const reason = document.getElementById('banReasonInput').value.trim();
-    
-    if (!username || !days || !reason) {
-        alert('请填写完整信息');
-        return;
-    }
-    
-    // 更新用户列表
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const userIndex = users.findIndex(u => u.username === username);
-    
-    if (userIndex === -1 && !PRESET_ACCOUNTS[username]) {
-        alert('用户不存在');
-        return;
-    }
-    
-    if (userIndex !== -1) {
-        users[userIndex].banned = true;
-        users[userIndex].banDays = days;
-        users[userIndex].banReason = reason;
-        users[userIndex].banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
-        localStorage.setItem('classUsers', JSON.stringify(users));
-    }
-    
-    // 如果是当前用户，立即生效
-    if (currentUser && currentUser.username === username) {
-        currentUser.banned = true;
-        currentUser.banDays = days;
-        currentUser.banReason = reason;
-        currentUser.banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
-        localStorage.setItem('classUser', JSON.stringify(currentUser));
-        showBanScreen(currentUser);
-    }
-    
-    loadBannedUsers();
-    showMessage(`已封禁用户${username}`, 'success');
-}
+        function handleFileUpload(e) {
+            const files = e.target.files;
+            if (!files.length) return;
+            
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            for (let file of files) {
+                if (file.size > maxSize) {
+                    showMessage(`文件 ${file.name} 超过10MB限制`, 'danger');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const fileType = getFileType(file.name);
+                    
+                    const resources = JSON.parse(localStorage.getItem('classResources') || '[]');
+                    resources.push({
+                        id: Date.now(),
+                        name: file.name,
+                        type: fileType,
+                        size: formatFileSize(file.size),
+                        data: event.target.result,
+                        uploader: currentUser.username,
+                        date: new Date().toISOString().split('T')[0]
+                    });
+                    
+                    localStorage.setItem('classResources', JSON.stringify(resources));
+                    generateResources();
+                    showMessage(`文件 ${file.name} 上传成功`, 'success');
+                    
+                    // 奖励班币
+                    if (currentUser) {
+                        currentUser.coins = (currentUser.coins || 0) + 10;
+                        updateUserCoins();
+                        document.getElementById('coinCount').textContent = currentUser.coins;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            e.target.value = '';
+        }
 
-function unbanUser() {
-    const username = document.getElementById('banUsername').value.trim();
-    if (!username) return;
-    
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const userIndex = users.findIndex(u => u.username === username);
-    
-    if (userIndex !== -1) {
-        users[userIndex].banned = false;
-        delete users[userIndex].banDays;
-        delete users[userIndex].banReason;
-        delete users[userIndex].banEnd;
-        localStorage.setItem('classUsers', JSON.stringify(users));
-    }
-    
-    loadBannedUsers();
-    showMessage(`已解封用户${username}`, 'success');
-}
+        function getFileType(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            if (['pdf'].includes(ext)) return 'pdf';
+            if (['doc', 'docx'].includes(ext)) return 'word';
+            if (['ppt', 'pptx'].includes(ext)) return 'powerpoint';
+            if (['xls', 'xlsx'].includes(ext)) return 'excel';
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) return 'image';
+            if (['zip', 'rar', '7z'].includes(ext)) return 'archive';
+            return 'file';
+        }
 
-// ========== 工具函数 ==========
-function updateUserInList(user) {
-    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-    const userIndex = users.findIndex(u => u.username === user.username);
-    
-    if (userIndex !== -1) {
-        users[userIndex] = { ...users[userIndex], ...user };
-        localStorage.setItem('classUsers', JSON.stringify(users));
-    }
-}
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
 
-function getFakeIP() {
-    // 生成模拟IP地址，用于反作弊记录
-    return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-}
+        function downloadResource(id) {
+            const resources = JSON.parse(localStorage.getItem('classResources') || '[]');
+            const resource = resources.find(r => r.id === id);
+            
+            if (!resource) {
+                showMessage('资源不存在', 'danger');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = resource.data;
+            link.download = resource.name;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showMessage(`开始下载 ${resource.name}`, 'success');
+        }
 
-function showMessage(message, type) {
-    const msg = document.createElement('div');
-    msg.textContent = message;
-    msg.style.position = 'fixed';
-    msg.style.top = '20px';
-    msg.style.right = '20px';
-    msg.style.padding = '15px 25px';
-    msg.style.borderRadius = 'var(--radius)';
-    msg.style.color = 'white';
-    msg.style.fontWeight = '600';
-    msg.style.zIndex = '2000';
-    msg.style.boxShadow = 'var(--shadow)';
-    msg.style.transition = 'opacity 0.3s';
-    
-    const colors = { 'success': '#28a745', 'danger': '#dc3545', 'info': '#17a2b8' };
-    msg.style.backgroundColor = colors[type] || 'var(--primary)';
-    
-    document.body.appendChild(msg);
-    
-    setTimeout(() => {
-        msg.style.opacity = '0';
-        setTimeout(() => document.body.removeChild(msg), 300);
-    }, 3000);
-}
+        // ========== 签到系统 ==========
+        function initCheckinSystem() {
+            const checkinInfo = document.getElementById('checkinInfo');
+            const checkinBtn = document.getElementById('checkinBtn');
+            
+            if (!currentUser) {
+                checkinInfo.innerHTML = `
+                    <h3>每日签到系统</h3>
+                    <p>登录后可以参与每日签到，连续签到可获得班币奖励</p>
+                `;
+                checkinBtn.disabled = true;
+                checkinBtn.textContent = '请先登录';
+                return;
+            }
+            
+            const today = new Date().toDateString();
+            const lastCheckin = currentUser.lastCheckin ? new Date(currentUser.lastCheckin).toDateString() : null;
+            const hasCheckedIn = today === lastCheckin;
+            
+            if (!hasCheckedIn && lastCheckin) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if (yesterday.toDateString() !== lastCheckin) {
+                    currentUser.checkinStreak = 0;
+                }
+            }
+            
+            checkinInfo.innerHTML = `
+                <h3>${currentUser.username} 的签到信息</h3>
+                <p>总签到天数: ${currentUser.checkinDays || 0} 天</p>
+                <p>连续签到: ${currentUser.checkinStreak || 0} 天</p>
+                <p>当前班币: ${currentUser.coins || 0} 个</p>
+                <p>${hasCheckedIn ? '<span style="color: var(--success);">今日已签到</span>' : '今日未签到'}</p>
+            `;
+            
+            checkinBtn.disabled = hasCheckedIn;
+            checkinBtn.textContent = hasCheckedIn ? '今日已签到' : '今日签到';
+            
+            generateCheckinCalendar();
+        }
 
-// ========== 初始化 ==========
-document.addEventListener('DOMContentLoaded', init);
-</script>
+        function generateCheckinCalendar() {
+            const container = document.getElementById('checkinCalendar');
+            container.innerHTML = '';
+            
+            const checkinHistory = currentUser.checkinHistory || [];
+            const today = new Date();
+            
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(today.getDate() - i);
+                const dateStr = date.toDateString();
+                const isChecked = checkinHistory.includes(dateStr);
+                const isToday = i === 0;
+                
+                const dayElement = document.createElement('div');
+                dayElement.className = `checkin-day ${isChecked ? 'checked' : ''} ${isToday ? 'today' : ''}`;
+                dayElement.textContent = date.getDate();
+                dayElement.title = `${date.getMonth()+1}/${date.getDate()} ${isChecked ? '已签到' : '未签到'}`;
+                container.appendChild(dayElement);
+            }
+        }
+
+        function handleCheckin() {
+            if (!currentUser) {
+                showMessage('请先登录', 'warning');
+                showLoginModal();
+                return;
+            }
+            
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            if (currentUser.lastCheckin && new Date(currentUser.lastCheckin).toDateString() === todayStr) {
+                showMessage('今日已签到', 'info');
+                return;
+            }
+            
+            currentUser.checkinDays = (currentUser.checkinDays || 0) + 1;
+            currentUser.checkinStreak = (currentUser.checkinStreak || 0) + 1;
+            currentUser.lastCheckin = today.toISOString();
+            
+            let coinsEarned = 10;
+            if (currentUser.role === 'vip' || currentUser.role === 'admin' || currentUser.role === 'teacher') {
+                coinsEarned *= 2;
+            }
+            
+            // 连续签到奖励
+            if (currentUser.checkinStreak >= 7) {
+                coinsEarned += 50; // 连续7天额外奖励
+                showMessage(`连续签到7天！额外奖励50班币！`, 'success');
+            }
+            
+            currentUser.coins = (currentUser.coins || 0) + coinsEarned;
+            
+            localStorage.setItem('classUser', JSON.stringify(currentUser));
+            
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const userIndex = users.findIndex(u => u.username === currentUser.username);
+            if (userIndex !== -1) {
+                users[userIndex] = {
+                    ...users[userIndex],
+                    checkinDays: currentUser.checkinDays,
+                    checkinStreak: currentUser.checkinStreak,
+                    lastCheckin: currentUser.lastCheckin,
+                    coins: currentUser.coins
+                };
+                localStorage.setItem('classUsers', JSON.stringify(users));
+            }
+            
+            updateUserUI();
+            initCheckinSystem();
+            document.getElementById('coinCount').textContent = currentUser.coins;
+            showMessage(`签到成功！获得${coinsEarned}班币`, 'success');
+        }
+
+        // ========== 班币商城 ==========
+        function generateShopItems() {
+            const shopItems = [
+                { id: 1, name: '自定义头像框', price: 50, description: '获得专属头像框' },
+                { id: 2, name: '学霸称号', price: 100, description: '获得"学霸"称号' },
+                { id: 3, name: '优先发言权', price: 30, description: '在班级讨论中优先展示' },
+                { id: 4, name: '7天VIP体验', price: 200, description: '体验VIP权益7天' },
+                { id: 5, name: '学习资料大礼包', price: 150, description: '各科精选学习资料' },
+                { id: 6, name: '班级贡献勋章', price: 300, description: '永久展示在个人页面' }
+            ];
+            
+            const container = document.getElementById('shopItems');
+            container.innerHTML = '';
+            
+            shopItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'shop-item';
+                card.innerHTML = `
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">${item.name}</h4>
+                    <p style="color: var(--gray); margin-bottom: 15px;">${item.description}</p>
+                    <div class="coin-badge">${item.price} 班币</div>
+                    <button class="btn btn-secondary" onclick="buyItem(${item.id})" style="margin-top: 15px;">兑换</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function buyItem(itemId) {
+            if (!currentUser) {
+                showLoginModal();
+                return;
+            }
+            
+            const shopItems = [
+                { id: 1, name: '自定义头像框', price: 50 },
+                { id: 2, name: '学霸称号', price: 100 },
+                { id: 3, name: '优先发言权', price: 30 },
+                { id: 4, name: '7天VIP体验', price: 200 },
+                { id: 5, name: '学习资料大礼包', price: 150 },
+                { id: 6, name: '班级贡献勋章', price: 300 }
+            ];
+            
+            const item = shopItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            if (currentUser.coins < item.price) {
+                alert('班币不足！');
+                return;
+            }
+            
+            if (confirm(`确定要兑换"${item.name}"吗？将消耗${item.price}班币`)) {
+                currentUser.coins -= item.price;
+                updateUserCoins();
+                
+                if (item.id === 4) {
+                    currentUser.role = 'vip';
+                    currentUser.vipExpire = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+                    updateUserUI();
+                }
+                
+                showMessage(`成功兑换${item.name}！`, 'success');
+                document.getElementById('coinCount').textContent = currentUser.coins;
+            }
+        }
+
+        function updateUserCoins() {
+            if (localStorage.getItem('classUser')) {
+                localStorage.setItem('classUser', JSON.stringify(currentUser));
+            }
+            if (sessionStorage.getItem('classUser')) {
+                sessionStorage.setItem('classUser', JSON.stringify(currentUser));
+            }
+            
+            updateUserInList(currentUser);
+        }
+
+        function updateUserInList(user) {
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const userIndex = users.findIndex(u => u.username === user.username);
+            
+            if (userIndex !== -1) {
+                users[userIndex] = { ...users[userIndex], ...user };
+                localStorage.setItem('classUsers', JSON.stringify(users));
+            }
+        }
+
+        // ========== 投票系统 ==========
+        function generatePoll() {
+            const pollData = JSON.parse(localStorage.getItem('pollData') || '{"question":"本学期班级活动您最期待什么？","options":[{"id":1,"text":"户外拓展活动","votes":12},{"id":2,"text":"学术讲座与分享","votes":8},{"id":3,"text":"文艺晚会表演","votes":15},{"id":4,"text":"志愿服务项目","votes":6}]}');
+            
+            document.getElementById('pollQuestion').textContent = pollData.question;
+            
+            const totalVotes = pollData.options.reduce((sum, option) => sum + option.votes, 0);
+            const container = document.getElementById('pollOptions');
+            container.innerHTML = '';
+            
+            pollData.options.forEach(option => {
+                const percentage = totalVotes > 0 ? (option.votes / totalVotes * 100) : 0;
+                
+                const optionElement = document.createElement('div');
+                optionElement.className = 'poll-option';
+                optionElement.dataset.optionId = option.id;
+                optionElement.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>${option.text}</span>
+                        <span>${option.votes}票 (${percentage.toFixed(1)}%)</span>
+                    </div>
+                    <div class="poll-bar">
+                        <div class="poll-fill" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                
+                container.appendChild(optionElement);
+            });
+        }
+
+        function voteForOption(optionId) {
+            if (!currentUser) {
+                showMessage('请先登录后再投票', 'warning');
+                showLoginModal();
+                return;
+            }
+            
+            if (currentUser.role === 'member') {
+                showMessage('需要VIP或管理员权限才能投票', 'warning');
+                return;
+            }
+            
+            const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+            if (userVotes[currentUser.username]) {
+                showMessage('您已经投过票了', 'info');
+                return;
+            }
+            
+            userVotes[currentUser.username] = optionId;
+            localStorage.setItem('userVotes', JSON.stringify(userVotes));
+            
+            const pollData = JSON.parse(localStorage.getItem('pollData') || '{"options":[{"id":1,"votes":12},{"id":2,"votes":8},{"id":3,"votes":15},{"id":4,"votes":6}]}');
+            const optionIndex = pollData.options.findIndex(o => o.id == optionId);
+            if (optionIndex !== -1) {
+                pollData.options[optionIndex].votes += 1;
+                localStorage.setItem('pollData', JSON.stringify(pollData));
+            }
+            
+            showMessage('投票成功！', 'success');
+            generatePoll();
+            
+            document.getElementById('pollResult').style.display = 'block';
+        }
+
+        // ========== 举报系统 ==========
+        function submitReport() {
+            if (!currentUser) {
+                showLoginModal();
+                return;
+            }
+            
+            const type = document.getElementById('reportType').value;
+            const details = document.getElementById('reportDetails').value.trim();
+            const target = document.getElementById('reportTarget').value.trim();
+            
+            if (!details) {
+                alert('请输入举报详情');
+                return;
+            }
+            
+            const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+            reports.push({
+                id: Date.now(),
+                reporter: currentUser.username,
+                target: target || '未知',
+                type,
+                details,
+                date: new Date().toISOString(),
+                status: '待处理'
+            });
+            
+            localStorage.setItem('reports', JSON.stringify(reports));
+            document.getElementById('reportDetails').value = '';
+            document.getElementById('reportTarget').value = '';
+            showMessage('举报已提交，管理员会尽快处理', 'success');
+            loadUserReports();
+            
+            if (currentUser.role === 'admin' || currentUser.role === 'teacher') {
+                loadReportList();
+            }
+        }
+
+        function loadUserReports() {
+            if (!currentUser) return;
+            
+            const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+            const userReports = reports.filter(r => r.reporter === currentUser.username);
+            const container = document.getElementById('userReports');
+            container.innerHTML = '';
+            
+            if (userReports.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--gray);">暂无举报记录</p>';
+                return;
+            }
+            
+            userReports.slice(-5).reverse().forEach(report => {
+                const div = document.createElement('div');
+                div.style.padding = '10px';
+                div.style.marginBottom = '10px';
+                div.style.border = '1px solid #eee';
+                div.style.borderRadius = 'var(--radius)';
+                div.innerHTML = `
+                    <p><strong>类型:</strong> ${report.type}</p>
+                    <p><strong>状态:</strong> <span style="color: ${report.status === '已处理' ? 'var(--success)' : 'var(--danger)'}">${report.status}</span></p>
+                    <p><strong>时间:</strong> ${report.date.split('T')[0]}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // ========== VIP兑换码系统 ==========
+        function redeemVipCode() {
+            if (!currentUser) {
+                showLoginModal();
+                return;
+            }
+            
+            const code = document.getElementById('vipCodeInput').value.trim();
+            if (!code) {
+                alert('请输入兑换码');
+                return;
+            }
+            
+            const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+            const validCode = vipCodes.find(c => c.code === code && !c.used);
+            
+            if (!validCode) {
+                alert('兑换码无效或已使用');
+                return;
+            }
+            
+            validCode.used = true;
+            validCode.usedBy = currentUser.username;
+            validCode.usedDate = new Date().toISOString();
+            localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
+            
+            currentUser.role = 'vip';
+            currentUser.vipExpire = new Date(Date.now() + validCode.days * 24 * 60 * 60 * 1000).toISOString();
+            updateUserUI();
+            updateUserInList(currentUser);
+            
+            document.getElementById('vipCodeInput').value = '';
+            showMessage(`VIP兑换成功！有效期${validCode.days}天`, 'success');
+            
+            if (currentUser.role === 'admin' || currentUser.role === 'teacher') {
+                loadVipCodes();
+            }
+        }
+
+        // ========== 管理面板功能 ==========
+        function loadAdminPanel() {
+            loadUserList();
+            loadReportList();
+            loadBannedUsers();
+            loadVipCodes();
+            
+            document.getElementById('setVip').addEventListener('click', () => {
+                const username = document.getElementById('vipUsername').value.trim();
+                if (!username) return;
+                
+                if (confirm(`确定要将${username}设为VIP吗？`)) {
+                    setUserRole(username, 'vip');
+                }
+            });
+            
+            document.getElementById('removeVip').addEventListener('click', () => {
+                const username = document.getElementById('vipUsername').value.trim();
+                if (!username) return;
+                
+                if (confirm(`确定要取消${username}的VIP吗？`)) {
+                    setUserRole(username, 'member');
+                }
+            });
+            
+            document.getElementById('generateCode').addEventListener('click', generateVipCode);
+            
+            document.getElementById('banUser').addEventListener('click', banUser);
+            
+            document.getElementById('unbanUser').addEventListener('click', unbanUser);
+        }
+
+        function loadUserList() {
+            const presetUsers = Object.keys(PRESET_ACCOUNTS).map(name => ({
+                username: name,
+                role: PRESET_ACCOUNTS[name].role,
+                coins: PRESET_ACCOUNTS[name].coins
+            }));
+            
+            const localUsers = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const allUsers = [...presetUsers, ...localUsers];
+            
+            const container = document.getElementById('userList');
+            container.innerHTML = '';
+            
+            allUsers.forEach(user => {
+                const div = document.createElement('div');
+                div.style.padding = '10px';
+                div.style.borderBottom = '1px solid #eee';
+                div.style.display = 'flex';
+                div.style.justifyContent = 'space-between';
+                div.style.alignItems = 'center';
+                div.innerHTML = `
+                    <div>
+                        <strong>${user.username}</strong> - ${getRoleName(user.role)} - ${user.coins || 0}班币
+                        ${user.banned ? '<span style="color: var(--danger); margin-left: 10px;">(已封禁)</span>' : ''}
+                    </div>
+                    <button class="btn" onclick="editUser('${user.username}')" style="padding: 5px 10px; font-size: 0.9rem;">管理</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function loadReportList() {
+            const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+            const container = document.getElementById('reportList');
+            container.innerHTML = '';
+            
+            if (reports.length === 0) {
+                container.innerHTML = '<p>暂无举报</p>';
+                return;
+            }
+            
+            reports.slice(-10).reverse().forEach(report => {
+                const div = document.createElement('div');
+                div.style.padding = '15px';
+                div.style.marginBottom = '15px';
+                div.style.border = '1px solid #eee';
+                div.style.borderRadius = 'var(--radius)';
+                div.innerHTML = `
+                    <p><strong>举报人:</strong> ${report.reporter}</p>
+                    <p><strong>被举报人:</strong> ${report.target}</p>
+                    <p><strong>类型:</strong> ${report.type}</p>
+                    <p><strong>详情:</strong> ${report.details}</p>
+                    <p><strong>状态:</strong> <span style="color: ${report.status === '已处理' ? 'var(--success)' : 'var(--danger)'}">${report.status}</span></p>
+                    <p><strong>时间:</strong> ${report.date.split('T')[0]}</p>
+                    <div style="margin-top: 10px;">
+                        <button class="btn" onclick="handleReport(${report.id}, '已处理')" style="margin-right: 10px; padding: 5px 15px;">标记为已处理</button>
+                        <button class="btn btn-danger" onclick="handleReport(${report.id}, '已拒绝')" style="padding: 5px 15px;">拒绝</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function handleReport(id, status) {
+            const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+            const reportIndex = reports.findIndex(r => r.id === id);
+            
+            if (reportIndex !== -1) {
+                reports[reportIndex].status = status;
+                localStorage.setItem('reports', JSON.stringify(reports));
+                loadReportList();
+                showMessage(`举报${status}`, 'success');
+            }
+        }
+
+        function loadBannedUsers() {
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const bannedUsers = users.filter(u => u.banned);
+            
+            const container = document.getElementById('bannedUsers');
+            container.innerHTML = '';
+            
+            if (bannedUsers.length === 0) {
+                container.innerHTML = '<p>暂无封禁用户</p>';
+                return;
+            }
+            
+            bannedUsers.forEach(user => {
+                const endTime = new Date(user.banEnd);
+                const now = new Date();
+                const diff = endTime - now;
+                const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                
+                const div = document.createElement('div');
+                div.style.padding = '15px';
+                div.style.marginBottom = '15px';
+                div.style.border = '1px solid var(--danger)';
+                div.style.borderRadius = 'var(--radius)';
+                div.style.background = 'rgba(220, 53, 69, 0.05)';
+                div.innerHTML = `
+                    <p><strong>${user.username}</strong></p>
+                    <p>原因: ${user.banReason}</p>
+                    <p>封禁至: ${endTime.toLocaleDateString()} (剩余${daysLeft}天)</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function loadVipCodes() {
+            const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+            const container = document.getElementById('vipCodes');
+            container.innerHTML = '';
+            
+            vipCodes.slice(-10).reverse().forEach(code => {
+                const div = document.createElement('div');
+                div.style.padding = '10px';
+                div.style.marginBottom = '10px';
+                div.style.background = code.used ? '#eee' : '#e8f5e9';
+                div.style.borderRadius = 'var(--radius)';
+                div.innerHTML = `
+                    <strong>${code.code}</strong> - ${code.days}天
+                    ${code.used ? `<br>已使用 - 使用人: ${code.usedBy}` : '<br>未使用'}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function setUserRole(username, role) {
+            if (PRESET_ACCOUNTS[username]) {
+                PRESET_ACCOUNTS[username].role = role;
+                alert('预设账号角色已更改（刷新页面会重置）');
+            }
+            
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const userIndex = users.findIndex(u => u.username === username);
+            if (userIndex !== -1) {
+                users[userIndex].role = role;
+                localStorage.setItem('classUsers', JSON.stringify(users));
+            }
+            
+            if (currentUser && currentUser.username === username) {
+                currentUser.role = role;
+                updateUserUI();
+            }
+            
+            loadUserList();
+            showMessage(`已设置${username}为${getRoleName(role)}`, 'success');
+        }
+
+        function generateVipCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = 'VIP';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            const days = 7;
+            
+            const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+            vipCodes.push({
+                code,
+                days,
+                created: new Date().toISOString(),
+                used: false
+            });
+            
+            localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
+            loadVipCodes();
+            showMessage(`已生成VIP兑换码: ${code}`, 'success');
+        }
+
+        function banUser() {
+            const username = document.getElementById('banUsername').value.trim();
+            const days = parseInt(document.getElementById('banDays').value);
+            const reason = document.getElementById('banReasonInput').value.trim();
+            
+            if (!username || !days || !reason) {
+                alert('请填写完整信息');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const userIndex = users.findIndex(u => u.username === username);
+            
+            if (userIndex === -1 && !PRESET_ACCOUNTS[username]) {
+                alert('用户不存在');
+                return;
+            }
+            
+            if (userIndex !== -1) {
+                users[userIndex].banned = true;
+                users[userIndex].banDays = days;
+                users[userIndex].banReason = reason;
+                users[userIndex].banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
+                localStorage.setItem('classUsers', JSON.stringify(users));
+            }
+            
+            if (currentUser && currentUser.username === username) {
+                currentUser.banned = true;
+                currentUser.banDays = days;
+                currentUser.banReason = reason;
+                currentUser.banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
+                localStorage.setItem('classUser', JSON.stringify(currentUser));
+                showBanScreen(currentUser);
+            }
+            
+            loadBannedUsers();
+            showMessage(`已封禁用户${username}`, 'success');
+        }
+
+        function unbanUser() {
+            const username = document.getElementById('banUsername').value.trim();
+            if (!username) return;
+            
+            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+            const userIndex = users.findIndex(u => u.username === username);
+            
+            if (userIndex !== -1) {
+                users[userIndex].banned = false;
+                delete users[userIndex].banDays;
+                delete users[userIndex].banReason;
+                delete users[userIndex].banEnd;
+                localStorage.setItem('classUsers', JSON.stringify(users));
+            }
+            
+            loadBannedUsers();
+            showMessage(`已解封用户${username}`, 'success');
+        }
+
+        function editUser(username) {
+            document.getElementById('vipUsername').value = username;
+            document.getElementById('banUsername').value = username;
+        }
+
+        // ========== 工具函数 ==========
+        function getFakeIP() {
+            return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+        }
+
+        function showMessage(message, type) {
+            const msg = document.createElement('div');
+            msg.textContent = message;
+            msg.style.position = 'fixed';
+            msg.style.top = '20px';
+            msg.style.right = '20px';
+            msg.style.padding = '15px 25px';
+            msg.style.borderRadius = 'var(--radius)';
+            msg.style.color = 'white';
+            msg.style.fontWeight = '600';
+            msg.style.zIndex = '2000';
+            msg.style.boxShadow = 'var(--shadow)';
+            msg.style.transition = 'opacity 0.3s';
+            
+            const colors = { 'success': '#28a745', 'danger': '#dc3545', 'warning': '#ffc107', 'info': '#17a2b8' };
+            msg.style.backgroundColor = colors[type] || 'var(--primary)';
+            
+            document.body.appendChild(msg);
+            
+            setTimeout(() => {
+                msg.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(msg), 300);
+            }, 3000);
+        }
+
+        // ========== 初始化 ==========
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
