@@ -3,1079 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合肥实验学校20级2班官方网站［Beta公测中］</title>
+    <title>班级官网 - 合肥实验学校20级2班</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ====== 全局样式 ====== */
+        /* 全局样式 */
         :root {
-            --primary: #003366;
-            --secondary: #D4AF37;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #28a745;
-            --danger: #dc3545;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --radius: 8px;
-            --transition: all 0.3s ease;
+            --primary: #003366; --secondary: #D4AF37; --light: #f8f9fa; --dark: #212529;
+            --gray: #6c757d; --success: #28a745; --danger: #dc3545; --vip: #9b59b6;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1); --radius: 8px; --transition: all 0.3s ease;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f5f7fa; color: var(--dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 60px 0; }
+        .section:nth-child(even) { background: white; }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        /* 按钮和卡片 */
+        .btn { display: inline-block; padding: 10px 24px; background: var(--primary); color: white; 
+            border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn:hover { background: #002244; transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-secondary { background: var(--secondary); color: var(--dark); }
+        .btn-vip { background: var(--vip); color: white; }
+        .card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
         
-        body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* 导航栏 */
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; padding: 12px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .badge-img { height: 45px; width: auto; }
+        .user-info { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 6px 12px; border-radius: var(--radius); }
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); 
+            color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .vip-badge { display: inline-block; padding: 2px 8px; background: linear-gradient(45deg, var(--vip), #e74c3c); 
+            color: white; border-radius: 12px; font-size: 0.7rem; font-weight: bold; margin-left: 5px; }
         
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .section-title {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background: #002244;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        .btn-secondary {
-            background: var(--secondary);
-            color: var(--dark);
-        }
-        
-        .btn-secondary:hover {
-            background: #c19b2b;
-        }
-        
-        .card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            height: 100%;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* ====== 顶部导航栏 ====== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-        
-        .navbar.scrolled {
-            padding: 10px 0;
-            background: rgba(255, 255, 255, 0.98);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* 班徽位置 - 左上角导航栏中 */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .badge-img {
-            height: 50px;
-            width: auto;
-            transition: var(--transition);
-        }
-        
-        .badge-img:hover {
-            transform: rotate(10deg);
-        }
-        
-        .logo-text h1 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .logo-text p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: -5px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 8px 0;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 8px 15px;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-        
-        .user-info:hover {
-            background: rgba(0, 51, 102, 0.05);
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        
-        /* ====== 侧滑菜单 ====== */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -350px;
-            width: 320px;
-            height: 100%;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-            padding: 30px;
-            overflow-y: auto;
-            transition: var(--transition);
-        }
-        
-        .side-menu.active {
-            right: 0;
-        }
-        
-        .side-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .side-menu-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .close-menu {
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-        
-        .menu-section {
-            margin-bottom: 25px;
-        }
-        
-        .menu-section-title {
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 4px solid var(--secondary);
-        }
-        
-        .menu-links a {
-            display: block;
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            color: var(--dark);
-        }
-        
-        .menu-links a:hover {
-            background: rgba(0, 51, 102, 0.05);
-            padding-left: 20px;
-        }
-        
-        .menu-links a.active {
-            background: rgba(0, 51, 102, 0.1);
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* ====== 英雄区域 ====== */
-        .hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-        }
-        
-        /* ====== 主要内容区域 ====== */
-        main {
-            padding: 80px 0;
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section:nth-child(even) {
-            background: white;
-        }
+        /* 英雄区域 */
+        .hero { padding: 150px 0 80px; background: linear-gradient(rgba(0,51,102,0.85), rgba(0,51,102,0.9)); 
+            color: white; text-align: center; }
         
         /* 网格布局 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; margin-top: 30px; }
         
-        /* 公告板 */
-        .announcement-item {
-            padding: 20px;
-            border-left: 4px solid var(--secondary);
-            background: rgba(212, 175, 55, 0.05);
-            margin-bottom: 20px;
-            border-radius: 0 var(--radius) var(--radius) 0;
-        }
+        /* 模态框 */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.7); z-index: 1002; display: flex; justify-content: center; 
+            align-items: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { background: white; width: 90%; max-width: 500px; border-radius: var(--radius); 
+            padding: 30px; position: relative; transform: translateY(-20px); transition: var(--transition); }
+        .modal.active .modal-content { transform: translateY(0); }
         
-        .announcement-item.important {
-            border-left-color: var(--danger);
-            background: rgba(220, 53, 69, 0.05);
-        }
+        /* 封禁界面 */
+        .ban-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); 
+            z-index: 2000; display: flex; justify-content: center; align-items: center; color: white; text-align: center; }
+        .ban-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius); 
+            backdrop-filter: blur(10px); max-width: 500px; width: 90%; }
+        .ban-box h1 { color: #ff6b6b; font-size: 2.5rem; margin-bottom: 20px; }
         
-        .announcement-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
+        /* 管理面板 */
+        .admin-panel { background: white; border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+        .admin-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
         
-        .announcement-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .announcement-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        /* 相册 */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            height: 250px;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* 成员墙 */
-        .member-card {
-            text-align: center;
-            padding: 25px 20px;
-        }
-        
-        .member-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 20px;
-            font-weight: bold;
-        }
-        
-        .member-name {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .member-role {
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(212, 175, 55, 0.2);
-            color: #8a6d1f;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        /* 日历 */
-        .calendar {
-            max-width: 800px;
-            margin: 40px auto 0;
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-        }
-        
-        .calendar-day {
-            padding: 15px 10px;
-            text-align: center;
-            background: white;
-            border-radius: var(--radius);
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .calendar-date {
-            padding: 15px 10px;
-            text-align: center;
-            background: white;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .calendar-date:hover {
-            background: rgba(0, 51, 102, 0.05);
-        }
-        
-        .calendar-date.event {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        /* 资源中心 */
-        .resource-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .resource-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-right: 20px;
-        }
-        
-        .resource-info h4 {
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .resource-meta {
-            display: flex;
-            gap: 15px;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        /* 投票系统 */
-        .poll-option {
-            padding: 15px;
-            background: white;
-            border-radius: var(--radius);
-            margin-bottom: 15px;
-            border: 1px solid #eee;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .poll-option:hover {
-            border-color: var(--primary);
-        }
-        
-        .poll-option.selected {
-            border-color: var(--secondary);
-            background: rgba(212, 175, 55, 0.05);
-        }
-        
-        .poll-bar {
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-        
-        .poll-fill {
-            height: 100%;
-            background: var(--secondary);
-            width: 0%;
-            transition: width 1s ease;
-        }
-        
-        /* 等级权益系统 */
-        .privilege-card {
-            padding: 30px;
-            text-align: center;
-            border: 2px solid #eee;
-            border-radius: var(--radius);
-        }
-        
-        .privilege-card.admin {
-            border-color: var(--secondary);
-            background: rgba(212, 175, 55, 0.05);
-        }
-        
-        .privilege-level {
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .privilege-list {
-            text-align: left;
-            margin-top: 20px;
-        }
-        
-        .privilege-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .privilege-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .privilege-list li i {
-            color: var(--success);
-            margin-right: 10px;
-        }
-        
-        /* ====== 模态框 ====== */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1002;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: var(--radius);
-            padding: 40px;
-            position: relative;
-            transform: translateY(-30px);
-            transition: var(--transition);
-        }
-        
-        .modal.active .modal-content {
-            transform: translateY(0);
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        .form-footer {
-            margin-top: 25px;
-            text-align: center;
-        }
-        
-        .form-link {
-            color: var(--primary);
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        /* ====== 页脚 ====== */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 70px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .footer-logo h3 {
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .footer-links h4 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .footer-links ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-        
-        /* ====== 响应式设计 ====== */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-        
+        /* 响应式 */
         @media (max-width: 768px) {
-            .hero {
-                padding: 150px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .modal-content {
-                padding: 30px 20px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
+            .grid { grid-template-columns: 1fr; }
+            .hero { padding: 120px 0 60px; }
         }
     </style>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
+    <!-- 封禁界面（默认隐藏） -->
+    <div class="ban-screen" id="banScreen" style="display: none;">
+        <div class="ban-box">
+            <h1>⚠️ 警告 ⚠️</h1>
+            <div id="banReason">您因为违反班级规定，被封禁</div>
+            <div id="banTime" style="margin: 20px 0; font-size: 1.2rem;">剩余解封时间: <span id="timeLeft">建议相关人员</span></div>
+            <p style="margin: 20px 0;">您可以填写反馈尝试提前解封</p>
+            <textarea id="appealText" placeholder="请输入您的申诉理由..." style="width:100%; height:100px; padding:10px; border-radius:var(--radius); margin-bottom:20px;"></textarea>
+            <button class="btn btn-secondary" id="submitAppeal">提交申诉</button>
+            <p style="margin-top: 30px; color: rgba(255,255,255,0.7);">班级官网制作团队</p>
+        </div>
+    </div>
+    
+    <!-- 主界面 -->
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <!-- 班徽位置：左上角导航栏中 -->
-                <img src="school-badge.png" alt="班徽" class="badge-img">
-                <div class="logo-text">
-                    <h1>20（2）班</h1>
-                    <p>Digital Home of Excellence</p>
+                <img src="school-logo.png" alt="班徽" class="badge-img">
+                <div>
+                    <h2 style="color: var(--primary);">20（2）班</h2>
+                    <p style="font-size: 0.8rem; color: var(--gray);">数字家园</p>
                 </div>
             </div>
-            
-            <div class="nav-links">
-                <a href="#home">首页</a>
-                <a href="#news">班级动态</a>
-                <a href="#gallery">班级相册</a>
-                <a href="#resources">资源共享</a>
-                <a href="#members">成员墙</a>
-                <a href="#privileges">等级权益</a>
-            </div>
-            
-            <div class="nav-actions">
-                <div class="user-info" id="userInfo">
-                    <div class="user-avatar" id="userAvatar">访</div>
-                    <span id="userStatus">请登录</span>
-                </div>
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" id="userAvatar">访</div>
+                <span id="userStatus">请登录</span>
+                <span id="vipBadge" class="vip-badge" style="display: none;">VIP</span>
             </div>
         </div>
     </nav>
     
-    <!-- 侧滑菜单 -->
-    <div class="side-menu" id="sideMenu">
-        <div class="side-menu-header">
-            <h3 class="side-menu-title">我是网站导游～</h3>
-            <div class="close-menu" id="closeMenu">&times;</div>
-        </div>
-        
-        <div class="menu-section">
-            <h4 class="menu-section-title">班级信息</h4>
-            <div class="menu-links">
-                <a href="#home" class="active">首页</a>
-                <a href="#announcements">班级公告</a>
-                <a href="#news">班级动态</a>
-                <a href="#teachers">教师团队</a>
-                <a href="#honors">班级荣誉</a>
-            </div>
-        </div>
-        
-        <div class="menu-section">
-            <h4 class="menu-section-title">学习资源</h4>
-            <div class="menu-links">
-                <a href="#resources">资源共享</a>
-                <a href="#calendar">班级日历</a>
-                <a href="#links">学习链接</a>
-                <a href="#tools">实用工具</a>
-            </div>
-        </div>
-        
-        <div class="menu-section">
-            <h4 class="menu-section-title">交流互动</h4>
-            <div class="menu-links">
-                <a href="#members">成员墙</a>
-                <a href="#gallery">班级相册</a>
-                <a href="#poll">在线投票</a>
-                <a href="#feedback">意见反馈</a>
-                <a href="#countdown">倒计时</a>
-            </div>
-        </div>
-        
-        <div class="menu-section">
-            <h4 class="menu-section-title">系统功能</h4>
-            <div class="menu-links">
-                <a href="#privileges">等级权益</a>
-                <a href="#settings">个性设置</a>
-                <a href="#help">使用帮助</a>
-            </div>
-        </div>
-        
-        <!-- 侧滑菜单中也显示班徽 -->
-        <div style="margin-top: 40px; text-align: center;">
-            <img src="school-badge.png" alt="班徽" style="height: 80px; width: auto; opacity: 0.8;">
-            <p style="margin-top: 10px; color: var(--gray); font-size: 0.9rem;">卓越一班 数字家园</p>
-        </div>
-    </div>
-    
-    <div class="menu-overlay" id="menuOverlay"></div>
-    
-    <!-- 英雄区域 -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>欢迎来到合肥实验学校20级2班的官网！［Beta公测中～测试内容不代表最终品质］</h1>
-            <p>这里是20（2）的官方网站，汇聚了班级动态、学习资源、交流互动和成长记录。我们是一个团结、奋进、创新的集体，共同创造美好未来。</p>
-            <button class="btn btn-secondary" id="exploreBtn">探索更多</button>
+            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">欢迎来到20（2）班级数字家园</h1>
+            <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 30px;">这里是我们的班级官网，汇集班级动态、学习资源和交流平台</p>
+            <button class="btn btn-secondary" id="exploreBtn">开始探索</button>
         </div>
     </section>
     
-    <!-- 主要内容区域 -->
-    <main>
+    <main class="container">
         <!-- 班级公告 -->
         <section class="section" id="announcements">
-            <div class="container">
-                <h2 class="section-title">班级公告</h2>
-                <div id="announcementsList">
-                    <!-- 公告内容将通过JS动态生成 -->
+            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">班级公告</h2>
+            <div id="announcementsList"></div>
+        </section>
+        
+        <!-- 积分商城 -->
+        <section class="section" id="shop">
+            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">积分商城</h2>
+            <p style="text-align: center; margin-bottom: 20px;">您的班币: <span id="coinCount" style="font-weight: bold; color: var(--secondary);">0</span></p>
+            <div class="grid" id="shopItems"></div>
+        </section>
+        
+        <!-- 举报系统 -->
+        <section class="section" id="report">
+            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">举报系统</h2>
+            <div class="card">
+                <h3>提交举报</h3>
+                <p>如果您发现违规行为，请在此举报</p>
+                <div style="margin-top: 20px;">
+                    <select id="reportType" class="form-control" style="margin-bottom: 15px;">
+                        <option value="cheat">作弊行为</option>
+                        <option value="content">不当内容</option>
+                        <option value="harassment">骚扰行为</option>
+                        <option value="other">其他</option>
+                    </select>
+                    <textarea id="reportDetails" placeholder="请详细描述举报内容..." 
+                        style="width:100%; height:100px; padding:10px; border:1px solid #ddd; border-radius:var(--radius); margin-bottom:15px;"></textarea>
+                    <button class="btn" id="submitReport">提交举报</button>
                 </div>
             </div>
         </section>
         
-        <!-- 班级相册 -->
-        <section class="section" id="gallery">
-            <div class="container">
-                <h2 class="section-title">班级相册</h2>
-                <div class="gallery" id="photoGallery">
-                    <!-- 相册内容将通过JS动态生成 -->
+        <!-- 管理面板（仅管理员可见） -->
+        <section class="section" id="adminPanel" style="display: none;">
+            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; text-align: center;">管理面板</h2>
+            <div class="admin-panel">
+                <div class="admin-section">
+                    <h3>用户管理</h3>
+                    <div id="userList"></div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- 资源共享 -->
-        <section class="section" id="resources">
-            <div class="container">
-                <h2 class="section-title">资源共享</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>学习资料库</h3>
-                        <p>各科目学习资料、课件、习题集等资源</p>
-                        <div class="resource-list" id="resourceList">
-                            <!-- 资源列表将通过JS动态生成 -->
-                        </div>
+                <div class="admin-section">
+                    <h3>举报管理</h3>
+                    <div id="reportList"></div>
+                </div>
+                <div class="admin-section">
+                    <h3>VIP管理</h3>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="vipUsername" placeholder="用户名" class="form-control" style="margin-bottom: 10px;">
+                        <button class="btn btn-vip" id="setVip">设为VIP</button>
+                        <button class="btn" id="removeVip" style="margin-left: 10px;">取消VIP</button>
                     </div>
-                    <div class="card">
-                        <h3>实用工具</h3>
-                        <p>学习工具、模板文档、软件推荐等</p>
-                        <div class="tool-list" id="toolList">
-                            <!-- 工具列表将通过JS动态生成 -->
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>学习链接</h3>
-                        <p>优质学习网站、在线课程平台推荐</p>
-                        <div class="link-list" id="linkList">
-                            <!-- 链接列表将通过JS动态生成 -->
-                        </div>
+                    <div>
+                        <h4>生成VIP兑换码</h4>
+                        <button class="btn btn-secondary" id="generateCode">生成7天VIP码</button>
+                        <div id="vipCodes" style="margin-top: 15px;"></div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- 成员墙 -->
-        <section class="section" id="members">
-            <div class="container">
-                <h2 class="section-title">成员墙</h2>
-                <div class="grid" id="membersGrid">
-                    <!-- 成员卡片将通过JS动态生成 -->
-                </div>
-            </div>
-        </section>
-        
-        <!-- 班级日历 -->
-        <section class="section" id="calendar">
-            <div class="container">
-                <h2 class="section-title">班级日历</h2>
-                <div class="calendar">
-                    <div class="calendar-header">
-                        <h3 id="currentMonth">2026年1月</h3>
-                        <div>
-                            <button class="btn" id="prevMonth">上一月</button>
-                            <button class="btn" id="nextMonth">下一月</button>
-                        </div>
+                <div class="admin-section">
+                    <h3>封禁管理</h3>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="banUsername" placeholder="用户名" class="form-control" style="margin-bottom: 10px;">
+                        <input type="number" id="banDays" placeholder="封禁天数" class="form-control" style="margin-bottom: 10px;">
+                        <textarea id="banReasonInput" placeholder="封禁原因" class="form-control" style="margin-bottom: 10px; height: 80px;"></textarea>
+                        <button class="btn" id="banUser">封禁用户</button>
+                        <button class="btn btn-secondary" id="unbanUser" style="margin-left: 10px;">解封用户</button>
                     </div>
-                    <div class="calendar-grid" id="calendarGrid">
-                        <!-- 日历内容将通过JS动态生成 -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 在线投票 -->
-        <section class="section" id="poll">
-            <div class="container">
-                <h2 class="section-title">在线投票</h2>
-                <div class="card">
-                    <h3 id="pollQuestion">本学期班级活动您最期待什么？</h3>
-                    <p id="pollDescription">请选择您最期待的班级活动类型</p>
-                    <div id="pollOptions">
-                        <!-- 投票选项将通过JS动态生成 -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 等级权益系统 -->
-        <section class="section" id="privileges">
-            <div class="container">
-                <h2 class="section-title">等级权益系统</h2>
-                <div class="grid">
-                    <div class="privilege-card">
-                        <div class="privilege-level">普通成员</div>
-                        <p>拥有基本的浏览和参与权限</p>
-                        <ul class="privilege-list">
-                            <li><i class="fas fa-check"></i> 查看班级公告和动态</li>
-                            <li><i class="fas fa-check"></i> 浏览班级相册和成员墙</li>
-                            <li><i class="fas fa-check"></i> 参与在线投票</li>
-                            <li><i class="fas fa-check"></i> 下载公开学习资源</li>
-                            <li><i class="fas fa-check"></i> 提交意见反馈</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="privilege-card admin">
-                        <div class="privilege-level">班级管理员</div>
-                        <p>拥有管理班级网站的高级权限</p>
-                        <ul class="privilege-list">
-                            <li><i class="fas fa-check"></i> 所有普通成员权限</li>
-                            <li><i class="fas fa-check"></i> 发布和管理班级公告</li>
-                            <li><i class="fas fa-check"></i> 上传和管理班级相册</li>
-                            <li><i class="fas fa-check"></i> 管理学习资源库</li>
-                            <li><i class="fas fa-check"></i> 创建和结束投票</li>
-                            <li><i class="fas fa-check"></i> 管理班级日历事件</li>
-                            <li><i class="fas fa-check"></i> 查看统计数据和反馈</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="privilege-card">
-                        <div class="privilege-level">教师/辅导员</div>
-                        <p>拥有教学管理和指导的特殊权限</p>
-                        <ul class="privilege-list">
-                            <li><i class="fas fa-check"></i> 所有管理员权限</li>
-                            <li><i class="fas fa-check"></i> 发布课程资料和作业</li>
-                            <li><i class="fas fa-check"></i> 查看学习进度和参与情况</li>
-                            <li><i class="fas fa-check"></i> 发布重要通知和教学安排</li>
-                            <li><i class="fas fa-check"></i> 与学生进行在线沟通</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 倒计时 -->
-        <section class="section" id="countdown">
-            <div class="container">
-                <h2 class="section-title">重要倒计时</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>期末考试</h3>
-                        <div class="countdown-display" id="examCountdown">
-                            <!-- 倒计时将通过JS动态生成 -->
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>班级活动日</h3>
-                        <div class="countdown-display" id="eventCountdown">
-                            <!-- 倒计时将通过JS动态生成 -->
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>假期开始</h3>
-                        <div class="countdown-display" id="holidayCountdown">
-                            <!-- 倒计时将通过JS动态生成 -->
-                        </div>
-                    </div>
+                    <div id="bannedUsers"></div>
                 </div>
             </div>
         </section>
@@ -1084,830 +189,879 @@
     <!-- 登录/注册模态框 -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <div class="close-modal" id="closeLoginModal">&times;</div>
-            <h2 class="modal-title" id="modalTitle">用户登录</h2>
+            <div style="position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer;" id="closeLoginModal">&times;</div>
+            <h2 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; text-align: center;" id="modalTitle">用户登录</h2>
             
             <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginUsername">用户名</label>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">用户名</label>
                     <input type="text" id="loginUsername" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="loginPassword">密码</label>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">密码</label>
                     <input type="password" id="loginPassword" class="form-control" required>
                 </div>
-                <div class="form-group" style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
                     <input type="checkbox" id="rememberMe" style="margin-right: 10px;">
-                    <label for="rememberMe" style="margin-bottom: 0;">记住我</label>
+                    <label for="rememberMe">记住我</label>
                 </div>
                 <button type="submit" class="btn btn-secondary" style="width: 100%;">登录</button>
             </form>
             
             <form id="registerForm" style="display: none;">
-                <div class="form-group">
-                    <label for="registerUsername">用户名</label>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">用户名</label>
                     <input type="text" id="registerUsername" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="registerPassword">密码</label>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">密码</label>
                     <input type="password" id="registerPassword" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="confirmPassword">确认密码</label>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">确认密码</label>
                     <input type="password" id="confirmPassword" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-secondary" style="width: 100%;">注册</button>
             </form>
             
-            <div class="form-footer">
-                <p id="formToggleText">还没有账号？ <span class="form-link" id="toggleForm">立即注册</span></p>
+            <div style="margin-top: 25px; text-align: center;">
+                <p id="formToggleText">还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span></p>
+            </div>
+            
+            <!-- VIP兑换码输入 -->
+            <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                <h4 style="margin-bottom: 15px;">VIP兑换</h4>
+                <input type="text" id="vipCodeInput" placeholder="输入VIP兑换码" class="form-control" style="margin-bottom: 10px;">
+                <button class="btn btn-vip" id="redeemCode" style="width: 100%;">兑换VIP</button>
             </div>
         </div>
     </div>
     
-    <!-- 页脚 -->
-    <footer>
+    <footer style="background: var(--primary); color: white; padding: 50px 0 20px; text-align: center;">
         <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <img src="school-badge.png" alt="班徽">
-                        <h3>20（2）班</h3>
-                    </div>
-                    <p>这里是我们的数字家园，记录着我们的成长与奋斗。团结、奋进、创新，我们一直在路上。</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>快速链接</h4>
-                    <ul>
-                        <li><a href="#home">首页</a></li>
-                        <li><a href="#announcements">班级公告</a></li>
-                        <li><a href="#gallery">班级相册</a></li>
-                        <li><a href="#resources">资源共享</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>功能服务</h4>
-                    <ul>
-                        <li><a href="#members">成员墙</a></li>
-                        <li><a href="#calendar">班级日历</a></li>
-                        <li><a href="#poll">在线投票</a></li>
-                        <li><a href="#privileges">等级权益</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>联系我们</h4>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> 3883600351@qq.com</li>
-                        <li><i class="fas fa-phone"></i> (+86) 受国外隐私保护，暂时无法显示</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 合肥市包河区乌鲁木齐路</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2026 202最牛程序猿. 版权所有 | 设计开发：班级技术团队</p>
-            </div>
+            <p>&copy; 2026 202班最牛的程序猿 版权所有 | 班级官网制作团队</p>
         </div>
     </footer>
     
-    <script>
-        // ====== 全局变量和初始化 ======
-        let currentUser = null;
-        let isLoginForm = true;
-        
-        // ====== DOM元素获取 ======
-        const userInfo = document.getElementById('userInfo');
-        const userAvatar = document.getElementById('userAvatar');
-        const userStatus = document.getElementById('userStatus');
-        const menuToggle = document.getElementById('menuToggle');
-        const sideMenu = document.getElementById('sideMenu');
-        const closeMenu = document.getElementById('closeMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const loginModal = document.getElementById('loginModal');
-        const closeLoginModal = document.getElementById('closeLoginModal');
-        const toggleForm = document.getElementById('toggleForm');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const modalTitle = document.getElementById('modalTitle');
-        const formToggleText = document.getElementById('formToggleText');
-        
-        // ====== 初始化函数 ======
-        function init() {
-            // 检查本地存储中是否有用户信息
-            const savedUser = localStorage.getItem('classUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateUserUI();
-            }
-            
-            // 生成页面内容
-            generateAnnouncements();
-            generateGallery();
-            generateResources();
-            generateMembers();
-            generateCalendar();
-            generatePoll();
-            generateCountdowns();
-            
-            // 设置事件监听器
-            setupEventListeners();
-            
-            // 初始化滚动效果
-            initScrollEffects();
-        }
-        
-        // ====== 事件监听器设置 ======
-        function setupEventListeners() {
-            // 用户信息点击 - 显示登录模态框
-            userInfo.addEventListener('click', () => {
-                if (!currentUser) {
-                    showLoginModal();
-                } else {
-                    // 如果已登录，显示用户菜单（这里简化为直接登出）
-                    if (confirm('确定要退出登录吗？')) {
-                        logout();
-                    }
-                }
-            });
-            
-            // 菜单切换
-            menuToggle.addEventListener('click', () => {
-                sideMenu.classList.add('active');
-                menuOverlay.classList.add('active');
-            });
-            
-            closeMenu.addEventListener('click', closeSideMenu);
-            menuOverlay.addEventListener('click', closeSideMenu);
-            
-            // 登录模态框
-            closeLoginModal.addEventListener('click', () => {
-                loginModal.classList.remove('active');
-            });
-            
-            // 表单切换
-            toggleForm.addEventListener('click', toggleLoginRegister);
-            
-            // 表单提交
-            loginForm.addEventListener('submit', handleLogin);
-            registerForm.addEventListener('submit', handleRegister);
-            
-            // 侧滑菜单链接点击
-            document.querySelectorAll('.menu-links a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    if (targetId.startsWith('#')) {
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 80,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                    closeSideMenu();
-                });
-            });
-            
-            // 探索按钮
-            document.getElementById('exploreBtn').addEventListener('click', () => {
-                document.querySelector('#announcements').scrollIntoView({ behavior: 'smooth' });
-            });
-            
-            // 日历导航
-            document.getElementById('prevMonth').addEventListener('click', prevMonth);
-            document.getElementById('nextMonth').addEventListener('click', nextMonth);
-            
-            // 投票选项点击
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('poll-option')) {
-                    const optionId = e.target.dataset.optionId;
-                    voteForOption(optionId);
-                }
-            });
-        }
-        
-        // ====== 用户系统函数 ======
-        function showLoginModal() {
-            loginModal.classList.add('active');
-            resetForms();
-        }
-        
-        function toggleLoginRegister() {
-            isLoginForm = !isLoginForm;
-            
-            if (isLoginForm) {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                modalTitle.textContent = '用户登录';
-                formToggleText.innerHTML = '还没有账号？ <span class="form-link" id="toggleForm">立即注册</span>';
-            } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                modalTitle.textContent = '用户注册';
-                formToggleText.innerHTML = '已有账号？ <span class="form-link" id="toggleForm">立即登录</span>';
-            }
-            
-            // 重新绑定事件监听器
-            document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
-        }
-        
-        function resetForms() {
-            loginForm.reset();
-            registerForm.reset();
-            
-            // 确保显示登录表单
-            isLoginForm = true;
-            loginForm.style.display = 'block';
-            registerForm.style.display = 'none';
-            modalTitle.textContent = '用户登录';
-            formToggleText.innerHTML = '还没有账号？ <span class="form-link" id="toggleForm">立即注册</span>';
-        }
-        
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            // 简单验证
-            if (!username || !password) {
-                alert('请输入用户名和密码');
-                return;
-            }
-            
-            // 从本地存储获取用户数据
-            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-            const user = users.find(u => u.username === username && u.password === password);
-            
-            if (user) {
-                // 登录成功
-                currentUser = {
-                    username: user.username,
-                    role: user.role || 'member',
-                    avatarText: username.charAt(0).toUpperCase()
-                };
-                
-                // 保存到本地存储
-                if (rememberMe) {
-                    localStorage.setItem('classUser', JSON.stringify(currentUser));
-                } else {
-                    sessionStorage.setItem('classUser', JSON.stringify(currentUser));
-                }
-                
-                updateUserUI();
-                loginModal.classList.remove('active');
-                showMessage('登录成功！', 'success');
-            } else {
-                alert('用户名或密码错误');
-            }
-        }
-        
-        function handleRegister(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('registerUsername').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            // 验证
-            if (!username || !password || !confirmPassword) {
-                alert('请填写所有字段');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                alert('两次输入的密码不一致');
-                return;
-            }
-            
-            if (password.length < 6) {
-                alert('密码长度至少为6位');
-                return;
-            }
-            
-            // 从本地存储获取用户数据
-            const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
-            
-            // 检查用户名是否已存在
-            if (users.find(u => u.username === username)) {
-                alert('用户名已存在');
-                return;
-            }
-            
-            // 创建新用户（默认普通成员）
-            const newUser = {
-                username,
-                password,
-                role: 'member',
-                joinDate: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('classUsers', JSON.stringify(users));
-            
-            // 自动登录
-            currentUser = {
-                username,
-                role: 'member',
-                avatarText: username.charAt(0).toUpperCase()
-            };
-            
-            localStorage.setItem('classUser', JSON.stringify(currentUser));
-            
+<script>
+// ========== 预设账号区域（开发者在此设置） ==========
+const PRESET_ACCOUNTS = {
+    // 格式：用户名: {密码: "密码", role: "角色", coins: 班币数量}
+    "管理员": {password: "syya", role: "管理员", coins: 9999999999999999999999999999999},
+    "姚笑笑": {password: "teacherY", role: "班主任", coins: 99999999999999999999999999999},
+    "VIP": {password: "VIP VIP VIP", role: "vip", coins: 200},
+    "学生": {password: "student", role: "学生", coins: 0}
+};
+// ===============================================
+
+// ========== 全局变量 ==========
+let currentUser = null;
+let isLoginForm = true;
+
+// ========== DOM元素获取 ==========
+const banScreen = document.getElementById('banScreen');
+const userInfo = document.getElementById('userInfo');
+const userAvatar = document.getElementById('userAvatar');
+const userStatus = document.getElementById('userStatus');
+const vipBadge = document.getElementById('vipBadge');
+const loginModal = document.getElementById('loginModal');
+const adminPanel = document.getElementById('adminPanel');
+
+// ========== 初始化函数 ==========
+function init() {
+    // 检查是否被封禁
+    checkBanStatus();
+    
+    // 检查本地存储中是否有用户信息
+    const savedUser = localStorage.getItem('classUser');
+    if (savedUser) {
+        const user = JSON.parse(savedUser);
+        if (!user.banned || user.banEnd && new Date() > new Date(user.banEnd)) {
+            currentUser = user;
             updateUserUI();
-            loginModal.classList.remove('active');
-            showMessage('注册成功！已自动登录', 'success');
+            loadPageContent();
+        }
+    }
+    
+    // 设置事件监听器
+    setupEventListeners();
+    
+    // 加载页面内容
+    if (!currentUser) {
+        loadPublicContent();
+    }
+}
+
+// ========== 检查封禁状态 ==========
+function checkBanStatus() {
+    const savedUser = localStorage.getItem('classUser');
+    if (savedUser) {
+        const user = JSON.parse(savedUser);
+        if (user.banned && user.banEnd && new Date() < new Date(user.banEnd)) {
+            showBanScreen(user);
+            return true;
+        } else if (user.banned) {
+            // 封禁已过期，解除封禁
+            user.banned = false;
+            delete user.banEnd;
+            delete user.banReason;
+            localStorage.setItem('classUser', JSON.stringify(user));
+        }
+    }
+    return false;
+}
+
+// ========== 显示封禁界面 ==========
+function showBanScreen(user) {
+    banScreen.style.display = 'flex';
+    document.getElementById('banReason').textContent = `您因为${user.banReason || "违反班级规定"}，被封禁${user.banDays || 7}天`;
+    
+    // 计算剩余时间
+    const endTime = new Date(user.banEnd);
+    updateBanTimeLeft(endTime);
+    
+    // 每秒更新剩余时间
+    const timer = setInterval(() => {
+        if (!updateBanTimeLeft(endTime)) {
+            clearInterval(timer);
+            location.reload();
+        }
+    }, 1000);
+    
+    // 申诉提交
+    document.getElementById('submitAppeal').addEventListener('click', () => {
+        const appealText = document.getElementById('appealText').value;
+        if (appealText.trim()) {
+            saveAppeal(user.username, appealText);
+            alert('申诉已提交，管理员会尽快处理');
+        } else {
+            alert('请输入申诉理由');
+        }
+    });
+}
+
+// ========== 更新封禁剩余时间 ==========
+function updateBanTimeLeft(endTime) {
+    const now = new Date();
+    const diff = endTime - now;
+    
+    if (diff <= 0) {
+        document.getElementById('timeLeft').textContent = '已解封';
+        return false;
+    }
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById('timeLeft').textContent = `${days}天${hours}小时${minutes}分钟`;
+    return true;
+}
+
+// ========== 保存申诉 ==========
+function saveAppeal(username, appeal) {
+    const appeals = JSON.parse(localStorage.getItem('banAppeals') || '[]');
+    appeals.push({
+        username,
+        appeal,
+        date: new Date().toISOString(),
+        status: 'pending'
+    });
+    localStorage.setItem('banAppeals', JSON.stringify(appeals));
+}
+
+// ========== 设置事件监听器 ==========
+function setupEventListeners() {
+    // 用户信息点击
+    userInfo.addEventListener('click', () => {
+        if (!currentUser) {
+            showLoginModal();
+        } else {
+            if (confirm('确定要退出登录吗？')) {
+                logout();
+            }
+        }
+    });
+    
+    // 探索按钮
+    document.getElementById('exploreBtn').addEventListener('click', () => {
+        if (!currentUser) {
+            showLoginModal();
+        } else {
+            document.querySelector('#announcements').scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+    
+    // 登录模态框
+    document.getElementById('closeLoginModal').addEventListener('click', () => {
+        loginModal.classList.remove('active');
+    });
+    
+    // 表单切换
+    document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
+    
+    // 表单提交
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    document.getElementById('registerForm').addEventListener('submit', handleRegister);
+    
+    // VIP兑换
+    document.getElementById('redeemCode').addEventListener('click', redeemVipCode);
+    
+    // 举报提交
+    document.getElementById('submitReport').addEventListener('click', submitReport);
+}
+
+// ========== 用户系统 ==========
+function showLoginModal() {
+    loginModal.classList.add('active');
+    resetForms();
+}
+
+function toggleLoginRegister() {
+    isLoginForm = !isLoginForm;
+    
+    if (isLoginForm) {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('modalTitle').textContent = '用户登录';
+        document.getElementById('formToggleText').innerHTML = '还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span>';
+    } else {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('modalTitle').textContent = '用户注册';
+        document.getElementById('formToggleText').innerHTML = '已有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即登录</span>';
+    }
+    
+    // 重新绑定事件监听器
+    document.getElementById('toggleForm').addEventListener('click', toggleLoginRegister);
+}
+
+function resetForms() {
+    document.getElementById('loginForm').reset();
+    document.getElementById('registerForm').reset();
+    isLoginForm = true;
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('modalTitle').textContent = '用户登录';
+    document.getElementById('formToggleText').innerHTML = '还没有账号？ <span style="color: var(--primary); font-weight: 600; cursor: pointer;" id="toggleForm">立即注册</span>';
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
+    
+    if (!username || !password) {
+        alert('请输入用户名和密码');
+        return;
+    }
+    
+    // 检查预设账号
+    if (PRESET_ACCOUNTS[username] && PRESET_ACCOUNTS[username].password === password) {
+        loginSuccess(username, PRESET_ACCOUNTS[username], rememberMe);
+        return;
+    }
+    
+    // 检查本地存储的用户
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const user = users.find(u => u.username === username && u.password === password);
+    
+    if (user) {
+        loginSuccess(username, user, rememberMe);
+    } else {
+        alert('用户名或密码错误');
+    }
+}
+
+function loginSuccess(username, userData, rememberMe) {
+    // 检查是否被封禁
+    if (userData.banned && userData.banEnd && new Date() < new Date(userData.banEnd)) {
+        currentUser = userData;
+        showBanScreen(userData);
+        return;
+    }
+    
+    // 创建用户对象
+    currentUser = {
+        username: username,
+        role: userData.role || 'member',
+        coins: userData.coins || 0,
+        avatarText: username.charAt(0).toUpperCase(),
+        lastLogin: new Date().toISOString(),
+        loginIP: getFakeIP() // 模拟IP，用于反作弊
+    };
+    
+    // 保存到本地存储
+    if (rememberMe) {
+        localStorage.setItem('classUser', JSON.stringify(currentUser));
+    } else {
+        sessionStorage.setItem('classUser', JSON.stringify(currentUser));
+    }
+    
+    // 更新用户列表中的信息
+    updateUserInList(currentUser);
+    
+    updateUserUI();
+    loginModal.classList.remove('active');
+    showMessage('登录成功！', 'success');
+    loadPageContent();
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('registerUsername').value;
+    const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    // 验证
+    if (!username || !password || !confirmPassword) {
+        alert('请填写所有字段');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        alert('两次输入的密码不一致');
+        return;
+    }
+    
+    if (password.length < 6) {
+        alert('密码长度至少为6位');
+        return;
+    }
+    
+    // 检查用户名是否已存在（包括预设账号）
+    if (PRESET_ACCOUNTS[username]) {
+        alert('用户名已存在');
+        return;
+    }
+    
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    if (users.find(u => u.username === username)) {
+        alert('用户名已存在');
+        return;
+    }
+    
+    // 创建新用户
+    const newUser = {
+        username,
+        password,
+        role: 'member',
+        coins: 10, // 注册赠送10班币
+        joinDate: new Date().toISOString(),
+        loginIP: getFakeIP()
+    };
+    
+    users.push(newUser);
+    localStorage.setItem('classUsers', JSON.stringify(users));
+    
+    // 自动登录
+    loginSuccess(username, newUser, true);
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('classUser');
+    sessionStorage.removeItem('classUser');
+    updateUserUI();
+    showMessage('已退出登录', 'info');
+    loadPublicContent();
+}
+
+function updateUserUI() {
+    if (currentUser) {
+        userAvatar.textContent = currentUser.avatarText;
+        userStatus.textContent = currentUser.username;
+        
+        // 显示VIP徽章
+        if (currentUser.role === 'vip' || currentUser.role === 'admin' || currentUser.role === 'teacher') {
+            vipBadge.style.display = 'inline-block';
+            userAvatar.style.background = 'var(--vip)';
+        } else {
+            vipBadge.style.display = 'none';
+            userAvatar.style.background = 'var(--primary)';
         }
         
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('classUser');
-            sessionStorage.removeItem('classUser');
+        // 显示管理员面板
+        if (currentUser.role === 'admin' || currentUser.role === 'teacher') {
+            adminPanel.style.display = 'block';
+            loadAdminPanel();
+        } else {
+            adminPanel.style.display = 'none';
+        }
+    } else {
+        userAvatar.textContent = '访';
+        userStatus.textContent = '请登录';
+        vipBadge.style.display = 'none';
+        userAvatar.style.background = 'var(--primary)';
+        adminPanel.style.display = 'none';
+    }
+}
+
+// ========== 加载页面内容 ==========
+function loadPublicContent() {
+    generateAnnouncements();
+    generateShopItems();
+}
+
+function loadPageContent() {
+    loadPublicContent();
+    document.getElementById('coinCount').textContent = currentUser.coins || 0;
+}
+
+// ========== 生成公告 ==========
+function generateAnnouncements() {
+    const announcements = [
+        { title: '期末考试通知', content: '本学期期末考试将于1月28日开始，请提前复习。', date: '2026-1-20' },
+        { title: '班级活动征集', content: '征集班级官网活动建议，欢迎大家踊跃提出。', date: '2026-1-20' },
+        { title: '积分商城上线', content: '班币商城正式上线，可使用班币兑换各种权益。', date: '2026-1-21' }
+    ];
+    
+    const container = document.getElementById('announcementsList');
+    container.innerHTML = '';
+    
+    announcements.forEach(ann => {
+        const item = document.createElement('div');
+        item.className = 'card';
+        item.style.marginBottom = '15px';
+        item.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div style="font-weight: 600; color: var(--primary);">${ann.title}</div>
+                <div style="color: var(--gray); font-size: 0.9rem;">${ann.date}</div>
+            </div>
+            <div>${ann.content}</div>
+        `;
+        container.appendChild(item);
+    });
+}
+
+// ========== 积分商城 ==========
+function generateShopItems() {
+    const shopItems = [
+        { id: 1, name: '自定义头像框', price: 50, description: '获得专属头像框' },
+        { id: 2, name: '特殊称号', price: 100, description: '获得"学霸"称号' },
+        { id: 3, name: '优先发言权', price: 30, description: '在班级讨论中优先展示' },
+        { id: 4, name: '7天VIP体验', price: 200, description: '体验VIP权益7天' }
+    ];
+    
+    const container = document.getElementById('shopItems');
+    container.innerHTML = '';
+    
+    shopItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h4 style="color: var(--primary); margin-bottom: 10px;">${item.name}</h4>
+            <p style="color: var(--gray); margin-bottom: 15px;">${item.description}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: bold; color: var(--secondary);">${item.price} 班币</span>
+                <button class="btn btn-secondary" onclick="buyItem(${item.id})">兑换</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function buyItem(itemId) {
+    if (!currentUser) {
+        showLoginModal();
+        return;
+    }
+    
+    const shopItems = [
+        { id: 1, name: '自定义头像框', price: 50 },
+        { id: 2, name: '特殊称号', price: 100 },
+        { id: 3, name: '优先发言权', price: 30 },
+        { id: 4, name: '7天VIP体验', price: 200 }
+    ];
+    
+    const item = shopItems.find(i => i.id === itemId);
+    if (!item) return;
+    
+    if (currentUser.coins < item.price) {
+        alert('班币不足！');
+        return;
+    }
+    
+    if (confirm(`确定要兑换"${item.name}"吗？将消耗${item.price}班币`)) {
+        currentUser.coins -= item.price;
+        updateUserCoins();
+        
+        // 如果是VIP体验，设置VIP
+        if (item.id === 4) {
+            currentUser.role = 'vip';
+            currentUser.vipExpire = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
             updateUserUI();
-            showMessage('已退出登录', 'info');
         }
         
-        function updateUserUI() {
-            if (currentUser) {
-                userAvatar.textContent = currentUser.avatarText;
-                userStatus.textContent = currentUser.username;
-                userInfo.title = `角色：${getRoleName(currentUser.role)}`;
-            } else {
-                userAvatar.textContent = '访';
-                userStatus.textContent = '请登录';
-                userInfo.title = '';
-            }
+        showMessage(`成功兑换${item.name}！`, 'success');
+        document.getElementById('coinCount').textContent = currentUser.coins;
+    }
+}
+
+function updateUserCoins() {
+    // 更新当前用户
+    if (localStorage.getItem('classUser')) {
+        localStorage.setItem('classUser', JSON.stringify(currentUser));
+    }
+    if (sessionStorage.getItem('classUser')) {
+        sessionStorage.setItem('classUser', JSON.stringify(currentUser));
+    }
+    
+    // 更新用户列表
+    updateUserInList(currentUser);
+}
+
+// ========== 举报系统 ==========
+function submitReport() {
+    if (!currentUser) {
+        showLoginModal();
+        return;
+    }
+    
+    const type = document.getElementById('reportType').value;
+    const details = document.getElementById('reportDetails').value.trim();
+    
+    if (!details) {
+        alert('请输入举报详情');
+        return;
+    }
+    
+    const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+    reports.push({
+        id: Date.now(),
+        reporter: currentUser.username,
+        type,
+        details,
+        date: new Date().toISOString(),
+        status: 'pending'
+    });
+    
+    localStorage.setItem('reports', JSON.stringify(reports));
+    document.getElementById('reportDetails').value = '';
+    showMessage('举报已提交，管理员会尽快处理', 'success');
+}
+
+// ========== VIP兑换码系统 ==========
+function redeemVipCode() {
+    if (!currentUser) {
+        showLoginModal();
+        return;
+    }
+    
+    const code = document.getElementById('vipCodeInput').value.trim();
+    if (!code) {
+        alert('请输入兑换码');
+        return;
+    }
+    
+    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+    const validCode = vipCodes.find(c => c.code === code && !c.used);
+    
+    if (!validCode) {
+        alert('兑换码无效或已使用');
+        return;
+    }
+    
+    // 使用兑换码
+    validCode.used = true;
+    validCode.usedBy = currentUser.username;
+    validCode.usedDate = new Date().toISOString();
+    localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
+    
+    // 设置用户为VIP
+    currentUser.role = 'vip';
+    currentUser.vipExpire = new Date(Date.now() + validCode.days * 24 * 60 * 60 * 1000).toISOString();
+    updateUserUI();
+    updateUserInList(currentUser);
+    
+    document.getElementById('vipCodeInput').value = '';
+    showMessage(`VIP兑换成功！有效期${validCode.days}天`, 'success');
+}
+
+// ========== 管理面板功能 ==========
+function loadAdminPanel() {
+    loadUserList();
+    loadReportList();
+    loadBannedUsers();
+    loadVipCodes();
+    
+    // 设置VIP按钮
+    document.getElementById('setVip').addEventListener('click', () => {
+        const username = document.getElementById('vipUsername').value.trim();
+        if (!username) return;
+        
+        if (confirm(`确定要将${username}设为VIP吗？`)) {
+            setUserRole(username, 'vip');
         }
+    });
+    
+    // 取消VIP按钮
+    document.getElementById('removeVip').addEventListener('click', () => {
+        const username = document.getElementById('vipUsername').value.trim();
+        if (!username) return;
         
-        function getRoleName(role) {
-            const roles = {
-                'member': '普通成员',
-                'admin': '班级管理员',
-                'teacher': '教师/辅导员'
-            };
-            return roles[role] || '未知角色';
+        if (confirm(`确定要取消${username}的VIP吗？`)) {
+            setUserRole(username, 'member');
         }
-        
-        // ====== 侧滑菜单函数 ======
-        function closeSideMenu() {
-            sideMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
-        
-        // ====== 滚动效果 ======
-        function initScrollEffects() {
-            // 导航栏滚动效果
-            window.addEventListener('scroll', () => {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-                
-                // 更新菜单激活状态
-                updateActiveMenuLink();
-            });
-            
-            // 滚动到顶部按钮
-            const scrollTopBtn = document.createElement('button');
-            scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-            scrollTopBtn.className = 'btn';
-            scrollTopBtn.style.position = 'fixed';
-            scrollTopBtn.style.bottom = '30px';
-            scrollTopBtn.style.right = '30px';
-            scrollTopBtn.style.zIndex = '999';
-            scrollTopBtn.style.display = 'none';
-            scrollTopBtn.style.borderRadius = '50%';
-            scrollTopBtn.style.width = '50px';
-            scrollTopBtn.style.height = '50px';
-            scrollTopBtn.style.padding = '0';
-            scrollTopBtn.style.fontSize = '1.2rem';
-            
-            document.body.appendChild(scrollTopBtn);
-            
-            scrollTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollTopBtn.style.display = 'block';
-                } else {
-                    scrollTopBtn.style.display = 'none';
-                }
-            });
-        }
-        
-        function updateActiveMenuLink() {
-            const sections = document.querySelectorAll('section');
-            const menuLinks = document.querySelectorAll('.menu-links a');
-            
-            let currentSectionId = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    currentSectionId = '#' + section.id;
-                }
-            });
-            
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentSectionId) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        
-        // ====== 页面内容生成函数 ======
-        function generateAnnouncements() {
-            const announcements = [
-                { title: '期末考试安排通知', content: '本学期期末考试将于12月20日开始，请同学们提前做好复习准备。', date: '2023-11-15', important: true },
-                { title: '班级团建活动征集意见', content: '计划于11月底举行班级团建活动，现征集活动形式和地点建议。', date: '2023-11-10', important: false },
-                { title: '学习资源共享计划启动', content: '班级学习资源共享计划正式启动，欢迎同学们上传优质学习资料。', date: '2023-11-05', important: false },
-                { title: '优秀学生表彰大会', content: '将于下周一举行的优秀学生表彰大会，请全体同学准时参加。', date: '2023-10-30', important: true }
-            ];
-            
-            const container = document.getElementById('announcementsList');
-            container.innerHTML = '';
-            
-            announcements.forEach(announcement => {
-                const item = document.createElement('div');
-                item.className = `announcement-item ${announcement.important ? 'important' : ''}`;
-                item.innerHTML = `
-                    <div class="announcement-header">
-                        <div class="announcement-title">${announcement.title}</div>
-                        <div class="announcement-date">${announcement.date}</div>
-                    </div>
-                    <div class="announcement-content">${announcement.content}</div>
-                `;
-                container.appendChild(item);
-            });
-        }
-        
-        function generateGallery() {
-            const photos = [
-                { id: 1, title: '开学典礼', url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-                { id: 2, title: '运动会', url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-                { id: 3, title: '课堂学习', url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-                { id: 4, title: '小组讨论', url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-                { id: 5, title: '班级活动', url: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-                { id: 6, title: '实验课程', url: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
-            ];
-            
-            const container = document.getElementById('photoGallery');
-            container.innerHTML = '';
-            
-            photos.forEach(photo => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.innerHTML = `
-                    <img src="${photo.url}" alt="${photo.title}" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9rem;">
-                        ${photo.title}
-                    </div>
-                `;
-                container.appendChild(item);
-            });
-        }
-        
-        function generateResources() {
-            const resources = [
-                { name: '高等数学复习资料', type: 'pdf', size: '2.4MB', downloads: 142 },
-                { name: '英语四级词汇表', type: 'doc', size: '1.8MB', downloads: 98 },
-                { name: '程序设计实验指导', type: 'pdf', size: '3.1MB', downloads: 76 },
-                { name: '物理实验报告模板', type: 'docx', size: '0.8MB', downloads: 120 }
-            ];
-            
-            const tools = [
-                { name: '论文格式模板', description: '学术论文标准格式模板' },
-                { name: 'PPT设计模板', description: '精美演示文稿模板集' },
-                { name: '学习计划表', description: '可编辑的学习计划表格' },
-                { name: '代码编辑器推荐', description: '编程学习必备工具' }
-            ];
-            
-            const links = [
-                { name: '国家教育资源平台', url: 'https://www.eduyun.cn' },
-                { name: '中国大学MOOC', url: 'https://www.icourse163.org' },
-                { name: '学堂在线', url: 'https://www.xuetangx.com' },
-                { name: '图书馆电子资源', url: '#' }
-            ];
-            
-            // 生成资源列表
-            const resourceList = document.getElementById('resourceList');
-            resources.forEach(resource => {
-                const item = document.createElement('div');
-                item.className = 'resource-item';
-                item.innerHTML = `
-                    <div class="resource-icon">
-                        <i class="fas fa-file-${resource.type === 'pdf' ? 'pdf' : 'word'}"></i>
-                    </div>
-                    <div class="resource-info">
-                        <h4>${resource.name}</h4>
-                        <div class="resource-meta">
-                            <span>${resource.type.toUpperCase()}</span>
-                            <span>${resource.size}</span>
-                            <span>下载: ${resource.downloads}</span>
-                        </div>
-                    </div>
-                `;
-                resourceList.appendChild(item);
-            });
-            
-            // 生成工具列表
-            const toolList = document.getElementById('toolList');
-            tools.forEach(tool => {
-                const item = document.createElement('div');
-                item.innerHTML = `
-                    <div style="padding: 10px 0; border-bottom: 1px dashed #eee;">
-                        <div style="font-weight: 600; color: var(--primary);">${tool.name}</div>
-                        <div style="font-size: 0.9rem; color: var(--gray);">${tool.description}</div>
-                    </div>
-                `;
-                toolList.appendChild(item);
-            });
-            
-            // 生成链接列表
-            const linkList = document.getElementById('linkList');
-            links.forEach(link => {
-                const item = document.createElement('div');
-                item.innerHTML = `
-                    <div style="padding: 10px 0; border-bottom: 1px dashed #eee;">
-                        <a href="${link.url}" target="_blank" style="color: var(--primary); font-weight: 600;">
-                            <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>${link.name}
-                        </a>
-                    </div>
-                `;
-                linkList.appendChild(item);
-            });
-        }
-        
-        function generateMembers() {
-            const members = [
-                { name: '张三', role: '班长', initial: '张' },
-                { name: '李四', role: '学习委员', initial: '李' },
-                { name: '王五', role: '文体委员', initial: '王' },
-                { name: '赵六', role: '普通成员', initial: '赵' },
-                { name: '刘七', role: '普通成员', initial: '刘' },
-                { name: '陈八', role: '普通成员', initial: '陈' }
-            ];
-            
-            const container = document.getElementById('membersGrid');
-            container.innerHTML = '';
-            
-            members.forEach(member => {
-                const card = document.createElement('div');
-                card.className = 'card member-card';
-                card.innerHTML = `
-                    <div class="member-avatar">${member.initial}</div>
-                    <div class="member-name">${member.name}</div>
-                    <div class="member-role">${member.role}</div>
-                    <p>热爱学习，积极参与班级活动，乐于助人。</p>
-                `;
-                container.appendChild(card);
-            });
-        }
-        
-        // ====== 日历系统 ======
-        let currentDate = new Date();
-        
-        function generateCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            
-            // 更新月份显示
-            document.getElementById('currentMonth').textContent = `${year}年${month + 1}月`;
-            
-            // 获取当月第一天和最后一天
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            
-            // 获取当月天数
-            const daysInMonth = lastDay.getDate();
-            
-            // 获取第一天是星期几（0=周日，1=周一，...）
-            const firstDayOfWeek = firstDay.getDay();
-            
-            // 日历网格
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.innerHTML = '';
-            
-            // 添加星期标题
-            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-            weekdays.forEach(day => {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                dayElement.textContent = day;
-                calendarGrid.appendChild(dayElement);
-            });
-            
-            // 添加空白单元格（直到第一天）
-            for (let i = 0; i < firstDayOfWeek; i++) {
-                const emptyElement = document.createElement('div');
-                calendarGrid.appendChild(emptyElement);
-            }
-            
-            // 添加日期单元格
-            const today = new Date();
-            const events = [5, 12, 18, 25]; // 有事件的日期
-            
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dateElement = document.createElement('div');
-                dateElement.className = 'calendar-date';
-                dateElement.textContent = day;
-                
-                // 标记今天
-                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
-                    dateElement.style.backgroundColor = 'rgba(0, 51, 102, 0.1)';
-                    dateElement.style.border = '2px solid var(--primary)';
-                }
-                
-                // 标记有事件的日期
-                if (events.includes(day)) {
-                    dateElement.classList.add('event');
-                }
-                
-                calendarGrid.appendChild(dateElement);
-            }
-        }
-        
-        function prevMonth() {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            generateCalendar();
-        }
-        
-        function nextMonth() {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            generateCalendar();
-        }
-        
-        // ====== 投票系统 ======
-        function generatePoll() {
-            const options = [
-                { id: 1, text: '户外拓展活动', votes: 12 },
-                { id: 2, text: '学术讲座与分享', votes: 8 },
-                { id: 3, text: '文艺晚会表演', votes: 15 },
-                { id: 4, text: '志愿服务项目', votes: 6 }
-            ];
-            
-            const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
-            
-            const container = document.getElementById('pollOptions');
-            container.innerHTML = '';
-            
-            options.forEach(option => {
-                const percentage = totalVotes > 0 ? (option.votes / totalVotes * 100) : 0;
-                
-                const optionElement = document.createElement('div');
-                optionElement.className = 'poll-option';
-                optionElement.dataset.optionId = option.id;
-                optionElement.innerHTML = `
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>${option.text}</span>
-                        <span>${option.votes}票 (${percentage.toFixed(1)}%)</span>
-                    </div>
-                    <div class="poll-bar">
-                        <div class="poll-fill" style="width: ${percentage}%"></div>
-                    </div>
-                `;
-                
-                container.appendChild(optionElement);
-            });
-        }
-        
-        function voteForOption(optionId) {
-            if (!currentUser) {
-                showMessage('请先登录后再投票', 'warning');
-                showLoginModal();
-                return;
-            }
-            
-            // 检查是否已经投过票
-            const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
-            if (userVotes[currentUser.username]) {
-                showMessage('您已经投过票了', 'info');
-                return;
-            }
-            
-            // 记录投票
-            userVotes[currentUser.username] = optionId;
-            localStorage.setItem('userVotes', JSON.stringify(userVotes));
-            
-            // 更新投票数据
-            const pollData = JSON.parse(localStorage.getItem('pollData') || '{"1":12,"2":8,"3":15,"4":6}');
-            pollData[optionId] = (pollData[optionId] || 0) + 1;
-            localStorage.setItem('pollData', JSON.stringify(pollData));
-            
-            showMessage('投票成功！', 'success');
-            generatePoll();
-        }
-        
-        // ====== 倒计时系统 ======
-        function generateCountdowns() {
-            // 设置目标日期
-            const examDate = new Date('2023-12-20');
-            const eventDate = new Date('2023-11-25');
-            const holidayDate = new Date('2024-01-15');
-            
-            // 更新倒计时显示
-            updateCountdown('examCountdown', examDate);
-            updateCountdown('eventCountdown', eventDate);
-            updateCountdown('holidayCountdown', holidayDate);
-            
-            // 每秒更新一次
-            setInterval(() => {
-                updateCountdown('examCountdown', examDate);
-                updateCountdown('eventCountdown', eventDate);
-                updateCountdown('holidayCountdown', holidayDate);
-            }, 1000);
-        }
-        
-        function updateCountdown(elementId, targetDate) {
-            const now = new Date();
-            const diff = targetDate.getTime() - now.getTime();
-            
-            if (diff <= 0) {
-                document.getElementById(elementId).innerHTML = `
-                    <div style="font-size: 2rem; color: var(--success); text-align: center;">已开始/已结束</div>
-                `;
-                return;
-            }
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById(elementId).innerHTML = `
-                <div style="display: flex; justify-content: center; gap: 10px; text-align: center;">
-                    <div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">${days}</div>
-                        <div style="font-size: 0.9rem; color: var(--gray);">天</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">${hours}</div>
-                        <div style="font-size: 0.9rem; color: var(--gray);">小时</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">${minutes}</div>
-                        <div style="font-size: 0.9rem; color: var(--gray);">分钟</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">${seconds}</div>
-                        <div style="font-size: 0.9rem; color: var(--gray);">秒</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // ====== 工具函数 ======
-        function showMessage(message, type) {
-            // 创建消息元素
-            const messageElement = document.createElement('div');
-            messageElement.textContent = message;
-            messageElement.style.position = 'fixed';
-            messageElement.style.top = '20px';
-            messageElement.style.right = '20px';
-            messageElement.style.padding = '15px 25px';
-            messageElement.style.borderRadius = 'var(--radius)';
-            messageElement.style.color = 'white';
-            messageElement.style.fontWeight = '600';
-            messageElement.style.zIndex = '2000';
-            messageElement.style.boxShadow = 'var(--shadow)';
-            messageElement.style.transition = 'opacity 0.3s';
-            
-            // 根据类型设置背景色
-            if (type === 'success') {
-                messageElement.style.backgroundColor = 'var(--success)';
-            } else if (type === 'warning') {
-                messageElement.style.backgroundColor = '#ffc107';
-            } else if (type === 'info') {
-                messageElement.style.backgroundColor = '#17a2b8';
-            } else {
-                messageElement.style.backgroundColor = 'var(--primary)';
-            }
-            
-            document.body.appendChild(messageElement);
-            
-            // 3秒后淡出并移除
-            setTimeout(() => {
-                messageElement.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(messageElement);
-                }, 300);
-            }, 3000);
-        }
-        
-        // ====== 初始化应用 ======
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+    });
+    
+    // 生成VIP码按钮
+    document.getElementById('generateCode').addEventListener('click', generateVipCode);
+    
+    // 封禁用户按钮
+    document.getElementById('banUser').addEventListener('click', banUser);
+    
+    // 解封用户按钮
+    document.getElementById('unbanUser').addEventListener('click', unbanUser);
+}
+
+function loadUserList() {
+    // 获取所有用户（预设+本地）
+    const presetUsers = Object.keys(PRESET_ACCOUNTS).map(name => ({
+        username: name,
+        role: PRESET_ACCOUNTS[name].role,
+        coins: PRESET_ACCOUNTS[name].coins
+    }));
+    
+    const localUsers = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const allUsers = [...presetUsers, ...localUsers];
+    
+    const container = document.getElementById('userList');
+    container.innerHTML = '';
+    
+    allUsers.forEach(user => {
+        const div = document.createElement('div');
+        div.style.padding = '10px';
+        div.style.borderBottom = '1px solid #eee';
+        div.innerHTML = `
+            <strong>${user.username}</strong> - ${user.role} - ${user.coins || 0}班币
+            <button onclick="editUser('${user.username}')" style="margin-left: 10px;">编辑</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function loadReportList() {
+    const reports = JSON.parse(localStorage.getItem('reports') || '[]');
+    const container = document.getElementById('reportList');
+    container.innerHTML = '';
+    
+    if (reports.length === 0) {
+        container.innerHTML = '<p>暂无举报</p>';
+        return;
+    }
+    
+    reports.forEach(report => {
+        const div = document.createElement('div');
+        div.style.padding = '10px';
+        div.style.marginBottom = '10px';
+        div.style.border = '1px solid #eee';
+        div.style.borderRadius = 'var(--radius)';
+        div.innerHTML = `
+            <p><strong>举报人:</strong> ${report.reporter}</p>
+            <p><strong>类型:</strong> ${report.type}</p>
+            <p><strong>详情:</strong> ${report.details}</p>
+            <p><strong>状态:</strong> ${report.status}</p>
+            <button onclick="handleReport(${report.id}, 'resolved')" style="margin-right: 10px;">已处理</button>
+            <button onclick="handleReport(${report.id}, 'rejected')">拒绝</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function loadBannedUsers() {
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const bannedUsers = users.filter(u => u.banned);
+    
+    const container = document.getElementById('bannedUsers');
+    container.innerHTML = '';
+    
+    if (bannedUsers.length === 0) {
+        container.innerHTML = '<p>暂无封禁用户</p>';
+        return;
+    }
+    
+    bannedUsers.forEach(user => {
+        const div = document.createElement('div');
+        div.style.padding = '10px';
+        div.style.marginBottom = '10px';
+        div.style.border = '1px solid #ff6b6b';
+        div.style.borderRadius = 'var(--radius)';
+        div.innerHTML = `
+            <p><strong>${user.username}</strong> - 封禁至: ${new Date(user.banEnd).toLocaleDateString()}</p>
+            <p>原因: ${user.banReason}</p>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function loadVipCodes() {
+    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+    const container = document.getElementById('vipCodes');
+    container.innerHTML = '';
+    
+    vipCodes.forEach(code => {
+        const div = document.createElement('div');
+        div.style.padding = '5px';
+        div.style.marginBottom = '5px';
+        div.style.background = code.used ? '#eee' : '#e8f5e9';
+        div.innerHTML = `
+            ${code.code} - ${code.days}天 - ${code.used ? '已使用' : '未使用'}
+            ${code.used ? `(使用人: ${code.usedBy})` : ''}
+        `;
+        container.appendChild(div);
+    });
+}
+
+function setUserRole(username, role) {
+    // 更新预设账号
+    if (PRESET_ACCOUNTS[username]) {
+        PRESET_ACCOUNTS[username].role = role;
+        // 注意：预设账号在内存中，刷新页面会重置
+        alert('预设账号角色已更改（刷新页面会重置）');
+    }
+    
+    // 更新本地用户
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const userIndex = users.findIndex(u => u.username === username);
+    if (userIndex !== -1) {
+        users[userIndex].role = role;
+        localStorage.setItem('classUsers', JSON.stringify(users));
+    }
+    
+    // 如果当前用户是自己，更新UI
+    if (currentUser && currentUser.username === username) {
+        currentUser.role = role;
+        updateUserUI();
+    }
+    
+    loadUserList();
+    showMessage(`已设置${username}为${role}`, 'success');
+}
+
+function generateVipCode() {
+    const code = 'VIP' + Date.now().toString(36).toUpperCase();
+    const days = 7;
+    
+    const vipCodes = JSON.parse(localStorage.getItem('vipCodes') || '[]');
+    vipCodes.push({
+        code,
+        days,
+        created: new Date().toISOString(),
+        used: false
+    });
+    
+    localStorage.setItem('vipCodes', JSON.stringify(vipCodes));
+    loadVipCodes();
+    showMessage(`已生成VIP兑换码: ${code}`, 'success');
+}
+
+function banUser() {
+    const username = document.getElementById('banUsername').value.trim();
+    const days = parseInt(document.getElementById('banDays').value);
+    const reason = document.getElementById('banReasonInput').value.trim();
+    
+    if (!username || !days || !reason) {
+        alert('请填写完整信息');
+        return;
+    }
+    
+    // 更新用户列表
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const userIndex = users.findIndex(u => u.username === username);
+    
+    if (userIndex === -1 && !PRESET_ACCOUNTS[username]) {
+        alert('用户不存在');
+        return;
+    }
+    
+    if (userIndex !== -1) {
+        users[userIndex].banned = true;
+        users[userIndex].banDays = days;
+        users[userIndex].banReason = reason;
+        users[userIndex].banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
+        localStorage.setItem('classUsers', JSON.stringify(users));
+    }
+    
+    // 如果是当前用户，立即生效
+    if (currentUser && currentUser.username === username) {
+        currentUser.banned = true;
+        currentUser.banDays = days;
+        currentUser.banReason = reason;
+        currentUser.banEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
+        localStorage.setItem('classUser', JSON.stringify(currentUser));
+        showBanScreen(currentUser);
+    }
+    
+    loadBannedUsers();
+    showMessage(`已封禁用户${username}`, 'success');
+}
+
+function unbanUser() {
+    const username = document.getElementById('banUsername').value.trim();
+    if (!username) return;
+    
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const userIndex = users.findIndex(u => u.username === username);
+    
+    if (userIndex !== -1) {
+        users[userIndex].banned = false;
+        delete users[userIndex].banDays;
+        delete users[userIndex].banReason;
+        delete users[userIndex].banEnd;
+        localStorage.setItem('classUsers', JSON.stringify(users));
+    }
+    
+    loadBannedUsers();
+    showMessage(`已解封用户${username}`, 'success');
+}
+
+// ========== 工具函数 ==========
+function updateUserInList(user) {
+    const users = JSON.parse(localStorage.getItem('classUsers') || '[]');
+    const userIndex = users.findIndex(u => u.username === user.username);
+    
+    if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...user };
+        localStorage.setItem('classUsers', JSON.stringify(users));
+    }
+}
+
+function getFakeIP() {
+    // 生成模拟IP地址，用于反作弊记录
+    return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+}
+
+function showMessage(message, type) {
+    const msg = document.createElement('div');
+    msg.textContent = message;
+    msg.style.position = 'fixed';
+    msg.style.top = '20px';
+    msg.style.right = '20px';
+    msg.style.padding = '15px 25px';
+    msg.style.borderRadius = 'var(--radius)';
+    msg.style.color = 'white';
+    msg.style.fontWeight = '600';
+    msg.style.zIndex = '2000';
+    msg.style.boxShadow = 'var(--shadow)';
+    msg.style.transition = 'opacity 0.3s';
+    
+    const colors = { 'success': '#28a745', 'danger': '#dc3545', 'info': '#17a2b8' };
+    msg.style.backgroundColor = colors[type] || 'var(--primary)';
+    
+    document.body.appendChild(msg);
+    
+    setTimeout(() => {
+        msg.style.opacity = '0';
+        setTimeout(() => document.body.removeChild(msg), 300);
+    }, 3000);
+}
+
+// ========== 初始化 ==========
+document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>
